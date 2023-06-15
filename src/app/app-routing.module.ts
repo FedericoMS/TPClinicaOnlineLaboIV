@@ -4,6 +4,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { BienvenidoComponent } from './pages/bienvenido/bienvenido.component';
 import { RegistroComponent } from './pages/registro/registro.component';
 import { UsuariosComponent } from './pages/usuarios/usuarios.component';
+import { QuiensoyComponent } from './pages/quiensoy/quiensoy.component';
 import { EsadminGuard } from './guards/esadmin.guard';
 
 const routes: Routes = [
@@ -11,6 +12,7 @@ const routes: Routes = [
   { path: "login", component: LoginComponent },
   { path: "registro", component: RegistroComponent },
   { path: "home", component: BienvenidoComponent },
+  { path: "quiensoy", component: QuiensoyComponent },
   { path: "usuarios", component:  UsuariosComponent,
   canActivate : [EsadminGuard]
      }, //IMPLEMENTAR CANACTIVATE

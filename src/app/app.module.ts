@@ -38,6 +38,7 @@ import { FormAltaEspecialistaComponent } from './componentes/form-alta-especiali
 import { FormAltaAdminComponent } from './componentes/form-alta-admin/form-alta-admin.component';
 import { UsuariosComponent } from './pages/usuarios/usuarios.component';
 import { ListadoUsuariosComponent } from './componentes/listado-usuarios/listado-usuarios.component';
+import { QuiensoyComponent } from './pages/quiensoy/quiensoy.component';
 
 
 @NgModule({
@@ -52,7 +53,8 @@ import { ListadoUsuariosComponent } from './componentes/listado-usuarios/listado
     FormAltaEspecialistaComponent,
     FormAltaAdminComponent,
     UsuariosComponent,
-    ListadoUsuariosComponent
+    ListadoUsuariosComponent,
+    QuiensoyComponent
   ],
   imports: [
     BrowserModule,
