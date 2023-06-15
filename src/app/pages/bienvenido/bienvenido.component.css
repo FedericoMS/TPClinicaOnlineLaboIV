@@ -2,9 +2,9 @@ body {
 	background: linear-gradient(90deg, #C7C5F4, #776BCC);		
 }
 
-img {
-	width: 28%;
-	height: 34%;
+.img-logo {
+	width: 36%;
+	height: 44%;
 }
 
 .container {

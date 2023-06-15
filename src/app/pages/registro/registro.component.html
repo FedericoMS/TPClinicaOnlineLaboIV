@@ -11,10 +11,10 @@
 					*ngIf="!boolFormPac && !boolFormEsp && currentProfile != 'admin', else esAdmin">
 					<div class="col">
 						<div class="row">
-							<h1>Especialista</h1>
+							<!-- <h1>Especialista</h1> -->
 							<img src="../../../assets/doctor.jpg" alt="especialista" (click)="boolFormEsp = true">
 						</div>
-						<h1>Paciente</h1>
+						<!-- <h1>Paciente</h1> -->
 						<div class="row">
 							<img src="../../../assets/patient.jpg" alt="paciente" (click)="boolFormPac = true">
 						</div>
@@ -25,14 +25,14 @@
 					<div class="registration_admin">
 						<div class="col" *ngIf="!boolFormPac && !boolFormEsp && !boolFormAdmin">
 							<div class="row">
-								<h1>Especialista</h1>
+								<!-- <h1>Especialista</h1> -->
 								<img src="../../../assets/doctor.jpg" alt="especialista" (click)="boolFormEsp = true">
 							</div>
-							<h1>Paciente</h1>
+							<!-- <h1>Paciente</h1> -->
 							<div class="row">
 								<img src="../../../assets/patient.jpg" alt="paciente" (click)="boolFormPac = true">
 							</div>
-							<h1>Admin</h1>
+							<!-- <h1>Admin</h1> -->
 							<div class="row">
 								<img src="../../../assets/admin.jpg" alt="admin" (click)="boolFormAdmin = true">
 							</div>

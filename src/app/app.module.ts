@@ -39,6 +39,8 @@ import { FormAltaAdminComponent } from './componentes/form-alta-admin/form-alta-
 import { UsuariosComponent } from './pages/usuarios/usuarios.component';
 import { ListadoUsuariosComponent } from './componentes/listado-usuarios/listado-usuarios.component';
 import { QuiensoyComponent } from './pages/quiensoy/quiensoy.component';
+import { MisTurnosComponent } from './pages/mis-turnos/mis-turnos.component';
+import { ListadoTurnosPacienteComponent } from './componentes/listado-turnos-paciente/listado-turnos-paciente.component';
 
 
 @NgModule({
@@ -54,7 +56,9 @@ import { QuiensoyComponent } from './pages/quiensoy/quiensoy.component';
     FormAltaAdminComponent,
     UsuariosComponent,
     ListadoUsuariosComponent,
-    QuiensoyComponent
+    QuiensoyComponent,
+    MisTurnosComponent,
+    ListadoTurnosPacienteComponent
   ],
   imports: [
     BrowserModule,
