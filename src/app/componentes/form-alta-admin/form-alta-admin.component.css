@@ -1,0 +1,15 @@
+h1, h2, h3, p, label
+{
+	color:#5e8b89;
+}
+
+.container-form
+{
+    margin-bottom: 35%;
+}
+
+.btn-primary{
+    background-color: #6ed9d3 ;
+    border-color: #6dbfbb;
+    color:white;
+}

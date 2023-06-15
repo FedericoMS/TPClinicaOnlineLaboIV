@@ -1,0 +1,119 @@
+<div class="container">
+	<div class="screen">
+		<div class="screen__content">
+			<div class="login">
+				<h2>Log in</h2>
+				<div class="login__field">
+					<!-- <fa-icon icon="user"></fa-icon> -->
+					<input type="text" class="login__input" [(ngModel)]="user.email" placeholder="Email">
+				</div>
+				<div class="login__field">
+					<i class="login__icon fas fa-lock"></i>
+					<!-- <fa-icon icon="lock"></fa-icon> -->
+					<input type="password" class="login__input" [(ngModel)]="user.clave" placeholder="Clave">
+				</div>
+				<button class="button login__submit" (click)="loginUser()">
+					<span class="button__text">Ingresar</span>
+					<i class="button__icon fas fa-chevron-right"></i>
+				</button>				
+				<!-- <button class="button login__submit" (click)="fastLogin()">
+					<span class="button__text">Iniciar sesión como invitado</span>
+					<i class="button__icon fas fa-chevron-right"></i>
+				</button> -->
+				
+				<div class="cargando" *ngIf="isLoading; else mostrar">
+					<app-spinner></app-spinner>
+				  </div>
+			    <ng-template #mostrar>
+					<div class="row align-items-end justify-content-start">
+							<div class="col" *ngFor="let paciente of pacientes.slice(0, 3)">
+								<h6>Paciente</h6>
+								<img [src]="paciente.imagen1" class="rounded-image" alt="paciente" (click)="cargarUsuario(paciente.email, paciente.clave)">
+							</div>
+						
+							<div class="col" *ngFor="let especialista of especialistas.slice(0, 2)">
+								<h6>Especialista</h6>
+								<img [src]="especialista.imagen1" class="rounded-image" alt="Especialista"
+									(click)="cargarUsuario(especialista.email, especialista.clave)">
+							</div>
+						
+						
+							<div class="col" *ngFor="let admin of admins.slice(0, 1)">
+								<h6>Admin</h6>
+								<img [src]="admin.imagen1" class="rounded-image" alt="Admin" (click)="cargarUsuario(admin.email, admin.clave)">				
+							</div>				
+					</div>
+				</ng-template>
+				  
+
+
+				<!-- 
+					<div class="row align-items-end justify-content-start" *ngFor="let usuario of this.listaDeUsuarios">
+						<div class="col" *ngIf="usuario.perfil == 'paciente'">
+							<h6>Paciente</h6>						
+							<img [src]="usuario.imagen1" alt="paciente" (click)="cargarUsuario(usuario.email, usuario.clave)">
+						</div>
+						<div class="col">
+							<h6>Paciente</h6>
+							<img [src]="usuario.imagen1" alt="paciente" (click)="cargarUsuario('yodoimafratu-4050@yopmail.com', '123456')">
+						</div>
+						<div class="col">
+							<h6>Paciente</h6>
+							<img src="../../../assets/patient.jpg" alt="paciente" (click)="cargarUsuario('koboposoika-8045@yopmail.com', '123456')">
+						</div>
+						<div class="col">
+							<h6>Especialista</h6>
+							<img src="../../../assets/doctor.jpg" alt="Especialista" (click)="cargarUsuario('kekecrallecre-2646@yopmail.com', '123456')">
+						</div>
+						<div class="col">
+							<h6>Especialista</h6>
+							<img src="../../../assets/doctor.jpg" alt="Especialista" (click)="cargarUsuario('zevoigunnaffo-8222@yopmail.com', '123456')">
+						</div>
+						<div class="col">
+							<h6>Admin</h6>
+							<img src="../../../assets/admin.jpg" alt="Admin" (click)="cargarUsuario('federico.martin.soria@gmail.com', '123456')">
+						</div>
+					</div>	
+
+				-->
+				
+				<!-- CÓDIGO ORIGINAL
+					<div class="row align-items-end justify-content-start">
+					<div class="col">
+						<h6>Paciente</h6>						
+						<img src="../../../assets/patient.jpg" alt="paciente" (click)="cargarUsuario('lannissilivu-7028@yopmail.com', '123456')">
+					</div>
+					<div class="col">
+						<h6>Paciente</h6>
+						<img src="../../../assets/patient.jpg" alt="paciente" (click)="cargarUsuario('yodoimafratu-4050@yopmail.com', '123456')">
+					</div>
+					<div class="col">
+						<h6>Paciente</h6>
+						<img src="../../../assets/patient.jpg" alt="paciente" (click)="cargarUsuario('koboposoika-8045@yopmail.com', '123456')">
+					</div>
+					<div class="col">
+						<h6>Especialista</h6>
+						<img src="../../../assets/doctor.jpg" alt="Especialista" (click)="cargarUsuario('kekecrallecre-2646@yopmail.com', '123456')">
+					</div>
+					<div class="col">
+						<h6>Especialista</h6>
+						<img src="../../../assets/doctor.jpg" alt="Especialista" (click)="cargarUsuario('zevoigunnaffo-8222@yopmail.com', '123456')">
+					</div>
+					<div class="col">
+						<h6>Admin</h6>
+						<img src="../../../assets/admin.jpg" alt="Admin" (click)="cargarUsuario('federico.martin.soria@gmail.com', '123456')">
+					</div>
+				</div>			 -->
+			</div>
+			<!-- <div class="social-login">
+				<h3>log in via</h3>
+				<div class="social-icons">
+					<a href="#" class="social-login__icon fab fa-instagram"></a>
+					<a href="#" class="social-login__icon fab fa-facebook"></a>
+					<a href="#" class="social-login__icon fab fa-twitter"></a>
+				</div>
+			</div> -->
+			
+		</div>
+	</div>
+</div>

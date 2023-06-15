@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "clinicaonlinelaboiv": {
+      "hosting": {
+        "ClinicaOnlineLaboIV": [
+          "clinicaonlinelaboiv"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "clinicaonlinelaboiv"
+  }
+}

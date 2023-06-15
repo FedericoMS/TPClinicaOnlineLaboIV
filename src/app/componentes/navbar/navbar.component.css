@@ -1,0 +1,14 @@
+
+.spacer
+{
+    flex : 1 1 auto;
+}
+
+.mat-toolbar{
+  opacity: 87%;
+}
+
+.mat-toolbar:hover{
+  opacity: 100%;
+
+}

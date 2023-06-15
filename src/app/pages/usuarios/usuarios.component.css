@@ -1,0 +1,143 @@
+@import url('https://fonts.googleapis.com/css?family=Raleway:400,700');
+/* @import 'https://fonts.googleapis.com/icon?family=Material+Icons'; */
+
+* {
+	box-sizing: border-box;
+	margin: 1;
+	padding: 0;	
+	font-family: Raleway, sans-serif;
+}
+
+.boton-registro{
+	margin-right: 88%;
+    margin-top: 2%;
+}
+
+.btn-primary{
+	background-color: #6ed9d3 ;
+    border-color: #6dbfbb;
+    color:white;
+	width: 85px;
+	height: 30px;
+}
+
+body {
+	background: linear-gradient(90deg, #C7C5F4, #776BCC);		
+}
+
+img {
+	border-radius: 50%;
+	width: 35%;
+	height: 35%;
+	cursor: pointer; /*Probablemente haya que modificarlo*/
+}
+
+.row {
+    display: flex;
+    justify-content: center;
+	margin-bottom: 20%;
+}
+
+.center-items {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.container {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	position: relative; 
+    top:4%;
+}
+
+.screen {		
+	background: linear-gradient(90deg, #f1fcfb, #dafffd);		
+	position: relative;	
+	height: 800px;
+	width: 1000px;	
+	box-shadow: 0px 0px 24px #8dcac7;
+	border-radius: 15px;
+	
+}
+
+.screen__content {
+	z-index: 1;
+	position: relative;	
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	text-align: center;
+	
+}
+
+h1, h2, h3, p
+{
+	color:#5e8b89;
+}
+
+.users {
+	width: 1000px;
+	
+}
+
+.users__field {
+	padding: 7px 0px;	
+	position: relative;	
+}
+
+.users__icon {
+	position: absolute;
+	top: 30px;
+	color: #7875B5;
+}
+
+.users__input {
+	border: none;
+	border-bottom: 2px solid #D1D1D4;
+	background: none;
+	padding: 10px;
+	padding-left: 24px;
+	font-weight: 700;
+	width: 75%;
+	transition: .2s;
+}
+
+.users__input:active,
+.users__input:focus,
+.users__input:hover {
+	outline: none;
+	border-bottom-color: #6A679E;
+}
+
+.users__submit {
+	background: #fff;
+	font-size: 14px;
+	margin-top: 30px;
+	padding: 16px 20px;
+	border-radius: 26px;
+	border: 1px solid #ddfffd;
+	text-transform: uppercase;
+	font-weight: 700;
+	display: flex;
+	align-items: center;
+	width: 100%;
+	color: #57a39f;
+	box-shadow: 0px 2px 2px #57a39f;
+	cursor: pointer;
+	transition: .2s;
+}
+
+.users__submit:active,
+.users__submit:focus,
+.users__submit:hover {
+	border-color: #99dfdc;
+	outline: none;
+}
+
+.button__icon {
+	font-size: 24px;
+	margin-left: auto;
+	color: #7875B5;
+}

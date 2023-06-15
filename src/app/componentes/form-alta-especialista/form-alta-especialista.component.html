@@ -1,0 +1,122 @@
+<div class="container-form">
+
+    <form [formGroup]="forma" class="text-focus-in" (ngSubmit)="registrarEspecialista($event)">
+        <h2>REGISTRO DE ESPECIALISTA</h2>
+        <p>Ingresá los datos para crear tu cuenta</p>
+
+        <div class="row">
+            <!-- NOMBRE -->
+            <div class="col-sm mb-3">
+                <input formControlName="nombre" type="text" class="form-control" id="nombre" placeholder="Nombre" />
+                <small style="color:rgb(255, 0, 0);" *ngIf="
+                    forma.controls['nombre'].errors?.['required'] &&
+                    forma.controls['nombre'].touched
+                                ">
+                    El nombre es requerido
+                </small>
+            </div>
+            <!-- APELLIDO -->
+            <div class="col-sm mb-3">
+                <input formControlName="apellido" type="text" class="form-control" id="apellido"
+                    placeholder="Apellido" />
+                <small style="color:rgb(255, 0, 0);" *ngIf="
+                    forma.controls['apellido'].errors?.['required'] &&
+                    forma.controls['apellido'].touched
+                                ">
+                    El apellido es requerido
+                </small>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <!-- EDAD -->
+            <div class="col-sm mb-3">
+                <input formControlName="edad" type="number" class="form-control" placeholder="Edad" min="18" max="99" />
+                <small style="color:rgb(255, 0, 0);" *ngIf="
+                          forma.controls['edad'].errors?.['required'] &&
+                          forma.controls['edad'].touched
+                                  ">
+                    La edad es requerida
+                </small>
+                <small style="color:rgb(255, 0, 0);" *ngIf="
+                          forma.controls['edad'].errors?.['min'] ||
+                                    (forma.controls['edad'].errors?.['max'] &&
+                                    forma.controls['edad'].touched)
+                                  ">
+                    La edad debe ser de 18 a 99 años
+                </small>
+            </div>
+            <!-- DNI -->
+            <div class="col-sm mb-3">
+                <input formControlName="dni" type="number" class="form-control" placeholder="N° DNI" />
+                <small style="color:rgb(255, 0, 0);" *ngIf="
+                          forma.controls['dni'].errors?.['required'] &&
+                          forma.controls['dni'].touched
+                                  ">
+                    El DNI es requerido
+                </small>
+                <small style="color:rgb(255, 0, 0);" *ngIf="
+                forma.controls['dni'].errors?.['min'] ||
+                          (forma.controls['dni'].errors?.['max'] &&
+                          forma.controls['dni'].touched)
+                        ">
+                    El DNI debe ser de 1 a 99999999
+                </small>
+            </div>
+
+        </div>
+
+
+        <div class="row">
+           
+            <!-- CORREO -->
+            <div class="col-sm mb-3">
+                <input formControlName="email" type="email" class="form-control" placeholder="Email" />
+                <small style="color:rgb(255, 0, 0);" *ngIf="
+                forma.controls['email'].errors?.['required'] &&
+                forma.controls['email'].touched
+                        ">
+                    El Email es requerido
+                </small>
+            </div>
+            <!-- CLAVE -->
+            <div class="col-sm mb-3">
+                <input formControlName="clave" type="password" class="form-control" placeholder="Contraseña" />
+                <small style="color:rgb(255, 0, 0);" *ngIf="
+                forma.controls['clave'].errors?.['required'] &&
+                forma.controls['clave'].touched
+                        ">
+                    La contraseña es requerida
+                </small>
+            </div>
+        </div>
+
+        <div class="row">
+             <!-- ESPECIALIDAD -->
+             <div class="col-sm mb-3">
+                <input formControlName="especialidad" type="text" class="form-control" placeholder="Especialidad" />
+                <small style="color:rgb(255, 0, 0);" *ngIf="
+            forma.controls['especialidad'].errors?.['required'] &&
+            forma.controls['especialidad'].touched
+                    ">
+                    La especialidad es requerida
+                </small>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- FOTO DE PERFIL -->
+            <div class="col-sm mb-3">
+                <label for="imagen1" class="form-label">Foto de perfil</label>
+                <input type="file" class="form-control" placeholder="Imagen Perfil" (change)="uploadImage($event, 1)" />
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Registrar Especialista</button>
+    </form>
+    <br>
+    <re-captcha (resolved)="resolved($event)" [(ngModel)]="recaptchaResponse"
+        siteKey="6LdgXogmAAAAAAdh2uwnfttNUNNv7fYi0rpb_CHI"></re-captcha>
+    <!-- <re-captcha (resolved)="resolved($event)" [(ngModel)]="recaptchaResponse" siteKey="6LdgXogmAAAAAAdh2uwnfttNUNNv7fYi0rpb_CHI"></re-captcha> -->
+</div>

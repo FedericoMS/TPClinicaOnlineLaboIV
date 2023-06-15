@@ -1,0 +1,23 @@
+<mat-toolbar color="primary" class="mat-elevation-z8">
+    <span>
+      <a routerLink="home"><mat-icon>local_hospital</mat-icon></a> Clínica Online
+    </span>
+  
+    <div class="spacer"></div>
+    
+    <div *ngIf="!this.userService.isLoggedIn; else logout">
+      <a mat-button routerLink="home"> Home </a>
+      <!-- <a mat-button routerLink="quiensoy"> Quién soy </a> -->
+      <a mat-button routerLink="registro"> Registro </a>
+      <a mat-raised-button color="accent" routerLink="login"> Login </a>  
+    </div>
+      
+      <ng-template #logout>
+        <a mat-button routerLink="home"> Home </a>
+        <a mat-button routerLink="usuarios" *ngIf="this.userService.getCurrentProfile() == 'admin'"> Usuarios </a> <!-- MODIFICAR SOLO PARA ADMIN -->
+        <!--<a mat-button routerLink="quiensoy"> Quién soy </a> -->
+        <a mat-raised-button color="accent" (click)="this.userService.logout()" routerLink="login"> Logout </a>
+      </ng-template>
+      
+  
+  </mat-toolbar>

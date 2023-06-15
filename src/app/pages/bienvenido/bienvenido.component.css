@@ -1,0 +1,143 @@
+body {
+	background: linear-gradient(90deg, #C7C5F4, #776BCC);		
+}
+
+img {
+	width: 28%;
+	height: 34%;
+}
+
+.container {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	position: relative; 
+    top: 11%;
+}
+
+.screen {		
+	background: linear-gradient(90deg, #ffffff, #dafffd);		
+	position: relative;	
+	height: 600px;
+	width: 750px;	
+	box-shadow: 0px 0px 24px #8dcac7;
+    border-radius: 15px;
+	display:flex;
+	flex-direction: column; /* Agregado */
+	align-content: center;
+	text-align: center;
+}
+
+.screen__content {
+	top : 5%;
+	z-index: 1;
+	position: relative;
+	height: 100%;
+	display: flex;
+	flex-direction: column; /* Agregado */
+	align-items: center;
+	justify-content: center;
+}
+
+h1, h2, h3, p
+{
+	color:#5e8b89;
+}
+
+.text-center {
+	text-align: center; /* Agregado */
+}
+
+
+.home {
+	width: 320px; /*de los botones*/
+	padding: 30px; /*Este valor lo ajusta de izquierda a derecha en el contenedor del home*/
+	padding-top: 10px;
+}
+
+.home__field {
+	padding: 20px 0px;	
+	position: relative;	
+}
+
+.home__icon {
+	position: absolute;
+	top: 30px;
+	color: #7875B5;
+}
+
+.home__input {
+	border: none;
+	border-bottom: 2px solid #D1D1D4;
+	background: none;
+	padding: 10px;
+	padding-left: 24px;
+	font-weight: 700;
+	width: 75%;
+	transition: .2s;
+}
+
+.home__input:active,
+.home__input:focus,
+.home__input:hover {
+	outline: none;
+	border-bottom-color: #6A679E;
+}
+
+.home__submit {
+	background: #fff;
+	font-size: 14px;
+	margin-top: 30px;
+	padding: 16px 20px;
+	border-radius: 26px;
+	border: 1px solid #ddfffd;
+	text-transform: uppercase;
+	font-weight: 700;
+	display: flex;
+	align-items: center;
+	width: 100%;
+	color: #57a39f;
+	box-shadow: 0px 2px 2px #57a39f;
+	cursor: pointer;
+	transition: .2s;
+}
+
+.home__submit:active,
+.home__submit:focus,
+.home__submit:hover {
+	border-color: #99dfdc;
+	outline: none;
+}
+
+.button__icon {
+	font-size: 24px;
+	margin-left: auto;
+	color: #7875B5;
+}
+
+/* .social-registration {	
+	position: absolute;
+	height: 140px;
+	width: 160px;
+	text-align: center;
+	bottom: 0px;
+	right: 0px;
+	color: #fff;
+}
+
+.social-icons {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.social-registration__icon {
+	padding: 20px 10px;
+	color: #fff;
+	text-decoration: none;	
+	text-shadow: 0px 0px 8px #7875B5;
+}
+
+.social-registration__icon:hover {
+	transform: scale(1.5);	
+} */
