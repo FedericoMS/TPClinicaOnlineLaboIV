@@ -21,6 +21,8 @@ export class UserService {
   private userProfile : string = '';
   private isApproved : boolean = false;
   public isAdmin : boolean = false;
+  private dniActual : number = 0;
+  private nombreCompletoActual : string = '';
 
   constructor(private swal : SwalService, private auth : Auth, private authFire : AngularFireAuth, private router : Router, private af : AngularFirestore) 
   { 
@@ -33,6 +35,12 @@ export class UserService {
            const userProfileData = userProfileSnapshot.data();
            this.userProfile = userProfileData.perfil;
            this.isApproved = userProfileData.aprobado;
+           this.dniActual = userProfileData.dni;
+           this.nombreCompletoActual = userProfileData.nombre + ' ' + userProfileData.apellido;
+
+           //console.log(this.dniActual);
+           //console.log(this.nombreCompletoActual);
+
            console.log("Perfil del usuario: " + this.userProfile);
            if(this.userProfile == "especialista" && this.isApproved)
            {
@@ -308,6 +316,16 @@ export class UserService {
  getCurrentProfile()
   {
     return this.userProfile;
+  }
+
+  getCurrentDNI()
+  {
+    return this.dniActual;
+  }
+
+  getCurrentFullName()
+  {
+    return this.nombreCompletoActual;
   }
 
 }
