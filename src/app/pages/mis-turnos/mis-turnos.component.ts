@@ -56,21 +56,37 @@ export class MisTurnosComponent {
       });
     }
       , 1500);
+    }
 
 
 
-    /*filtrarPorEspecialidad(especialidad: string) 
+    filtrarPorEspecialidad(especialidad : string) 
     {
         this.listaPorEspecialidad = [];
         this.filtroEspecialidad = true;
-        for (let i = 0; i < this.turnosDelPaciente.length; i++) {
-          const turno : Turno = this.turnosDelPaciente[i];
-          if (turno.especialidad == especialidad) {
+        this.listaDeTurnosDelPaciente.forEach((turno : Turno) => 
+        {
+          if(turno.especialidad == especialidad)
+          {
             this.listaPorEspecialidad.push(turno);
           }
-        }
+        });
       
-    }*/
-  }
+    }
 
-}
+    filtrarPorEspecialidadDelEspecialista(especialidad : string)
+    {
+      this.listaPorEspecialidad = [];
+      this.filtroEspecialidad = true;
+      this.listaDeTurnosDelEspecialista.forEach((turno : Turno) => 
+      {
+        if(turno.especialidad == especialidad)
+        {
+          this.listaPorEspecialidad.push(turno);
+        }
+      });
+
+    }
+ }
+
+
