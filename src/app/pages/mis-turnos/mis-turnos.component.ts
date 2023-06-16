@@ -24,17 +24,17 @@ export class MisTurnosComponent {
   ngOnInit(): void {
     setTimeout(() => {
       this.userService.getCollection('turnos').pipe(take(1)).subscribe((turnos) => {
+        this.listaDeTurnos = turnos; 
         if (this.userService.getCurrentProfile() == "admin") {
-         // console.log(this.userService.getCurrentProfile());
           console.log("HOLA SOY ADMIN");
-          this.listaDeTurnos = turnos;
           console.log(this.listaDeTurnos);
         }
         else {
           console.log(this.userService.getCurrentProfile());
           if (this.userService.getCurrentProfile() == "paciente") {
             console.log("HOLA SOY PACIENTE");
-            this.listaDeTurnos.forEach((turno) => {
+            this.listaDeTurnos.forEach((turno : Turno) => {
+              console.log(turno.dniPaciente);
               if (turno.dniPaciente == this.userService.getCurrentDNI()) {
                 this.listaDeTurnosDelPaciente.push(turno);
               }
