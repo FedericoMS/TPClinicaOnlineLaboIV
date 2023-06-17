@@ -116,36 +116,7 @@ export class UserService {
 
   }
 
-  private async initializeUser() {
-    this.user$ = this.authFire.authState.subscribe(async (user) => {
-      if (user != null && user != undefined && user.emailVerified) {
-        const userProfileSnapshot: any = await this.getUserProfile(user.uid).toPromise();
-        if (userProfileSnapshot.exists) {
-          const userProfileData = userProfileSnapshot.data();
-          this.userProfile = userProfileData.perfil;
-          this.isApproved = userProfileData.aprobado;
-          console.log("Perfil del usuario: " + this.userProfile);
-          if (this.userProfile == "especialista" && this.isApproved) {
-            console.log("hola, if especialista. Estoy aprobado? " + this.isApproved);
-            this.isLoggedIn = user;
-          } else {
-            if (this.userProfile != "especialista") {
-              this.isLoggedIn = user;
-            } else {
-              this.isLoggedIn = false;
-            }
-          }
-          let userArray: any = user.email?.split("@");
-          this.userName = userArray[0];
-          console.log("Hola, soy el usuario: " + this.userName);
-        }
-  
-        console.log("Hola, soy el usuario con el mail: " + user?.email);
-      }
-    });
-  }
-
-  createUser(newUser : any)
+    createUser(newUser : any)
   {
     return createUserWithEmailAndPassword(this.auth, newUser.email, newUser.clave)
         .then((data) => 

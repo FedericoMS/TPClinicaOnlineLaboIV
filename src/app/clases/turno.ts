@@ -1,4 +1,5 @@
 export class Turno {
+    id : string;
     fecha: string;
     hora: string; //de 8 a 19hs de l a v. Sábados de 8 a 14hs
     especialista: string; //Apellido + nombre
@@ -9,10 +10,12 @@ export class Turno {
     calificacion: number; //la da el paciente
     dniPaciente : number; //se debe tomar automáticamente
     dniEspecialista : number; //se debe tomar automáticamente
-    estado : string;
+    estado : string; //Los estados son: solicitado, realizado, cancelado, rechazado
+    comentarioCancelacion : string; //Decidí poner 1 sólo campo de comentario de cancelación o rechazo, ya que en teoría solamente debe comentar el que lo cancela/rechaza.
 
     constructor()
      {
+        this.id = '';
         this.fecha = '';
         this.hora = ''
         this.especialista = ''
@@ -24,6 +27,7 @@ export class Turno {
         this.dniEspecialista = 0;
         this.dniPaciente = 0;
         this.estado = '';
+        this.comentarioCancelacion = '';
     }
 
 }

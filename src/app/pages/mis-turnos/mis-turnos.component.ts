@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Usuario } from 'src/app/clases/usuario';
 import { UserService } from 'src/app/services/user.service';
 import { SwalService } from 'src/app/services/swal.service';
+import { TurnoService } from 'src/app/services/turno.service';
 import { Turno } from 'src/app/clases/turno';
 import { take } from 'rxjs/operators';
 
@@ -21,12 +22,12 @@ export class MisTurnosComponent {
   botonCancelar : boolean = false;
   encuestaCompletada : boolean = false;
 
-  constructor(public userService: UserService, private swal: SwalService) {
+  constructor(public userService: UserService, private swal: SwalService, private turnoService : TurnoService) {
   }
 
   ngOnInit(): void {
     setTimeout(() => {
-      this.userService.getCollection('turnos').pipe(take(1)).subscribe((turnos) => {
+      this.turnoService.getCollection('turnos').pipe(take(1)).subscribe((turnos) => {
         this.listaDeTurnos = turnos; 
         if (this.userService.getCurrentProfile() == "admin") {
           console.log("HOLA SOY ADMIN");
@@ -89,6 +90,53 @@ export class MisTurnosComponent {
         }
       });
 
+    }
+
+    cancelarTurno(turno: Turno, opcion: number, comentario : string, emisor : string = "paciente") {
+      //Cancelación de paciente a especialista
+      if (turno.estado == 'solicitado') {
+        if (opcion == 1) {
+          turno.estado = "cancelado";
+          turno.comentarioCancelacion = comentario;
+          this.turnoService.updateAppointment(turno);
+         // this.userService.updateUser(usuario);
+          // this.swal.showToast(
+          //   'Se habilitó al especialista',
+          //   'success'
+          // );
+        } 
+        else 
+        {
+          if (opcion == 2) {
+           // usuario.aprobado = false;
+           // this.userService.updateUser(usuario);
+            this.swal.showToast(
+              'Se deshabilitó al especialista',
+              'info'
+            );
+          }
+        }
+      }
+    }
+
+    modalCancelacionPaciente(turno: Turno, opcion: number, emisor: string)
+    {
+      this.swal.showModalText("Atención", "¿Está seguro que quiere cancelar su turno?", "Escriba su comentario",  (comentario : string) => {
+        if(comentario != '')
+        {
+          this.cancelarTurno(turno, opcion, comentario, emisor);
+        }
+        else
+        {
+          this.swal.swalert("Error", "Tiene que escribir un comentario para cancelar el turno", "error");
+        }
+      });
+
+    }
+
+    verResenia(reseña : string)
+    {
+      this.swal.swalert("Su reseña", reseña, "info");
     }
  }
 
