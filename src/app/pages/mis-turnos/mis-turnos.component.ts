@@ -18,6 +18,9 @@ export class MisTurnosComponent {
   listaPorEspecialidad: Turno[] = [];
   filtroEspecialidad = false;
 
+  botonCancelar : boolean = false;
+  encuestaCompletada : boolean = false;
+
   constructor(public userService: UserService, private swal: SwalService) {
   }
 

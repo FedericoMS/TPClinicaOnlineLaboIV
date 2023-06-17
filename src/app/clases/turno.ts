@@ -4,7 +4,7 @@ export class Turno {
     especialista: string; //Apellido + nombre
     especialidad: string;
     paciente: string; //Apellido + nombre
-    reseña: string; //la da el especialista. El historial clínico es un conjunto de todas las reseñas de UN paciente
+    resenia: string; //la da el especialista. El historial clínico es un conjunto de todas las resenias de UN paciente
     encuesta: string; //la da el paciente
     calificacion: number; //la da el paciente
     dniPaciente : number; //se debe tomar automáticamente
@@ -18,7 +18,7 @@ export class Turno {
         this.especialista = ''
         this.especialidad = ''
         this.paciente = ''
-        this.reseña = '';
+        this.resenia = '';
         this.encuesta = '';
         this.calificacion = 0;
         this.dniEspecialista = 0;
