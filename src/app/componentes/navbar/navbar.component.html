@@ -14,7 +14,8 @@
       
       <ng-template #logout>
         <a mat-button routerLink="home"> Home </a>
-        <a mat-button routerLink="misturnos"> Mis turnos </a>
+        <a mat-button routerLink="misturnos" *ngIf="this.userService.getCurrentProfile() == 'paciente' || this.userService.getCurrentProfile() == 'especialista'"> Mis turnos </a>
+        <a mat-button routerLink="misturnos" *ngIf="this.userService.getCurrentProfile() == 'admin'"> Turnos </a>
         <a mat-button routerLink="usuarios" *ngIf="this.userService.getCurrentProfile() == 'admin'"> Usuarios </a> <!-- MODIFICAR SOLO PARA ADMIN -->
         <a mat-button routerLink="quiensoy"> Quién soy </a> 
         <a mat-raised-button color="accent" (click)="this.userService.logout()" routerLink="login"> Logout </a>

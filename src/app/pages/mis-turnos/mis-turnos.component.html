@@ -3,12 +3,14 @@
     <div class="screen__content">
       <div class="appointments">
 
-        <!-- <div class="boton-registro">
-                    <button class="btn btn-primary" style="justify-content: left;" color="primary">Registro</button>
-                </div> -->
-
         <!--LISTA DE TURNOS DEL ADMINISTRADOR-->
         <div class="listado-turnos-admin" *ngIf="this.userService.getCurrentProfile() == 'admin'">
+          <h1>Gestión de turnos de la clínica</h1>
+          <tr>
+            <td><h5>Filtros: </h5></td>
+            <td><button class="btn btn-primary" (click)="verPorEspecialidad()">Por especialidad</button></td>
+            <td><button class="btn btn-primary" (click)="verPorEspecialista()">Por especialista</button></td>                       
+          </tr>
           <table style="color:rgb(0, 162, 255);" class="table table-hover">
             <thead>
               <tr>
@@ -20,52 +22,49 @@
                 <th scope="col">Acción</th>
               </tr>
             </thead>
-            <tbody>
+
+            <tbody *ngIf="this.filtroEspecialidad == false && this.filtroEspecialista == false">
               <tr *ngFor="let turno of this.listaDeTurnos">
                 <td>{{turno.fecha}}</td>
                 <td>{{turno.hora}}</td>
                 <td>{{turno.especialidad}}</td>
                 <td>{{turno.especialista}}</td>
-                <td>{{turno.estado}}</td>
-                <td><button mat-raised-button color="accent">Acción</button></td>
+                <td><span class="badge bg-primary"> {{turno.estado}} </span></td>
+                <td *ngIf="turno.estado != 'realizado' && turno.estado != 'rechazado' && turno.estado != 'aceptado' && turno.estado != 'cancelado'"><button mat-raised-button color="accent" (click)="modalCancelacion(turno, 1, 'admin')">Cancelar</button></td>
               </tr>
+
+              <tbody *ngIf="this.filtroEspecialidad == true">
+                <tr *ngFor="let turno of this.listaDeTurnos | ordenarPorEspecialidad">
+                  <td>{{turno.fecha}}</td>
+                  <td>{{turno.hora}}</td>
+                  <td>{{turno.especialidad}}</td>
+                  <td>{{turno.especialista}}</td>
+                  <td><span class="badge bg-primary"> {{turno.estado}} </span></td>
+                  <td *ngIf="turno.estado != 'realizado' && turno.estado != 'rechazado' && turno.estado != 'aceptado' && turno.estado != 'cancelado'"><button mat-raised-button color="accent" (click)="modalCancelacion(turno, 1, 'admin')">Cancelar</button></td>
+                </tr>
             </tbody>
+
+            <tbody *ngIf="this.filtroEspecialista == true">
+              <tr *ngFor="let turno of this.listaDeTurnos | ordenarPorEspecialista">
+                <td>{{turno.fecha}}</td>
+                <td>{{turno.hora}}</td>
+                <td>{{turno.especialidad}}</td>
+                <td>{{turno.especialista}}</td>
+                <td><span class="badge bg-primary"> {{turno.estado}} </span></td>
+                <td *ngIf="turno.estado != 'realizado' && turno.estado != 'rechazado' && turno.estado != 'aceptado' && turno.estado != 'cancelado'"><button mat-raised-button color="accent" (click)="modalCancelacion(turno, 1, 'admin')">Cancelar</button></td>
+              </tr>
+          </tbody>
           </table>
         </div>
 
-        <!-- 
-          Como PACIENTE
-          ■ Solo tendrá acceso el Paciente y le mostrará los turnos que él solicitó.
-          ■ Esta sección deberá contar con un filtro único donde podrá filtrar por:
-          ● Especialidad
-          ● Especialista
-          ● NO UTILIZAR Combobox
-          ■ A su vez desde este listado podrá realizar las siguientes acciones:
-
-              ● Cancelar turno
-              ○ Solamente debe ser visible si el turno no fue realizado.
-              ○ Debe dejar un comentario del porque se cancela el turno.
-
-          ● Ver reseña.
-          ○ Solo debe ser visible si el turno tiene un comentario o reseña
-          cargado.
-
-              ● Completar encuesta.
-              ○ Solamente debe estar visible si el especialista marcó el turno
-              como realizado y dejo la reseña.
-
-          ● Calificar Atención
-          ○ Solamente debe ser visible una vez que el turno sea
-          realizado.
-          ○ El paciente debe dejar un comentario de como fue la
-          atención del Especialista.
-
-              ■ Debe estar bien visible el estado del turno.
-              ■ Solamente mostrar la acción que puede realizar el usuario.
-        -->
-
+  
         <!--LISTA DE TURNOS DEL PACIENTE ACTUAL-->
         <div class="listado-turnos-paciente" *ngIf="this.userService.getCurrentProfile() == 'paciente'">
+          <tr>
+            <td><h5>Filtros: </h5></td>
+            <td><button class="btn btn-primary" (click)="verPorEspecialidad()">Por especialidad</button></td>
+            <td><button class="btn btn-primary" (click)="verPorEspecialista()">Por especialista</button></td>                       
+          </tr>
           <table style="color:rgb(0, 162, 255);" class="table table-hover">
             <thead>
               <tr>
@@ -75,12 +74,50 @@
                 <th scope="col">Profesional</th>
                 <th scope="col">Estado</th>
                 <th scope="col">Acción</th>
-                <!--<th scope="col" *ngIf="turno.estado == 'realizado' && turno.resenia != ''">Opinión</th>-->
-                <!--<th scope="col" *ngIf="turno.estado == 'realizado' && turno.resenia != ''">Encuesta</th> -->
               </tr>
             </thead>
-            <tbody>
+            <tbody *ngIf="this.filtroEspecialidad == false && this.filtroEspecialista == false">
               <tr *ngFor="let turno of this.listaDeTurnosDelPaciente">
+                <td>{{turno.fecha}}</td>
+                <td>{{turno.hora}}</td>
+                <td>{{turno.especialidad}}</td>
+                <td>{{turno.especialista}}</td>
+                <!-- ESTADOS DE LOS TURNOS: SOLICITADO, ACEPTADO, CANCELADO, RECHAZADO Y REALIZADO-->
+                <td><span class="badge bg-primary">{{turno.estado}}</span> </td> 
+                <!--CANCELAR TURNO. EL PAC DEBE DEJAR COMENTARIO-->
+                <td *ngIf="turno.estado != 'realizado' && turno.estado != 'cancelado'"><button mat-raised-button color="accent" (click)="modalCancelacion(turno, 1, 'paciente')">Cancelar</button></td>
+                <!--VER RESEÑA -->
+                <td *ngIf="turno.resenia != '' && turno.estado == 'realizado'"><button mat-raised-button color="accent" (click)="verResenia(turno.resenia)">Ver reseña</button></td>
+                <!--CALIFICAR ATENCIÓN CON UN COMENTARIO. Por ahí deba agregar algo que aclare que la calificación fue enviada-->
+                <td *ngIf="turno.estado == 'realizado' && turno.calificacion == ''"><button mat-raised-button color="accent" (click)="modalCalificacion(turno,'paciente')">Calificar atención</button></td> 
+                <!-- COMPLETAR ENCUESTA-->
+                <td *ngIf="turno.estado == 'realizado' && turno.resenia != '' && turno.encuesta == ''"><button mat-raised-button color="accent" (click)="modalEncuesta(turno, 'paciente')">Completar encuesta</button></td>
+              </tr>
+            </tbody>
+
+            <!-- ORDENADO POR ESPECIALIDAD-->
+            <tbody *ngIf="this.filtroEspecialidad == true">
+              <tr *ngFor="let turno of this.listaDeTurnosDelPaciente | ordenarPorEspecialidad">
+                <td>{{turno.fecha}}</td>
+                <td>{{turno.hora}}</td>
+                <td>{{turno.especialidad}}</td>
+                <td>{{turno.especialista}}</td>
+                <!-- ESTADOS DE LOS TURNOS: SOLICITADO, ACEPTADO, CANCELADO, RECHAZADO Y REALIZADO-->
+                <td><span class="badge bg-primary">{{turno.estado}}</span> </td> 
+                <!--CANCELAR TURNO. EL PAC DEBE DEJAR COMENTARIO-->
+                <td *ngIf="turno.estado != 'realizado' && turno.estado != 'cancelado'"><button mat-raised-button color="accent" (click)="modalCancelacion(turno, 1, 'paciente')">Cancelar</button></td>
+                <!--VER RESEÑA -->
+                <td *ngIf="turno.resenia != '' && turno.estado == 'realizado'"><button mat-raised-button color="accent" (click)="verResenia(turno.resenia)">Ver reseña</button></td>
+                <!--CALIFICAR ATENCIÓN CON UN COMENTARIO. Por ahí deba agregar algo que aclare que la calificación fue enviada-->
+                <td *ngIf="turno.estado == 'realizado' && turno.calificacion == ''"><button mat-raised-button color="accent" (click)="modalCalificacion(turno,'paciente')">Calificar atención</button></td> 
+                <!-- COMPLETAR ENCUESTA-->
+                <td *ngIf="turno.estado == 'realizado' && turno.resenia != '' && turno.encuesta == ''"><button mat-raised-button color="accent" (click)="modalEncuesta(turno, 'paciente')">Completar encuesta</button></td>
+              </tr>
+            </tbody>
+
+            <!-- ORDENADO POR ESPECIALISTA-->
+            <tbody *ngIf="this.filtroEspecialista == true">
+              <tr *ngFor="let turno of this.listaDeTurnosDelPaciente | ordenarPorEspecialista">
                 <td>{{turno.fecha}}</td>
                 <td>{{turno.hora}}</td>
                 <td>{{turno.especialidad}}</td>
@@ -103,6 +140,11 @@
         <!--LISTA DE TURNOS DEL ESPECIALISTA ACTUAL-->
 
         <div class="listado-turnos-especialista" *ngIf="this.userService.getCurrentProfile() == 'especialista'">
+          <tr>
+            <td><h5>Filtros: </h5></td>
+            <td><button class="btn btn-primary" (click)="verPorEspecialidad()">Por especialidad</button></td>
+            <td><button class="btn btn-primary" (click)="verPorPaciente()">Por paciente</button></td>                       
+          </tr>
           <table style="color:rgb(0, 162, 255);" class="table table-hover">
             <thead>
               <tr>
@@ -114,7 +156,7 @@
                 <th scope="col">Acción</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody *ngIf="this.filtroEspecialidad == false && this.filtroPaciente == false">
               <tr *ngFor="let turno of this.listaDeTurnosDelEspecialista">
                 <td>{{turno.fecha}}</td>
                 <td>{{turno.hora}}</td>
@@ -123,11 +165,55 @@
                 <td><span class="badge bg-primary">{{turno.estado}}</span></td>
                 <!--ACEPTAR TURNO-->
                 <td *ngIf="turno.estado != 'realizado' && turno.estado != 'rechazado' && turno.estado != 'aceptado' && turno.estado != 'cancelado'"><button mat-raised-button color="accent" (click)="modalAceptacion(turno)">Aceptar</button></td>
-
                  <!--CANCELAR TURNO. EL ESP DEBE DEJAR COMENTARIO-->
                  <td *ngIf="turno.estado != 'realizado' && turno.estado != 'rechazado' && turno.estado != 'aceptado'"><button mat-raised-button color="accent" (click)="modalCancelacion(turno, 1, 'especialista')">Cancelar</button></td>
                  <!-- RECHAZAR TURNO -->
                  <td *ngIf="turno.estado != 'realizado' && turno.estado != 'cancelado' && turno.estado != 'aceptado' && turno.estado != 'rechazado'"><button mat-raised-button color="accent" (click)="modalCancelacion(turno, 2, 'especialista')">Rechazar</button></td>
+                 <!-- FINALIZAR TURNO-->
+                 <td *ngIf="turno.estado == 'aceptado'; else mostrarResenia"><button mat-raised-button color="accent" (click)="modalFinalizacion(turno, 'especialista')">Finalizar</button></td>
+                 <ng-template #mostrarResenia>
+                  <td *ngIf="turno.resenia != '' && turno.estado == 'realizado'"><button mat-raised-button color="accent" (click)="verResenia(turno.resenia)">Ver reseña</button></td>
+                 </ng-template>
+               <!--<td><button mat-raised-button color="accent">Acción</button></td> -->
+              </tr>
+            </tbody>
+
+            <tbody *ngIf="this.filtroEspecialidad == true">
+              <tr *ngFor="let turno of this.listaDeTurnosDelEspecialista | ordenarPorEspecialidad">
+                <td>{{turno.fecha}}</td>
+                <td>{{turno.hora}}</td>
+                <td>{{turno.especialidad}}</td>
+                <td>{{turno.paciente}}</td>
+                <td><span class="badge bg-primary">{{turno.estado}}</span></td>
+                <!--ACEPTAR TURNO-->
+                <td *ngIf="turno.estado != 'realizado' && turno.estado != 'rechazado' && turno.estado != 'aceptado' && turno.estado != 'cancelado'"><button mat-raised-button color="accent" (click)="modalAceptacion(turno)">Aceptar</button></td>
+                 <!--CANCELAR TURNO. EL ESP DEBE DEJAR COMENTARIO-->
+                 <td *ngIf="turno.estado != 'realizado' && turno.estado != 'rechazado' && turno.estado != 'aceptado'"><button mat-raised-button color="accent" (click)="modalCancelacion(turno, 1, 'especialista')">Cancelar</button></td>
+                 <!-- RECHAZAR TURNO -->
+                 <td *ngIf="turno.estado != 'realizado' && turno.estado != 'cancelado' && turno.estado != 'aceptado' && turno.estado != 'rechazado'"><button mat-raised-button color="accent" (click)="modalCancelacion(turno, 2, 'especialista')">Rechazar</button></td>
+                 <!-- FINALIZAR TURNO-->
+                 <td *ngIf="turno.estado == 'aceptado'; else mostrarResenia"><button mat-raised-button color="accent" (click)="modalFinalizacion(turno, 'especialista')">Finalizar</button></td>
+                 <ng-template #mostrarResenia>
+                  <td *ngIf="turno.resenia != '' && turno.estado == 'realizado'"><button mat-raised-button color="accent" (click)="verResenia(turno.resenia)">Ver reseña</button></td>
+                 </ng-template>
+               <!--<td><button mat-raised-button color="accent">Acción</button></td> -->
+              </tr>
+            </tbody>
+
+            <tbody *ngIf="this.filtroPaciente == true">
+              <tr *ngFor="let turno of this.listaDeTurnosDelEspecialista | ordenarPorPaciente">
+                <td>{{turno.fecha}}</td>
+                <td>{{turno.hora}}</td>
+                <td>{{turno.especialidad}}</td>
+                <td>{{turno.paciente}}</td>
+                <td><span class="badge bg-primary">{{turno.estado}}</span></td>
+                <!--ACEPTAR TURNO-->
+                <td *ngIf="turno.estado != 'realizado' && turno.estado != 'rechazado' && turno.estado != 'aceptado' && turno.estado != 'cancelado'"><button mat-raised-button color="accent" (click)="modalAceptacion(turno)">Aceptar</button></td>
+                 <!--CANCELAR TURNO. EL ESP DEBE DEJAR COMENTARIO-->
+                 <td *ngIf="turno.estado != 'realizado' && turno.estado != 'rechazado' && turno.estado != 'aceptado'"><button mat-raised-button color="accent" (click)="modalCancelacion(turno, 1, 'especialista')">Cancelar</button></td>
+                 <!-- RECHAZAR TURNO -->
+                 <td *ngIf="turno.estado != 'realizado' && turno.estado != 'cancelado' && turno.estado != 'aceptado' && turno.estado != 'rechazado'"><button mat-raised-button color="accent" (click)="modalCancelacion(turno, 2, 'especialista')">Rechazar</button></td>
+                 <!-- FINALIZAR TURNO-->
                  <td *ngIf="turno.estado == 'aceptado'; else mostrarResenia"><button mat-raised-button color="accent" (click)="modalFinalizacion(turno, 'especialista')">Finalizar</button></td>
                  <ng-template #mostrarResenia>
                   <td *ngIf="turno.resenia != '' && turno.estado == 'realizado'"><button mat-raised-button color="accent" (click)="verResenia(turno.resenia)">Ver reseña</button></td>

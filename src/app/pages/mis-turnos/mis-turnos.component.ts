@@ -17,7 +17,10 @@ export class MisTurnosComponent {
   listaDeTurnosDelPaciente: Turno[] = [];
   listaDeTurnosDelEspecialista: Turno[] = [];
   listaPorEspecialidad: Turno[] = [];
+
   filtroEspecialidad = false;
+  filtroEspecialista = false;
+  filtroPaciente = false;
 
   botonCancelar : boolean = false;
   encuestaCompletada : boolean = false;
@@ -60,22 +63,6 @@ export class MisTurnosComponent {
       });
     }
       , 1500);
-    }
-
-
-
-    filtrarPorEspecialidad(especialidad : string) 
-    {
-        this.listaPorEspecialidad = [];
-        this.filtroEspecialidad = true;
-        this.listaDeTurnosDelPaciente.forEach((turno : Turno) => 
-        {
-          if(turno.especialidad == especialidad)
-          {
-            this.listaPorEspecialidad.push(turno);
-          }
-        });
-      
     }
 
     filtrarPorEspecialidadDelEspecialista(especialidad : string)
@@ -256,6 +243,27 @@ export class MisTurnosComponent {
     verResenia(reseña : string)
     {
       this.swal.swalert("Su reseña", reseña, "info");
+    }
+
+    verPorEspecialidad()
+    {
+      this.filtroEspecialista = false;
+      this.filtroPaciente = false;
+      this.filtroEspecialidad = true;
+    }
+
+    verPorEspecialista()
+    {
+      this.filtroEspecialidad = false;
+      this.filtroPaciente = false;
+      this.filtroEspecialista = true;
+    }
+    
+    verPorPaciente()
+    {
+      this.filtroEspecialidad = false;
+      this.filtroEspecialista = false;
+      this.filtroPaciente = true;
     }
  }
 

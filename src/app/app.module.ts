@@ -40,6 +40,9 @@ import { UsuariosComponent } from './pages/usuarios/usuarios.component';
 import { ListadoUsuariosComponent } from './componentes/listado-usuarios/listado-usuarios.component';
 import { QuiensoyComponent } from './pages/quiensoy/quiensoy.component';
 import { MisTurnosComponent } from './pages/mis-turnos/mis-turnos.component';
+import { OrdenarPorEspecialidadPipe } from './pipes/ordenar-por-especialidad.pipe';
+import { OrdenarPorEspecialistaPipe } from './pipes/ordenar-por-especialista.pipe';
+import { OrdenarPorPacientePipe } from './pipes/ordenar-por-paciente.pipe';
 
 
 @NgModule({
@@ -56,7 +59,10 @@ import { MisTurnosComponent } from './pages/mis-turnos/mis-turnos.component';
     UsuariosComponent,
     ListadoUsuariosComponent,
     QuiensoyComponent,
-    MisTurnosComponent
+    MisTurnosComponent,
+    OrdenarPorEspecialidadPipe,
+    OrdenarPorEspecialistaPipe,
+    OrdenarPorPacientePipe
   ],
   imports: [
     BrowserModule,
