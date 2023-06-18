@@ -86,13 +86,14 @@
                 <td>{{turno.especialidad}}</td>
                 <td>{{turno.especialista}}</td>
                 <td><span class="badge bg-primary">{{turno.estado}}</span> </td>
-                <td *ngIf="turno.estado != 'realizado' && turno.estado != 'cancelado'"><button mat-raised-button color="accent" (click)="modalCancelacionPaciente(turno, 1, 'paciente')">Cancelar</button></td>
                 <!--CANCELAR TURNO. EL PAC DEBE DEJAR COMENTARIO-->
-                <td *ngIf="turno.resenia != ''"><button mat-raised-button color="accent" (click)="verResenia(turno.resenia)">Ver reseña</button></td>
+                <td *ngIf="turno.estado != 'realizado' && turno.estado != 'cancelado'"><button mat-raised-button color="accent" (click)="modalCancelacionPaciente(turno, 1, 'paciente')">Cancelar</button></td>
                 <!--VER RESEÑA -->
-                <td *ngIf="turno.resenia != ''"><button mat-raised-button color="accent">Calificar atención</button>
-                </td> <!--CALIFICAR ATENCIÓN DEL 1 AL 10-->
-                <td *ngIf="turno.estado == 'realizado' && turno.resenia != ''"><button mat-raised-button color="accent">Completar encuesta</button></td><!-- COMPLETAR ENCUESTA-->
+                <td *ngIf="turno.resenia != ''"><button mat-raised-button color="accent" (click)="verResenia(turno.resenia)">Ver reseña</button></td>
+                <!--CALIFICAR ATENCIÓN CON UN COMENTARIO-->
+                <td *ngIf="turno.estado == 'realizado' && turno.calificacion == ''"><button mat-raised-button color="accent" (click)="modalCalificacion(turno,'paciente')">Calificar atención</button></td> 
+                <!-- COMPLETAR ENCUESTA-->
+                <td *ngIf="turno.estado == 'realizado' && turno.resenia != ''"><button mat-raised-button color="accent">Completar encuesta</button></td>
               </tr>
             </tbody>
           </table>

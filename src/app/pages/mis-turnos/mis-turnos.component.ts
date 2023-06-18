@@ -99,11 +99,10 @@ export class MisTurnosComponent {
           turno.estado = "cancelado";
           turno.comentarioCancelacion = comentario;
           this.turnoService.updateAppointment(turno);
-         // this.userService.updateUser(usuario);
-          // this.swal.showToast(
-          //   'Se habilitó al especialista',
-          //   'success'
-          // );
+           this.swal.showToast(
+             'Se canceló el turno',
+             'info'
+           );
         } 
         else 
         {
@@ -119,6 +118,19 @@ export class MisTurnosComponent {
       }
     }
 
+
+    dejarCalificacion(turno: Turno,  comentario : string, emisor : string = "paciente") {
+      if (turno.estado == 'realizado') {
+          turno.calificacion = comentario;
+          this.turnoService.updateAppointment(turno);
+           this.swal.showToast(
+             'Se envió su opinión!',
+             'success'
+           );
+        } 
+    }
+
+
     modalCancelacionPaciente(turno: Turno, opcion: number, emisor: string)
     {
       this.swal.showModalText("Atención", "¿Está seguro que quiere cancelar su turno?", "Escriba su comentario",  (comentario : string) => {
@@ -132,6 +144,34 @@ export class MisTurnosComponent {
         }
       });
 
+    }
+
+    modalCalificacion(turno: Turno, emisor: string)
+    {
+      this.swal.showModalText("Calificación", "¿Estuvo satisfecho con la atención recibida?", "Escriba su motivo",  (comentario : string) => {
+        if(comentario != '')
+        {
+          this.dejarCalificacion(turno, comentario, emisor);
+        }
+        else
+        {
+          this.swal.swalert("Error", "Tiene que escribir un comentario para dar su calificación", "error");
+        }
+      });
+    }
+
+    modalEncuesta(turno: Turno, emisor: string)
+    {
+      this.swal.showModalText("Encuesta", "¿Qué le parece la plataforma de Clínica Online?", "Escriba su comentario",  (comentario : string) => {
+        if(comentario != '')
+        {
+          this.dejarCalificacion(turno, comentario, emisor);
+        }
+        else
+        {
+          this.swal.swalert("Error", "Tiene que escribir un comentario para dar su calificación", "error");
+        }
+      });
     }
 
     verResenia(reseña : string)
