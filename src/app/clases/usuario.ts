@@ -1,3 +1,4 @@
+import { Turno } from "./turno";
 export class Usuario {
     id: number;
     perfil: string;
@@ -12,6 +13,7 @@ export class Usuario {
     imagen1: string;
     imagen2: string;
     aprobado: boolean;
+    //turnos : Turno[];
   
     constructor() {
       this.id = 0;
@@ -27,5 +29,6 @@ export class Usuario {
       this.imagen1 = '';
       this.imagen2 = '';
       this.aprobado = false;
+      //this.turnos = [];
     }
   }

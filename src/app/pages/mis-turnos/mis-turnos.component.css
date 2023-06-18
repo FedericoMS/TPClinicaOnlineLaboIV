@@ -13,6 +13,11 @@
     margin-top: 2%;
 }
 
+.badge{
+	font-size: large;
+	line-height: 1.5;
+}
+
 .btn-primary{
 	background-color: #6ed9d3 ;
     border-color: #6dbfbb;

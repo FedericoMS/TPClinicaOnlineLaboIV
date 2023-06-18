@@ -92,36 +92,60 @@ export class MisTurnosComponent {
 
     }
 
-    cancelarTurno(turno: Turno, opcion: number, comentario : string, emisor : string = "paciente") {
-      //Cancelación de paciente a especialista
+  cancelarTurno(turno: Turno, opcion : number, comentario: string, emisor: string = "paciente") {
+    if(opcion == 1)
+    {
       if (turno.estado == 'solicitado') {
-        if (opcion == 1) {
-          turno.estado = "cancelado";
-          turno.comentarioCancelacion = comentario;
-          this.turnoService.updateAppointment(turno);
-           this.swal.showToast(
-             'Se canceló el turno',
-             'info'
-           );
-        } 
-        else 
-        {
-          if (opcion == 2) {
-           // usuario.aprobado = false;
-           // this.userService.updateUser(usuario);
-            this.swal.showToast(
-              'Se deshabilitó al especialista',
-              'info'
-            );
-          }
-        }
+        turno.estado = "cancelado";
+        turno.comentarioCancelacion = comentario;
+        this.turnoService.updateAppointment(turno);
+        this.swal.showToast(
+          'Se canceló el turno',
+          'info'
+        );
       }
     }
+    else 
+    {
+      if(opcion == 2)
+      {
+        if (turno.estado == 'solicitado') {
+          turno.estado = "rechazado";
+          turno.comentarioCancelacion = comentario;
+          this.turnoService.updateAppointment(turno);
+          this.swal.showToast(
+            'Se canceló el turno',
+            'info'
+          );
+        }
 
+      }
+    }
+  }
 
-    dejarCalificacion(turno: Turno,  comentario : string, emisor : string = "paciente") {
+  aceptarTurno(turno: Turno) {
+    turno.estado = "aceptado";
+    this.turnoService.updateAppointment(turno);
+    this.swal.showToast(
+      'Se aceptó el turno!',
+      'success'
+    );
+  }
+
+  dejarCalificacion(turno: Turno, comentario: string, emisor: string = "paciente") {
+    if (turno.estado == 'realizado') {
+      turno.calificacion = comentario;
+      this.turnoService.updateAppointment(turno);
+      this.swal.showToast(
+        'Se envió su opinión!',
+        'success'
+      );
+    }
+  }
+
+    enviarEncuesta(turno: Turno,  comentario : string, emisor : string = "paciente") {
       if (turno.estado == 'realizado') {
-          turno.calificacion = comentario;
+          turno.encuesta = comentario;
           this.turnoService.updateAppointment(turno);
            this.swal.showToast(
              'Se envió su opinión!',
@@ -131,24 +155,54 @@ export class MisTurnosComponent {
     }
 
 
-    modalCancelacionPaciente(turno: Turno, opcion: number, emisor: string)
+    modalAceptacion(turno: Turno)
     {
-      this.swal.showModalText("Atención", "¿Está seguro que quiere cancelar su turno?", "Escriba su comentario",  (comentario : string) => {
-        if(comentario != '')
-        {
-          this.cancelarTurno(turno, opcion, comentario, emisor);
+      this.swal.showModal("Aceptar turno", "¿Quiere aceptar el turno del paciente?", "Turno aceptado", "Se confirmó el turno con éxito",  () => {
+          this.aceptarTurno(turno);   
+      });
+    }
+
+
+
+
+    modalCancelacion(turno: Turno, opcion : number, emisor: string)
+    {
+      if(opcion == 1)
+      {
+        this.swal.showModalText("Atención", "¿Está seguro que quiere cancelar el turno?", "Escriba su motivo",  (comentario : string) => {
+          if(comentario != '')
+          {
+            this.cancelarTurno(turno, opcion, comentario, emisor);
+          }
+          else
+          {
+            this.swal.swalert("Error", "Tiene que escribir un comentario para cancelar el turno", "error");
+          }
+        });
         }
         else
         {
-          this.swal.swalert("Error", "Tiene que escribir un comentario para cancelar el turno", "error");
+          if(opcion == 2)
+          {
+            this.swal.showModalText("Atención", "¿Está seguro que quiere rechazar el turno?", "Escriba el motivo del rechazo",  (comentario : string) => {
+              if(comentario != '')
+              {
+                this.cancelarTurno(turno, opcion, comentario, emisor);
+              }
+              else
+              {
+                this.swal.swalert("Error", "Tiene que escribir un comentario para rechazar el turno", "error");
+              }
+
+          });
         }
-      });
+      }
 
     }
 
     modalCalificacion(turno: Turno, emisor: string)
     {
-      this.swal.showModalText("Calificación", "¿Estuvo satisfecho con la atención recibida?", "Escriba su motivo",  (comentario : string) => {
+      this.swal.showModalText("Calificación", "¿Estuvo satisfecho con la atención recibida?", "Escriba su comentario",  (comentario : string) => {
         if(comentario != '')
         {
           this.dejarCalificacion(turno, comentario, emisor);
@@ -165,7 +219,7 @@ export class MisTurnosComponent {
       this.swal.showModalText("Encuesta", "¿Qué le parece la plataforma de Clínica Online?", "Escriba su comentario",  (comentario : string) => {
         if(comentario != '')
         {
-          this.dejarCalificacion(turno, comentario, emisor);
+          this.enviarEncuesta(turno, comentario, emisor);
         }
         else
         {
