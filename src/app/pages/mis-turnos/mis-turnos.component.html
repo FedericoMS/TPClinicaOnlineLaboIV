@@ -128,6 +128,10 @@
                  <td *ngIf="turno.estado != 'realizado' && turno.estado != 'rechazado' && turno.estado != 'aceptado'"><button mat-raised-button color="accent" (click)="modalCancelacion(turno, 1, 'especialista')">Cancelar</button></td>
                  <!-- RECHAZAR TURNO -->
                  <td *ngIf="turno.estado != 'realizado' && turno.estado != 'cancelado' && turno.estado != 'aceptado' && turno.estado != 'rechazado'"><button mat-raised-button color="accent" (click)="modalCancelacion(turno, 2, 'especialista')">Rechazar</button></td>
+                 <td *ngIf="turno.estado == 'aceptado'; else mostrarResenia"><button mat-raised-button color="accent" (click)="modalFinalizacion(turno, 'especialista')">Finalizar</button></td>
+                 <ng-template #mostrarResenia>
+                  <td *ngIf="turno.resenia != '' && turno.estado == 'realizado'"><button mat-raised-button color="accent" (click)="verResenia(turno.resenia)">Ver reseña</button></td>
+                 </ng-template>
                <!--<td><button mat-raised-button color="accent">Acción</button></td> -->
               </tr>
             </tbody>

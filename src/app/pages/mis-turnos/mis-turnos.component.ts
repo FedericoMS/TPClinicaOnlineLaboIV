@@ -143,6 +143,16 @@ export class MisTurnosComponent {
     }
   }
 
+  dejarResenia(turno: Turno, comentario: string, emisor: string = "paciente") {
+      turno.resenia = comentario;
+      turno.estado = "realizado";
+      this.turnoService.updateAppointment(turno);
+      this.swal.showToast(
+        'Se envió su reseña!',
+        'success'
+      );
+  }
+
     enviarEncuesta(turno: Turno,  comentario : string, emisor : string = "paciente") {
       if (turno.estado == 'realizado') {
           turno.encuesta = comentario;
@@ -161,6 +171,21 @@ export class MisTurnosComponent {
           this.aceptarTurno(turno);   
       });
     }
+
+    modalFinalizacion(turno: Turno, emisor: string)
+    {
+      this.swal.showModalText("Finalizar turno", "Deje su reseña y diagnóstico", "Escriba su reseña",  (comentario : string) => {
+        if(comentario != '')
+        {
+          this.dejarResenia(turno, comentario, emisor);
+        }
+        else
+        {
+          this.swal.swalert("Error", "Tiene que escribir una reseña para finalizar el turno", "error");
+        }
+      });
+    }
+    
 
 
 
