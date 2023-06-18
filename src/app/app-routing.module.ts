@@ -6,7 +6,7 @@ import { RegistroComponent } from './pages/registro/registro.component';
 import { UsuariosComponent } from './pages/usuarios/usuarios.component';
 import { QuiensoyComponent } from './pages/quiensoy/quiensoy.component';
 import { EsadminGuard } from './guards/esadmin.guard';
-import { MisTurnosComponent } from './pages/mis-turnos/mis-turnos.component';
+import { MisTurnosComponent } from './pages/turnos/mis-turnos/mis-turnos.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -14,7 +14,10 @@ const routes: Routes = [
   { path: "registro", component: RegistroComponent },
   { path: "home", component: BienvenidoComponent },
   { path: "quiensoy", component: QuiensoyComponent },
-  { path: "misturnos", component: MisTurnosComponent },
+  {
+    path: 'turnos', loadChildren: () => import('./pages/turnos/turnos.module')
+      .then(mod => mod.TurnosModule)
+  },
   { path: "usuarios", component:  UsuariosComponent,
   canActivate : [EsadminGuard]
      }, //IMPLEMENTAR CANACTIVATE
