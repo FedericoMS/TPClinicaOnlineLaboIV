@@ -1,8 +1,20 @@
 <div class="container">
     <div class="screen">
       <div class="screen__content">
-        <div class="profile">  
-
+        <div class="profile">
+            
+            <div class="cargando" *ngIf="isLoading; else mostrar">
+                <app-spinner></app-spinner>
+              </div>
+            <ng-template #mostrar>
+                <h1>Perfil de {{ usuarioActual.nombre + ' ' + usuarioActual.apellido }}</h1>     
+                <img class="img-perfil" [src]="usuarioActual.imagen1" alt="foto de perfil">     
+                <h3>Edad: {{ usuarioActual.edad }}</h3>
+                <h3>DNI: {{ usuarioActual.dni }}</h3>
+                <h3>Correo electrónico: {{ usuarioActual.email }}</h3>
+                <h3>Obra social: {{ usuarioActual.obraSocial }} </h3>      
+            </ng-template>
+            
  
   
         </div>
