@@ -8,6 +8,7 @@ import { Usuario } from 'src/app/clases/usuario';
 import * as moment from 'moment';
 import { SwalService } from 'src/app/services/swal.service';
 import { SpinnerService } from 'src/app/services/spinner.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-solicitar-turno',
@@ -56,7 +57,7 @@ export class SolicitarTurnoComponent {
   '2:00 pm', '2:30 pm', '3:00 pm', '3:30 pm', '4:00 pm', '4:30 pm',
   '5:00 pm', '5:30 pm', '6:00 pm', '6:30 pm'];*/
 
-  constructor(private espService : EspecialidadService, private turnoService : TurnoService, private userService : UserService, private swal : SwalService)
+  constructor(private espService : EspecialidadService, private turnoService : TurnoService, private userService : UserService, private swal : SwalService, private router : Router)
   {
     setTimeout(() => {
       this.pacienteActual = this.userService.getCurrentUser();
@@ -170,6 +171,7 @@ export class SolicitarTurnoComponent {
         this.turnoService.createAppointment(this.turnoNuevo);
         this.swal.swalert("Turno", "Turno reservado!", 'success');
         //this.insertarTurnoEnEspecialista();
+        this.router.navigateByUrl('turnos/misturnos');
       }
       catch(e)
       {

@@ -176,7 +176,7 @@
                 <!--ACEPTAR TURNO-->
                 <td *ngIf="turno.estado != 'realizado' && turno.estado != 'rechazado' && turno.estado != 'aceptado' && turno.estado != 'cancelado'"><button mat-raised-button color="accent" (click)="modalAceptacion(turno)">Aceptar</button></td>
                  <!--CANCELAR TURNO. EL ESP DEBE DEJAR COMENTARIO-->
-                 <td *ngIf="turno.estado != 'realizado' && turno.estado != 'rechazado' && turno.estado != 'aceptado'"><button mat-raised-button color="warn" (click)="modalCancelacion(turno, 1, 'especialista')">Cancelar</button></td>
+                 <td *ngIf="turno.estado == 'realizado' || turno.estado == 'solicitado'"><button mat-raised-button color="warn" (click)="modalCancelacion(turno, 1, 'especialista')">Cancelar</button></td>
                  <!-- RECHAZAR TURNO -->
                  <td *ngIf="turno.estado != 'realizado' && turno.estado != 'cancelado' && turno.estado != 'aceptado' && turno.estado != 'rechazado'"><button mat-raised-button color="warn" (click)="modalCancelacion(turno, 2, 'especialista')">Rechazar</button></td>
                  <!-- FINALIZAR TURNO-->
@@ -198,7 +198,7 @@
                 <!--ACEPTAR TURNO-->
                 <td *ngIf="turno.estado != 'realizado' && turno.estado != 'rechazado' && turno.estado != 'aceptado' && turno.estado != 'cancelado'"><button mat-raised-button color="accent" (click)="modalAceptacion(turno)">Aceptar</button></td>
                  <!--CANCELAR TURNO. EL ESP DEBE DEJAR COMENTARIO-->
-                 <td *ngIf="turno.estado != 'realizado' && turno.estado != 'rechazado' && turno.estado != 'aceptado'"><button mat-raised-button color="warn" (click)="modalCancelacion(turno, 1, 'especialista')">Cancelar</button></td>
+                 <td *ngIf="turno.estado == 'realizado' || turno.estado == 'solicitado'"><button mat-raised-button color="warn" (click)="modalCancelacion(turno, 1, 'especialista')">Cancelar</button></td>
                  <!-- RECHAZAR TURNO -->
                  <td *ngIf="turno.estado != 'realizado' && turno.estado != 'cancelado' && turno.estado != 'aceptado' && turno.estado != 'rechazado'"><button mat-raised-button color="warn" (click)="modalCancelacion(turno, 2, 'especialista')">Rechazar</button></td>
                  <!-- FINALIZAR TURNO-->
@@ -220,7 +220,7 @@
                 <!--ACEPTAR TURNO-->
                 <td *ngIf="turno.estado != 'realizado' && turno.estado != 'rechazado' && turno.estado != 'aceptado' && turno.estado != 'cancelado'"><button mat-raised-button color="accent" (click)="modalAceptacion(turno)">Aceptar</button></td>
                  <!--CANCELAR TURNO. EL ESP DEBE DEJAR COMENTARIO-->
-                 <td *ngIf="turno.estado != 'realizado' && turno.estado != 'rechazado' && turno.estado != 'aceptado'"><button mat-raised-button color="warn" (click)="modalCancelacion(turno, 1, 'especialista')">Cancelar</button></td>
+                 <td *ngIf="turno.estado == 'realizado' || turno.estado == 'solicitado'"><button mat-raised-button color="warn" (click)="modalCancelacion(turno, 1, 'especialista')">Cancelar</button></td>
                  <!-- RECHAZAR TURNO -->
                  <td *ngIf="turno.estado != 'realizado' && turno.estado != 'cancelado' && turno.estado != 'aceptado' && turno.estado != 'rechazado'"><button mat-raised-button color="warn" (click)="modalCancelacion(turno, 2, 'especialista')">Rechazar</button></td>
                  <!-- FINALIZAR TURNO-->
