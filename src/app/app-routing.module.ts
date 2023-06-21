@@ -6,7 +6,7 @@ import { RegistroComponent } from './pages/registro/registro.component';
 import { UsuariosComponent } from './pages/usuarios/usuarios.component';
 import { QuiensoyComponent } from './pages/quiensoy/quiensoy.component';
 import { EsadminGuard } from './guards/esadmin.guard';
-import { MisTurnosComponent } from './pages/turnos/mis-turnos/mis-turnos.component';
+import { MiPerfilComponent } from './pages/mi-perfil/mi-perfil.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -14,6 +14,7 @@ const routes: Routes = [
   { path: "registro", component: RegistroComponent },
   { path: "home", component: BienvenidoComponent },
   { path: "quiensoy", component: QuiensoyComponent },
+  { path: "perfil", component: MiPerfilComponent },
   {
     path: 'turnos', loadChildren: () => import('./pages/turnos/turnos.module')
       .then(mod => mod.TurnosModule)

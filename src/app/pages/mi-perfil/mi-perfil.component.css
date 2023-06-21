@@ -83,23 +83,23 @@ h1, h2, h3, p
 	color:#5e8b89;
 }
 
-.appointments {
+.profile {
 	width: 1000px;
 	
 }
 
-.appointments__field {
+.profile__field {
 	padding: 7px 0px;	
 	position: relative;	
 }
 
-.appointments__icon {
+.profile__icon {
 	position: absolute;
 	top: 30px;
 	color: #7875B5;
 }
 
-.appointments__input {
+.profile__input {
 	border: none;
 	border-bottom: 2px solid #D1D1D4;
 	background: none;

@@ -1,7 +1,7 @@
 export class Turno {
     id : string;
-    fecha: string;
-    hora: string; //de 8 a 19hs de l a v. Sábados de 8 a 14hs
+    fecha: string | undefined;
+    hora: string | undefined; //de 8 a 19hs de l a v. Sábados de 8 a 14hs
     especialista: string; //Apellido + nombre
     especialidad: string;
     paciente: string; //Apellido + nombre
@@ -17,9 +17,9 @@ export class Turno {
      {
         this.id = '';
         this.fecha = '';
-        this.hora = ''
-        this.especialista = ''
-        this.especialidad = ''
+        this.hora = '';
+        this.especialista = '';
+        this.especialidad = '';
         this.paciente = ''
         this.resenia = '';
         this.encuesta = '';

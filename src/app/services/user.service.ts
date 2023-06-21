@@ -21,8 +21,9 @@ export class UserService {
   private userProfile : string = '';
   private isApproved : boolean = false;
   public isAdmin : boolean = false;
-  private dniActual : number = 0;
-  private nombreCompletoActual : string = '';
+ // private dniActual : number = 0;
+//  private nombreCompletoActual : string = '';
+  private usuarioActual : Usuario = new Usuario();
 
   constructor(private swal : SwalService, private auth : Auth, private authFire : AngularFireAuth, private router : Router, private af : AngularFirestore) 
   { 
@@ -33,10 +34,12 @@ export class UserService {
          const userProfileSnapshot: any = await this.getUserProfile(user.uid).toPromise();
          if (userProfileSnapshot.exists) {
            const userProfileData = userProfileSnapshot.data();
-           this.userProfile = userProfileData.perfil;
-           this.isApproved = userProfileData.aprobado;
-           this.dniActual = userProfileData.dni;
-           this.nombreCompletoActual = userProfileData.nombre + ' ' + userProfileData.apellido;
+           this.usuarioActual = userProfileData;
+          // console.log(this.usuarioActual);
+           this.userProfile = this.usuarioActual.perfil;
+          // this.isApproved = userProfileData.aprobado;
+          // this.dniActual = userProfileData.dni;
+          // this.nombreCompletoActual = userProfileData.nombre + ' ' + userProfileData.apellido;
 
            //console.log(this.dniActual);
            //console.log(this.nombreCompletoActual);
@@ -70,50 +73,6 @@ export class UserService {
       
       console.log("Hola, soy el usuario con el mail: " + user?.email);
     });
-
-
-    /* ORIGINAL DEL 12/06/2023 A LAS 10:26HS
-         this.authFire.authState.subscribe(async (user) => {
-       if(user != null && user != undefined && user.emailVerified)
-       {
-        this.isLoggedIn = user;
-        let userArray : any = user.email?.split("@");
-        this.userName = userArray[0];
-        //this.userProfile = user.perfil?;
-       // console.log("El email fue verificado? " + user.emailVerified);
-        console.log("Hola, soy el usuario: " + this.userName);
-        // Obtener datos del perfil del usuario
-        const userProfileSnapshot: any = await this.getUserProfile(user.uid).toPromise();
-        if (userProfileSnapshot.exists) {
-          const userProfileData = userProfileSnapshot.data();
-          this.userProfile = userProfileData.perfil;
-          console.log("Perfil del usuario: " + this.userProfile);
-        }
-      }
-      
-      console.log("Hola, soy el usuario con el mail: " + user?.email);
-    });*/
-
-   
-
-    /*this.user$ = this.authFire.authState.pipe( // Se utiliza el estado de autenticación como base para el Observable
-      switchMap((user: any) => { // Se utiliza el operador switchMap para transformar el valor emitido
-
-        if (user) 
-        { this.isLoggedIn = true;
-          // Si el usuario está autenticado
-          return this.af // Se accede a Firestore para obtener los datos del usuario
-            .doc<Usuario>(`usuarios/${user.uid}`) // Se obtiene el documento del usuario utilizando su UID
-            .valueChanges(); // Se obtiene un Observable que emite los cambios en los datos del documento
-        } else { // Si el usuario no está autenticado
-          return of(null); // Se devuelve un Observable que emite un valor nulo
-        }
-      })
-    );
-    console.log(this.isLoggedIn);*/
-
-    /*CHEQUEAR SI ESTO SIRVE PARA EL TP DE CLÍNICA ONLINE*/
-
   }
 
     createUser(newUser : any)
@@ -284,19 +243,24 @@ export class UserService {
     return this.af.collection('usuarios').doc(userId).get();
   }
 
- getCurrentProfile()
+ getCurrentProfile() : string
   {
-    return this.userProfile;
+    return this.usuarioActual.perfil;
   }
 
-  getCurrentDNI()
+  getCurrentDNI() : number
   {
-    return this.dniActual;
+    return this.usuarioActual.dni;
   }
 
-  getCurrentFullName()
+  getCurrentFullName() : string
   {
-    return this.nombreCompletoActual;
+    return this.usuarioActual.apellido + ' ' + this.usuarioActual.nombre;
+  }
+
+  getCurrentUser() : Usuario
+  {
+    return this.usuarioActual;
   }
 
 }

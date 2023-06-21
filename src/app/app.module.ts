@@ -43,6 +43,8 @@ import { MisTurnosComponent } from './pages/turnos/mis-turnos/mis-turnos.compone
 import { OrdenarPorEspecialidadPipe } from './pipes/ordenar-por-especialidad.pipe';
 import { OrdenarPorEspecialistaPipe } from './pipes/ordenar-por-especialista.pipe';
 import { OrdenarPorPacientePipe } from './pipes/ordenar-por-paciente.pipe';
+import { ListadoEspecialidadesComponent } from './componentes/listado-especialidades/listado-especialidades.component';
+import { MiPerfilComponent } from './pages/mi-perfil/mi-perfil.component';
 
 
 @NgModule({
@@ -62,7 +64,9 @@ import { OrdenarPorPacientePipe } from './pipes/ordenar-por-paciente.pipe';
     MisTurnosComponent,
     OrdenarPorEspecialidadPipe,
     OrdenarPorEspecialistaPipe,
-    OrdenarPorPacientePipe
+    OrdenarPorPacientePipe,
+    ListadoEspecialidadesComponent,
+    MiPerfilComponent
   ],
   imports: [
     BrowserModule,

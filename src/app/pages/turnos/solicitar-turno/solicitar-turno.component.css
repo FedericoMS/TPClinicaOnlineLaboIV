@@ -31,12 +31,34 @@ body {
 	background: linear-gradient(90deg, #C7C5F4, #776BCC);		
 }
 
-img {
+.especialidades{
+	margin-top: 5%;
+}
+
+.especialistas
+{
+	margin-top: 3%;
+}
+
+.turnos
+{
+	margin-top: 3%;
+}
+
+.img-especialidades {
 	border-radius: 50%;
-	width: 35%;
-	height: 35%;
+	width: 65%;
+	height: 100%;
 	cursor: pointer; /*Probablemente haya que modificarlo*/
 }
+
+.img-especialistas {
+	border-radius: 50%;
+	width: 250px;
+	height: 250px;
+	cursor: pointer; /*Probablemente haya que modificarlo*/
+}
+
 
 .row {
     display: flex;
@@ -78,28 +100,28 @@ img {
 	
 }
 
-h1, h2, h3, p
+h1, h2, h3, h4, h5, p
 {
 	color:#5e8b89;
 }
 
-.appointments {
+.solicitud {
 	width: 1000px;
 	
 }
 
-.appointments__field {
+.solicitud__field {
 	padding: 7px 0px;	
 	position: relative;	
 }
 
-.appointments__icon {
+.solicitud__icon {
 	position: absolute;
 	top: 30px;
 	color: #7875B5;
 }
 
-.appointments__input {
+.solicitud__input {
 	border: none;
 	border-bottom: 2px solid #D1D1D4;
 	background: none;

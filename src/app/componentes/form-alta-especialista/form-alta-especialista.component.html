@@ -95,21 +95,33 @@
         <div class="row">
              <!-- ESPECIALIDAD -->
              <div class="col-sm mb-3">
-                <input formControlName="especialidad" type="text" class="form-control" placeholder="Especialidad" />
+                 <label for="especialidad">Elige tu especialidad: </label>
+                 <app-listado-especialidades [listaRecibida]="listaEspecialidades" (pasamosUnaEsp)="obtenerEspecialidadSeleccionada($event)"></app-listado-especialidades> 
+             </div>
+             <div class="col-sm mb-3">
+                <input [(ngModel)]="especialista.especialidad" formControlName="especialidad" type="text" class="form-control" readonly placeholder="Especialidad" />
                 <small style="color:rgb(255, 0, 0);" *ngIf="
             forma.controls['especialidad'].errors?.['required'] &&
             forma.controls['especialidad'].touched
                     ">
                     La especialidad es requerida
                 </small>
+                <button type="button" class="btn btn-primary" (click)="vaciarSeleccion()">Limpiar</button>
+
             </div>
         </div>
+
 
         <div class="row">
             <!-- FOTO DE PERFIL -->
             <div class="col-sm mb-3">
                 <label for="imagen1" class="form-label">Foto de perfil</label>
                 <input type="file" class="form-control" placeholder="Imagen Perfil" (change)="uploadImage($event, 1)" />
+            </div>
+            <!-- AGREGAR ESPECIALIDAD -->
+            <div class="col-sm mb-3">
+                <input [formControl]="nuevaEspecialidadForm"  type="text" class="form-control" placeholder="Agregue especialidad (opcional)"/>
+                <button type="button" class="btn btn-primary" (click)="agregarEspecialidad()">Agregar</button>
             </div>
         </div>
 

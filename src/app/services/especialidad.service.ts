@@ -7,44 +7,34 @@ import { SwalService } from './swal.service';
 @Injectable({
   providedIn: 'root'
 })
-export class TurnoService {
+export class EspecialidadService {
 
-  constructor(private swal : SwalService, private authFire : AngularFireAuth, private router : Router, private af : AngularFirestore) {}
+  constructor(private swal : SwalService, private authFire : AngularFireAuth, private router : Router, private af : AngularFirestore) { }
 
   getCollection(collectionName: string) {
     const collection = this.af.collection<any>(collectionName);
     return collection.valueChanges();
   }
 
-  setAppointmentData(data : any, collectionName : string) {
+  setSpecialtyData(data : any, collectionName : string) {
     return this.af.collection(collectionName).add(data);
   }
 
-  updateAppointment (turnoMod: any) {
-    this.af.doc<any>(`turnos/${turnoMod.id}`)
-      .update(turnoMod)
+  updateSpecialty (espMod: any) {
+    this.af.doc<any>(`turnos/${espMod.id}`)
+      .update(espMod)
       .then(() => {})
       .catch((error) => {
         this.swal.showToast('Error', 'error');
       });
   } 
 
-  createAppointment(nuevoTurno: any) {
-    if (nuevoTurno != null) {
-      this.af.collection('turnos').add({
+  createSpecialty(newEsp: any) {
+    if (newEsp != null) {
+      this.af.collection('especialidades').add({
         id: '', // Esto se ignorará y se generará automáticamente por Firebase
-        fecha: nuevoTurno.fecha,
-        hora: nuevoTurno.hora,
-        especialista: nuevoTurno.especialista,
-        especialidad: nuevoTurno.especialidad,
-        paciente: nuevoTurno.paciente,
-        resenia: nuevoTurno.resenia,
-        encuesta: nuevoTurno.encuesta,
-        calificacion: nuevoTurno.calificacion,
-        dniPaciente: nuevoTurno.dniPaciente,
-        dniEspecialista: nuevoTurno.dniEspecialista,
-        estado: nuevoTurno.estado,
-        comentarioCancelacion: nuevoTurno.comentarioCancelacion,
+        img: 'https://firebasestorage.googleapis.com/v0/b/clinicaonlinelaboiv.appspot.com/o/_1f096942-b653-41a2-bb3e-1ae8b0a665f0.jpg?alt=media&token=cb0104ba-439e-4bfb-a99f-7b9b42760d2e',
+        nombre: newEsp.nombre
       })
         .then((docRef) => {
           const newId = docRef.id; // Obtener el ID del documento recién creado
@@ -52,14 +42,13 @@ export class TurnoService {
           return docRef.update({ id: newId }); // Actualizar el documento con el ID generado
         })
         .then(() => {
-          this.swal.showToast("Turno creado!");
+          this.swal.showToast("Especialidad añadida!");
         })
         .catch((error) => {
-          console.log(nuevoTurno);
+          console.log(newEsp);
           this.swal.swalert("Error", error.code, "error");
         });
     }
   }
-
-
+  
 }

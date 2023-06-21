@@ -3,6 +3,8 @@
     <div class="screen__content">
       <div class="appointments">
 
+
+
         <!--LISTA DE TURNOS DEL ADMINISTRADOR-->
         <div class="listado-turnos-admin" *ngIf="this.userService.getCurrentProfile() == 'admin'">
           <h1>Gestión de turnos de la clínica</h1>
@@ -56,6 +58,9 @@
           </tbody>
           </table>
         </div>
+
+
+
 
   
         <!--LISTA DE TURNOS DEL PACIENTE ACTUAL-->
@@ -138,8 +143,11 @@
           </table>
         </div>
 
-        <!--LISTA DE TURNOS DEL ESPECIALISTA ACTUAL-->
 
+
+
+
+        <!--LISTA DE TURNOS DEL ESPECIALISTA ACTUAL-->
         <div class="listado-turnos-especialista" *ngIf="this.userService.getCurrentProfile() == 'especialista'">
           <h1>Turnos de especialista</h1> 
           <tr>

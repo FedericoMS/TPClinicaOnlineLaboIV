@@ -1,9 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { SwalService } from 'src/app/services/swal.service';
-import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, AbstractControl, FormControl } from '@angular/forms';
 import { Usuario } from 'src/app/clases/usuario';
 import { UserService } from 'src/app/services/user.service';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
+import { Especialidad } from 'src/app/clases/especialidad';
+import { EspecialidadService } from 'src/app/services/especialidad.service';
 
 
 @Component({
@@ -13,18 +15,21 @@ import { AngularFireStorage } from '@angular/fire/compat/storage';
 })
 export class FormAltaEspecialistaComponent {
 
+  nuevaEspecialidadForm: FormControl = new FormControl();
   especialista : any = new Usuario();
   forma! : FormGroup;
   mostrar : boolean = false;
   titulo : string = "Mostrar listado";
   productos : any;
   recaptchaResponse: string = '';
+  listaEspecialidades : Especialidad[] = [];
+
 
   resolved(captchaResponse: string) {
     //console.log(`Resolved captcha with response: ${captchaResponse}`);
   }
 
-  constructor(private fb : FormBuilder, private userService : UserService, private swal : SwalService, private afstorage : AngularFireStorage){
+  constructor(private fb : FormBuilder, private userService : UserService, private swal : SwalService, private afstorage : AngularFireStorage, private especialidadService : EspecialidadService){
 
     this.forma = this.fb.group({
       'nombre': ['', [Validators.required]],
@@ -35,6 +40,11 @@ export class FormAltaEspecialistaComponent {
       'email': ['', Validators.required],
       'clave': ['', Validators.required]
     });
+
+    this.especialidadService.getCollection('especialidades').subscribe((listaEsp) => 
+    {
+      this.listaEspecialidades = listaEsp;
+    })
 
   }
   //  aceptar(): void {
@@ -106,6 +116,45 @@ export class FormAltaEspecialistaComponent {
         }
       });
     });
+  }
+
+  elegirEspecialidad(especialidad: Especialidad) {
+
+    let existe = true;
+    this.listaEspecialidades?.forEach(item => {
+      if (item.nombre == especialidad.nombre) {
+        existe = false;
+      }
+    })
+    if (existe) this.listaEspecialidades?.push(especialidad);
+  }
+
+  obtenerEspecialidadSeleccionada($events : any)
+  {
+    if (!this.especialista.especialidad) {
+      this.especialista.especialidad = $events.nombre; // Modificar esto en caso de que quiera pasar el objeto especialidad y no solamente el nombre
+    } else {
+      this.especialista.especialidad += ", " + $events.nombre; // Modificar esto en caso de que quiera pasar el objeto especialidad y no solamente el nombre
+    }
+   // console.log(this.especialista.especialidad);
+  }
+
+  agregarEspecialidad() {
+
+    const nuevaEspecialidad : any = {
+      id: '', 
+      img : '',
+      nombre: this.nuevaEspecialidadForm.value
+    };
+
+    this.especialidadService.createSpecialty(nuevaEspecialidad);
+    this.nuevaEspecialidadForm.reset();
+  
+  }
+
+  vaciarSeleccion()
+  {
+    this.especialista.especialidad = '';
   }
 
 

@@ -1,0 +1,6 @@
+<div class="contenedor">
+    <div class="row especialidad" *ngFor="let especialidad of listaRecibida" (click)="pasarEspecialidad(especialidad)" >
+      <div class="col">{{ especialidad.nombre }}</div>
+     
+    </div>
+  </div>

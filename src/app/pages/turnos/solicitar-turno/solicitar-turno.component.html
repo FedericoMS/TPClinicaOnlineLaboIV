@@ -1,0 +1,89 @@
+<div class="container">
+    <div class="screen">
+      <div class="screen__content">
+        <div class="solicitud">  
+
+            <div class="especialidades" *ngIf="!seleccionEspecialidad && !seleccionEspecialista && !seleccionDia && !seleccionHorario">
+                <h1>Especialidades</h1>
+                <div class="row" >
+                    <div class="col" *ngFor="let especialidad of listaEspecialidades">
+                        <img class="img-especialidades" src="{{ especialidad.img }}" alt="{{ especialidad.nombre }}" (click)="asignarEspecialidad(especialidad.nombre)">
+                    </div>
+                </div>
+            </div>
+
+            <div class="especialistas" *ngIf="seleccionEspecialidad && !seleccionEspecialista && !seleccionDia && !seleccionHorario">
+                <h1>Especialistas</h1>
+                <div class="row" >
+                    <div *ngFor="let especialista of listaEspecialistas">
+                        <div class="col" *ngIf=" especialista.especialidad == nombreEspecialidad">
+                            <h4>{{especialista.apellido + " " + especialista.nombre }}</h4>
+                            <img class="img-especialistas" src="{{ especialista.imagen1 }}" alt="especialista" (click)="asignarProfesional(especialista)">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dias" *ngIf="seleccionEspecialidad && seleccionEspecialista && !seleccionDia && !seleccionHorario">
+                <h1>Días disponibles</h1>
+                <div class="row">
+                  <div *ngFor="let dia of diasYHorarios">
+                    <td>
+                        <button class="btn btn-primary" (click)="asignarDia(dia.dia)">{{ dia.dia }}</button>
+                      </td>
+                    <!-- <ng-container *ngIf="verificarDisponibilidadDia(especialistaElegido, dia.dia)">
+                      <td>
+                        <button class="btn btn-primary" (click)="asignarDia(dia)">{{ dia.dia }}</button>
+                      </td>
+                    </ng-container> -->
+                  </div>
+                </div>
+              </div>
+              
+            <div class="horarios" *ngIf="seleccionEspecialidad && seleccionEspecialista && seleccionDia && !seleccionHorario">
+                <h1>Horarios disponibles para el día {{ diaSeleccionado }}</h1>
+                <div class="row">
+                    <div>
+                        <!-- <ng-container *ngIf="diaSeleccionado.horarios.length > 0"> -->
+                        <div *ngFor="let horario of diasYHorarios.horario">
+
+                            <!-- <td *ngIf="verificarDisponibilidad(dniEspecialista, diaSeleccionado, diasYHorarios.horario)">
+                                <button class="btn btn-primary" (click)="asignarHorario(diasYHorarios.horario)">{{ diasYHorarios.horario }}</button>
+                            </td>  -->
+                        </div>
+                        <!-- </ng-container> -->
+                        <!-- <ng-container *ngIf="!verificarDisponibilidadDiaCompleta(especialistaElegido, diaSeleccionado.dia)">
+                                  <td>No hay horarios disponibles para este día.</td>
+                                </ng-container> -->
+                    </div>
+                    <td><button class="btn btn-primary" (click)="generarTurno()">Tomar turno</button></td>
+                </div>
+            </div>
+              
+
+            <!-- <div class="dias" *ngIf="seleccionEspecialidad && seleccionEspecialista && !seleccionDia && !seleccionHorario">
+                <h1>Días disponibles</h1>
+                <div class="row" >
+                     <div *ngFor="let dia of diasYHorarios">
+                         <td *ngIf="verificarDisponibilidadDia(especialistaElegido, dia.dia)"><button class="btn btn-primary" (click)="asignarDia(dia)">{{ dia.dia }}</button></td> 
+                        </div> 
+                    </div>
+                </div>
+                
+                <div class="horarios" *ngIf="seleccionEspecialidad && seleccionEspecialista && seleccionDia && !seleccionHorario">
+                    <h1>Horarios disponibles</h1>
+                    <div class="row" >
+                        <div *ngIf=" diaSeleccionado != null">
+                            <div *ngFor="let horario of diaSeleccionado.horarios">
+                                <td><button class="btn btn-primary" (click)="asignarHorario(horario)">{{ horario }}</button></td> 
+                            </div> 
+                        </div>
+                        <td><button class="btn btn-primary" (click)="generarTurno() ">Tomar turno</button></td> 
+                </div>
+            </div>  -->
+ 
+  
+        </div>
+      </div>
+    </div>
+

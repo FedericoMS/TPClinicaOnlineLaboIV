@@ -13,6 +13,16 @@ export class Usuario {
     imagen1: string;
     imagen2: string;
     aprobado: boolean;
+    //disponibilidad : { [dia : string]: string[] }[] | null = []; 
+    //{ dia: string; horarios: string[]} | null;
+    /*disponibilidad : {
+      lunes: string[];
+      martes: string[];
+      miercoles: string[];
+      jueves: string[];
+      viernes: string[];
+      sabado: string[];
+    };*/
     //turnos : Turno[];
   
     constructor() {
@@ -29,6 +39,46 @@ export class Usuario {
       this.imagen1 = '';
       this.imagen2 = '';
       this.aprobado = false;
-      //this.turnos = [];
+     // this.disponibilidad = null;
+      /*{
+        lunes: [
+          '8:00 am', '8:30 am', '9:00 am', '9:30 am', '10:00 am', '10:30 am',
+          '11:00 am', '11:30 am', '12:00 pm', '12:30 pm', '1:00 pm', '1:30 pm',
+          '2:00 pm', '2:30 pm', '3:00 pm', '3:30 pm', '4:00 pm', '4:30 pm',
+          '5:00 pm', '5:30 pm', '6:00 pm', '6:30 pm'
+        ],
+        martes: [
+          '8:00 am', '8:30 am', '9:00 am', '9:30 am', '10:00 am', '10:30 am',
+          '11:00 am', '11:30 am', '12:00 pm', '12:30 pm', '1:00 pm', '1:30 pm',
+          '2:00 pm', '2:30 pm', '3:00 pm', '3:30 pm', '4:00 pm', '4:30 pm',
+          '5:00 pm', '5:30 pm', '6:00 pm', '6:30 pm'
+        ],
+        miercoles: [
+          '8:00 am', '8:30 am', '9:00 am', '9:30 am', '10:00 am', '10:30 am',
+          '11:00 am', '11:30 am', '12:00 pm', '12:30 pm', '1:00 pm', '1:30 pm',
+          '2:00 pm', '2:30 pm', '3:00 pm', '3:30 pm', '4:00 pm', '4:30 pm',
+          '5:00 pm', '5:30 pm', '6:00 pm', '6:30 pm'
+        ],
+        jueves: [
+          '8:00 am', '8:30 am', '9:00 am', '9:30 am', '10:00 am', '10:30 am',
+          '11:00 am', '11:30 am', '12:00 pm', '12:30 pm', '1:00 pm', '1:30 pm',
+          '2:00 pm', '2:30 pm', '3:00 pm', '3:30 pm', '4:00 pm', '4:30 pm',
+          '5:00 pm', '5:30 pm', '6:00 pm', '6:30 pm'
+        ],
+        viernes: [
+          '8:00 am', '8:30 am', '9:00 am', '9:30 am', '10:00 am', '10:30 am',
+          '11:00 am', '11:30 am', '12:00 pm', '12:30 pm', '1:00 pm', '1:30 pm',
+          '2:00 pm', '2:30 pm', '3:00 pm', '3:30 pm', '4:00 pm', '4:30 pm',
+          '5:00 pm', '5:30 pm', '6:00 pm', '6:30 pm'
+        ],
+        sabado: [
+          '8:00 am', '8:30 am', '9:00 am', '9:30 am', '10:00 am', '10:30 am',
+          '11:00 am', '11:30 am', '12:00 pm', '12:30 pm', '1:00 pm', '1:30 pm',
+          '2:00 pm', '2:30 pm', '3:00 pm', '3:30 pm'
+        ]
+      };*/
+
     }
   }
+
+  
