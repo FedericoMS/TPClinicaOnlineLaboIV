@@ -8,6 +8,7 @@ import { SolicitarTurnoComponent } from './solicitar-turno/solicitar-turno.compo
 @NgModule({
   declarations: [
     SolicitarTurnoComponent
+    
   ],
   imports: [
     CommonModule,

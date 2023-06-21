@@ -13,6 +13,10 @@ export class Usuario {
     imagen1: string;
     imagen2: string;
     aprobado: boolean;
+  /*  horaInicioLunes : string;
+    horaFinLunes : string;
+    horaInicioSabado : string;
+    horaFinSabado : string;*/
     //disponibilidad : { [dia : string]: string[] }[] | null = []; 
     //{ dia: string; horarios: string[]} | null;
     /*disponibilidad : {
@@ -39,6 +43,11 @@ export class Usuario {
       this.imagen1 = '';
       this.imagen2 = '';
       this.aprobado = false;
+      /*this.horaInicioLunes = '8:00 am';
+      this.horaFinLunes = '7:00 pm';
+      this.horaInicioSabado = '8:00 am';
+      this.horaFinSabado = '2:00 pm';*/
+
      // this.disponibilidad = null;
       /*{
         lunes: [
