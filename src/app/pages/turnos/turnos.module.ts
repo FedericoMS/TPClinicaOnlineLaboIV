@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+// import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+// import { BrowserModule } from '@angular/platform-browser';
 
 import { TurnosRoutingModule } from './turnos-routing.module';
 import { SolicitarTurnoComponent } from './solicitar-turno/solicitar-turno.component';
@@ -12,7 +14,10 @@ import { SolicitarTurnoComponent } from './solicitar-turno/solicitar-turno.compo
   ],
   imports: [
     CommonModule,
-    TurnosRoutingModule
+    TurnosRoutingModule,
+    // ReactiveFormsModule,
+    // FormsModule,
+    // BrowserModule
   ]
 })
 export class TurnosModule { }
