@@ -13,6 +13,7 @@ export class Usuario {
     imagen1: string;
     imagen2: string;
     aprobado: boolean;
+    dias : boolean[] = [false, true, true, true, true, true, true];
   /*  horaInicioLunes : string;
     horaFinLunes : string;
     horaInicioSabado : string;
