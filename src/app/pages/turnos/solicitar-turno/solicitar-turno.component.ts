@@ -28,7 +28,7 @@ export class SolicitarTurnoComponent {
   seleccionHorario : boolean = false;
   turnoNuevo : Turno = new Turno();
   esAdmin : boolean = false;
-  diasYHorarios : any = this.generarDiasyHorarios();
+  diasYHorarios : any = '';
 
   /*horarioLunesAViernes = ['8:00 am', '8:30 am', '9:00 am', '9:30 am', '10:00 am', '10:30 am',
     '11:00 am', '11:30 am', '12:00 pm', '12:30 pm', '1:00 pm', '1:30 pm',
@@ -127,6 +127,7 @@ export class SolicitarTurnoComponent {
     this.dniEspecialista = especialista.dni;
     this.seleccionEspecialista = true;
     this.especialistaElegido = especialista;
+    this.diasYHorarios = this.generarDiasYHorariosParaEspecialista(especialista);
     // console.log(especialista);
     // console.log(this.nombreEspecialista);
     // console.log(this.dniEspecialista);
@@ -183,7 +184,7 @@ export class SolicitarTurnoComponent {
 
 
   
-  generarDiasyHorarios() : { dia: string; horarios: string[]}[] {
+  /*generarDiasyHorarios() : { dia: string; horarios: string[]}[] {
     const dias = 15; // Cantidad de días a generar
     const fechaActual = moment();
     const fechaFin = moment().add(dias, 'days');
@@ -225,23 +226,24 @@ export class SolicitarTurnoComponent {
     console.log(diasHorariosArray);
   
     return diasHorariosArray;
-  }
+  }*/
 
-  generarDiasYHorariosParaEspecialista(especialista : Usuario)
-  {
+  generarDiasYHorariosParaEspecialista(especialista : Usuario) {
     const dias = 15; // Cantidad de días a generar
     const fechaActual = moment();
     const fechaFin = moment().add(dias, 'days');
-    const diasHorariosArray: { dia: string, horarios: string[] }[] = [];
+    const diasHorariosArray = [];
   
-    while (fechaActual.isSameOrBefore(fechaFin)) {
+    for (let i = 0; i <= dias; i++) {
+      const fecha = fechaActual.clone().add(i, 'days');
+  
       // Verifica si el día actual no es domingo (valor 0 en moment.js)
-      if (fechaActual.day() !== 0) {
-        const dia = fechaActual.format('DD/MM');
-        const horariosDia: string[] = [];
+      if (fecha.day() !== 0) {
+        const dia = fecha.format('DD/MM');
+        const horariosDia = [];
   
         // Verifica si el día actual es sábado
-        if (fechaActual.day() === 6 && especialista.dias[6]) {
+        if (fecha.day() === 6 && especialista.dias[6]) {
           const horaInicio = moment('8:00 am', 'h:mm a');
           const horaFin = moment('1:30 pm', 'h:mm a');
           const intervaloMinutos = 30;
@@ -250,33 +252,27 @@ export class SolicitarTurnoComponent {
             horariosDia.push(horaInicio.format('h:mm a'));
             horaInicio.add(intervaloMinutos, 'minutes');
           }
-        } else {
-          especialista.dias.forEach((dia) => 
-          {
-            if(dia)
-            {
-              const horaInicio = moment('8:00 am', 'h:mm a');
-              const horaFin = moment('6:30 pm', 'h:mm a');
-              const intervaloMinutos = 30;
-      
-              while (horaInicio.isSameOrBefore(horaFin)) {
-                horariosDia.push(horaInicio.format('h:mm a'));
-                horaInicio.add(intervaloMinutos, 'minutes');
-              }
-            }
-          });
+          diasHorariosArray.push({ dia, horarios: horariosDia });
+        } else if (especialista.dias[fecha.day()]) {
+          const horaInicio = moment('8:00 am', 'h:mm a');
+          const horaFin = moment('6:30 pm', 'h:mm a');
+          const intervaloMinutos = 30;
+  
+          while (horaInicio.isSameOrBefore(horaFin)) {
+            horariosDia.push(horaInicio.format('h:mm a'));
+            horaInicio.add(intervaloMinutos, 'minutes');
+          }
+          diasHorariosArray.push({ dia, horarios: horariosDia });
         }
-  
-        diasHorariosArray.push({ dia: dia, horarios: horariosDia });
       }
-  
-      fechaActual.add(1, 'day');
     }
-
+  
     console.log(diasHorariosArray);
   
     return diasHorariosArray;
   }
+  
+  
 
 
   traerTurnos()
