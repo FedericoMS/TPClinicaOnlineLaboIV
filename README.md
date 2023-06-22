@@ -1,27 +1,28 @@
-# ClinicaOnlineLaboIV
+TP DE CLINICA ONLINE LABORATORIO DE COMPUTACION IV
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.2.4.
+Se creo un sistema de clínica online en el cual podrás crearte un usuario, iniciar sesión y solicitar turnos con especialistas. Puedes crearte usuarios tanto de tipo paciente, como especialista y administrador. 
+![home](https://github.com/FedericoMS/TPClinicaOnlineLaboIV/assets/63051263/b8978fc6-7b45-42e4-bec4-6e856862e89d)
 
-## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Cuando no se esta loggeado o se esta loggeado con un usuario que no es de tipo admin, esta será la pantalla de registro, que es donde podrás registrarte como paciente o especialista
+![registro](https://github.com/FedericoMS/TPClinicaOnlineLaboIV/assets/63051263/83451062-c8cb-4204-b466-aaa64b79b1eb)
 
-## Code scaffolding
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+En cambio, si tu sesión es de administrador, la pantalla de registo será la siguiente
+![registroadmin](https://github.com/FedericoMS/TPClinicaOnlineLaboIV/assets/63051263/e2cde142-b8a1-4947-af25-00d32e0baa14)
 
-## Build
+Donde también podrás registrar un usuario de tipo administrador
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+Como administrador, también vas a poder habilitar o deshabilitar el acceso a usuarios de tipo especialista
+![usuariosadmin](https://github.com/FedericoMS/TPClinicaOnlineLaboIV/assets/63051263/1fb8335f-35d6-4b5a-93bd-29863894abc9)
 
-## Running unit tests
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+En la pantalla de 'mi perfil' tendrás la posibilidad de ver tus datos. Si tu sesión es de perfil tipo especialista, también podrás habilitar y deshabilitar tus días laborales
+![miperfil](https://github.com/FedericoMS/TPClinicaOnlineLaboIV/assets/63051263/6e98a542-e735-42a0-9459-b1dde7eb5b8e)
 
-## Running end-to-end tests
+En 'solicitar turno' vas a poder crear un turno, donde eligirás especialidad->especialista->fecha->hora y los días se cargan dinámicamente con los datos del día presente hasta las próximas dos semanas
+![especialidades](https://github.com/FedericoMS/TPClinicaOnlineLaboIV/assets/63051263/644eb2b5-0e01-4f4f-8cf1-a434b4ee4e37)
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
 
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+Por último, podrás observar y/o cancelar tus turnos creados (como paciente y administrador) y aceptar, rechazar o cancelar turnos de paciente en estado 'solicitado'.
+![misturnos](https://github.com/FedericoMS/TPClinicaOnlineLaboIV/assets/63051263/fd2fbf24-95ee-44bd-8a1e-7f276f684d7b)
