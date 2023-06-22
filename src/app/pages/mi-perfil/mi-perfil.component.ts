@@ -12,6 +12,13 @@ export class MiPerfilComponent {
 
   usuarioActual : Usuario = new Usuario();
   isLoading : boolean = true;
+  
+  lunes : boolean = true;
+  martes : boolean = true;
+  miercoles : boolean = true;
+  jueves : boolean = true;
+  viernes : boolean = true;
+  sabado : boolean = true;
 
   constructor(public userService : UserService, private spinner : SpinnerService){
     this.spinner.show();
@@ -27,4 +34,27 @@ export class MiPerfilComponent {
     
   }
 
-}
+  activarDia(opcion : number) {
+    switch (opcion) {
+      case 1:
+        this.lunes = !this.lunes;
+        break;
+      case 2:
+        this.martes = !this.martes;
+        break;
+      case 3:
+        this.miercoles = !this.miercoles;
+        break;
+      case 4:
+        this.jueves = !this.jueves;
+        break;
+      case 5:
+        this.viernes = !this.viernes;
+        break;
+      case 6:
+        this.sabado = !this.sabado;
+        break;
+    }
+  }
+  
+  }
