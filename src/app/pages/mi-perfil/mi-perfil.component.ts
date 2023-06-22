@@ -45,26 +45,31 @@ export class MiPerfilComponent {
       case 2:
         this.martes = !this.martes;
         this.usuarioActual.dias[2] = this.martes;
+        this.userService.updateUser(this.usuarioActual);
         console.log(this.usuarioActual.dias[2]);
         break;
       case 3:
         this.miercoles = !this.miercoles;
         this.usuarioActual.dias[3] = this.miercoles;
+        this.userService.updateUser(this.usuarioActual);
         console.log(this.usuarioActual.dias[3]);
         break;
       case 4:
         this.jueves = !this.jueves;
         this.usuarioActual.dias[4] = this.jueves;
+        this.userService.updateUser(this.usuarioActual);
         console.log(this.usuarioActual.dias[4]);
         break;
       case 5:
         this.viernes = !this.viernes;
         this.usuarioActual.dias[5] = this.viernes;
+        this.userService.updateUser(this.usuarioActual);
         console.log(this.usuarioActual.dias[5]);
         break;
       case 6:
         this.sabado = !this.sabado;
         this.usuarioActual.dias[6] = this.sabado;
+        this.userService.updateUser(this.usuarioActual);
         console.log(this.usuarioActual.dias[6]);
         break;
     }
