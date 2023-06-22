@@ -13,12 +13,12 @@ export class MiPerfilComponent {
   usuarioActual : Usuario = new Usuario();
   isLoading : boolean = true;
   
-  lunes : boolean = true;
-  martes : boolean = true;
-  miercoles : boolean = true;
-  jueves : boolean = true;
-  viernes : boolean = true;
-  sabado : boolean = true;
+  lunes : boolean = false;
+  martes : boolean = false;
+  miercoles : boolean = false;
+  jueves : boolean = false;
+  viernes : boolean = false;
+  sabado : boolean = false;
 
   constructor(public userService : UserService, private spinner : SpinnerService){
     this.spinner.show();
@@ -34,25 +34,38 @@ export class MiPerfilComponent {
     
   }
 
-  activarDia(opcion : number) {
+  toggleDay(opcion : number) {
     switch (opcion) {
       case 1:
         this.lunes = !this.lunes;
+        this.usuarioActual.dias[1] = this.lunes;
+        this.userService.updateUser(this.usuarioActual);
+        console.log(this.usuarioActual.dias[1]);
         break;
       case 2:
         this.martes = !this.martes;
+        this.usuarioActual.dias[2] = this.martes;
+        console.log(this.usuarioActual.dias[2]);
         break;
       case 3:
         this.miercoles = !this.miercoles;
+        this.usuarioActual.dias[3] = this.miercoles;
+        console.log(this.usuarioActual.dias[3]);
         break;
       case 4:
         this.jueves = !this.jueves;
+        this.usuarioActual.dias[4] = this.jueves;
+        console.log(this.usuarioActual.dias[4]);
         break;
       case 5:
         this.viernes = !this.viernes;
+        this.usuarioActual.dias[5] = this.viernes;
+        console.log(this.usuarioActual.dias[5]);
         break;
       case 6:
         this.sabado = !this.sabado;
+        this.usuarioActual.dias[6] = this.sabado;
+        console.log(this.usuarioActual.dias[6]);
         break;
     }
   }
