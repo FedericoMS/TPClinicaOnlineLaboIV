@@ -17,18 +17,18 @@
                 <ng-container *ngIf="usuarioActual.perfil == 'especialista'">
                   <h3>Seleccione sus días laborables</h3>
                   <tr>
-                    <td *ngIf="lunes"> <button class="btn btn-primary" (click)="toggleDay(1)">Lunes</button></td>
-                    <td *ngIf="!lunes"> <button class="btn btn-secondary" (click)="toggleDay(1)">Lunes</button></td>
-                    <td *ngIf="martes"> <button class="btn btn-primary" (click)="toggleDay(2)">Martes</button></td>
-                    <td *ngIf="!martes"> <button class="btn btn-secondary" (click)="toggleDay(2)">Martes</button></td>
-                    <td *ngIf="miercoles"> <button class="btn btn-primary" (click)="toggleDay(3)">Miércoles</button></td>
-                    <td *ngIf="!miercoles"> <button class="btn btn-secondary" (click)="toggleDay(3)">Miércoles</button></td>
-                    <td *ngIf="jueves"> <button class="btn btn-primary" (click)="toggleDay(4)">Jueves</button></td>
-                    <td *ngIf="!jueves"> <button class="btn btn-secondary" (click)="toggleDay(4)">Jueves</button></td>
-                    <td *ngIf="viernes"> <button class="btn btn-primary" (click)="toggleDay(5)">Viernes</button></td>
-                    <td *ngIf="!viernes"> <button class="btn btn-secondary" (click)="toggleDay(5)">Viernes</button></td>
-                    <td *ngIf="sabado"> <button class="btn btn-primary" (click)="toggleDay(6)">Sábado</button></td>
-                    <td *ngIf="!sabado"> <button class="btn btn-secondary" (click)="toggleDay(6)">Sábado</button></td>
+                    <td *ngIf="this.usuarioActual.dias[1]"> <button class="btn btn-primary" (click)="toggleDay(1)">Lunes</button></td>
+                    <td *ngIf="!this.usuarioActual.dias[1]"> <button class="btn btn-secondary" (click)="toggleDay(1)">Lunes</button></td>
+                    <td *ngIf="this.usuarioActual.dias[2]"> <button class="btn btn-primary" (click)="toggleDay(2)">Martes</button></td>
+                    <td *ngIf="!this.usuarioActual.dias[2]"> <button class="btn btn-secondary" (click)="toggleDay(2)">Martes</button></td>
+                    <td *ngIf="this.usuarioActual.dias[3]"> <button class="btn btn-primary" (click)="toggleDay(3)">Miércoles</button></td>
+                    <td *ngIf="!this.usuarioActual.dias[3]"> <button class="btn btn-secondary" (click)="toggleDay(3)">Miércoles</button></td>
+                    <td *ngIf="this.usuarioActual.dias[4]"> <button class="btn btn-primary" (click)="toggleDay(4)">Jueves</button></td>
+                    <td *ngIf="!this.usuarioActual.dias[4]"> <button class="btn btn-secondary" (click)="toggleDay(4)">Jueves</button></td>
+                    <td *ngIf="this.usuarioActual.dias[5]"> <button class="btn btn-primary" (click)="toggleDay(5)">Viernes</button></td>
+                    <td *ngIf="!this.usuarioActual.dias[5]"> <button class="btn btn-secondary" (click)="toggleDay(5)">Viernes</button></td>
+                    <td *ngIf="this.usuarioActual.dias[6]"> <button class="btn btn-primary" (click)="toggleDay(6)">Sábado</button></td>
+                    <td *ngIf="!this.usuarioActual.dias[6]"> <button class="btn btn-secondary" (click)="toggleDay(6)">Sábado</button></td>
 
                   </tr>
                 </ng-container>

@@ -12,13 +12,7 @@ export class MiPerfilComponent {
 
   usuarioActual : Usuario = new Usuario();
   isLoading : boolean = true;
-  
-  lunes : boolean = false;
-  martes : boolean = false;
-  miercoles : boolean = false;
-  jueves : boolean = false;
-  viernes : boolean = false;
-  sabado : boolean = false;
+
 
   constructor(public userService : UserService, private spinner : SpinnerService){
     this.spinner.show();
@@ -37,38 +31,38 @@ export class MiPerfilComponent {
   toggleDay(opcion : number) {
     switch (opcion) {
       case 1:
-        this.lunes = !this.lunes;
-        this.usuarioActual.dias[1] = this.lunes;
+       // this.lunes = !this.lunes;
+        this.usuarioActual.dias[1] = !this.usuarioActual.dias[1];
         this.userService.updateUser(this.usuarioActual);
         console.log(this.usuarioActual.dias[1]);
         break;
       case 2:
-        this.martes = !this.martes;
-        this.usuarioActual.dias[2] = this.martes;
+       // this.martes = !this.martes;
+        this.usuarioActual.dias[2] = !this.usuarioActual.dias[2];
         this.userService.updateUser(this.usuarioActual);
         console.log(this.usuarioActual.dias[2]);
         break;
       case 3:
-        this.miercoles = !this.miercoles;
-        this.usuarioActual.dias[3] = this.miercoles;
+       // this.miercoles = !this.miercoles;
+        this.usuarioActual.dias[3] = !this.usuarioActual.dias[3];
         this.userService.updateUser(this.usuarioActual);
         console.log(this.usuarioActual.dias[3]);
         break;
       case 4:
-        this.jueves = !this.jueves;
-        this.usuarioActual.dias[4] = this.jueves;
+      //  this.jueves = !this.jueves;
+        this.usuarioActual.dias[4] = !this.usuarioActual.dias[4];
         this.userService.updateUser(this.usuarioActual);
         console.log(this.usuarioActual.dias[4]);
         break;
       case 5:
-        this.viernes = !this.viernes;
-        this.usuarioActual.dias[5] = this.viernes;
+       // this.viernes = !this.viernes;
+        this.usuarioActual.dias[5] = !this.usuarioActual.dias[5];
         this.userService.updateUser(this.usuarioActual);
         console.log(this.usuarioActual.dias[5]);
         break;
       case 6:
-        this.sabado = !this.sabado;
-        this.usuarioActual.dias[6] = this.sabado;
+       // this.sabado = !this.sabado;
+        this.usuarioActual.dias[6] = !this.usuarioActual.dias[6];
         this.userService.updateUser(this.usuarioActual);
         console.log(this.usuarioActual.dias[6]);
         break;

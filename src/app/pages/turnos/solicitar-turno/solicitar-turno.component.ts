@@ -30,14 +30,6 @@ export class SolicitarTurnoComponent {
   esAdmin : boolean = false;
   diasYHorarios : any = '';
 
-  /*horarioLunesAViernes = ['8:00 am', '8:30 am', '9:00 am', '9:30 am', '10:00 am', '10:30 am',
-    '11:00 am', '11:30 am', '12:00 pm', '12:30 pm', '1:00 pm', '1:30 pm',
-    '2:00 pm', '2:30 pm', '3:00 pm', '3:30 pm', '4:00 pm', '4:30 pm',
-    '5:00 pm', '5:30 pm', '6:00 pm', '6:30 pm'];
-
-  horarioSab = ['8:00 am', '8:30 am', '9:00 am', '9:30 am', '10:00 am', '10:30 am',
-    '11:00 am', '11:30 am', '12:00 pm', '12:30 pm', '1:00 pm', '1:30 pm'];*/
-
 
   //DATOS PARA TURNO NUEVO//
   pacienteActual : Usuario = new Usuario();
@@ -51,11 +43,6 @@ export class SolicitarTurnoComponent {
   horarioSeleccionado : any = '';
   fechaElegidaString : string = '';
 
-
-  /*horariosLaborales : string[] = ['8:00 am', '8:30 am', '9:00 am', '9:30 am', '10:00 am', '10:30 am',
-  '11:00 am', '11:30 am', '12:00 pm', '12:30 pm', '1:00 pm', '1:30 pm',
-  '2:00 pm', '2:30 pm', '3:00 pm', '3:30 pm', '4:00 pm', '4:30 pm',
-  '5:00 pm', '5:30 pm', '6:00 pm', '6:30 pm'];*/
 
   constructor(private espService : EspecialidadService, private turnoService : TurnoService, private userService : UserService, private swal : SwalService, private router : Router)
   {
@@ -290,19 +277,9 @@ export class SolicitarTurnoComponent {
   }
 
   esHorarioOcupado(horario: string) {
- //   console.log(this.listaTurnos);
-  //  console.log(this.turnosDelEspecialista);
-   // console.log(this.turnosDelEspecialista.some(turno => turno.hora === horario));
     return this.turnosDelEspecialista.some(turno => turno.hora === horario);
   }
   
-  
-
- /* quitarNoDisponibles(dniEspecialista: number, dia: string, hora : string) {
-    this.turnosDelEspecialista = this.listaTurnos.filter(turno =>
-      turno.dniEspecialista === dniEspecialista && turno.fecha == dia && turno.hora == hora
-    );
-  }*/
   
 
   
