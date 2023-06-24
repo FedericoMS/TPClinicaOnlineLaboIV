@@ -27,6 +27,15 @@
 	margin: 3px;
 }
 
+.btn-main{
+	background-color: #6ed9d3 ;
+    border-color: #6dbfbb;
+    color:white;
+	width: 150px;
+	height: 30px;
+	margin: 3px;
+}
+
 body {
 	background: linear-gradient(90deg, #C7C5F4, #776BCC);		
 }
@@ -85,18 +94,35 @@ h1, h2, h3, p
 
 .appointments {
 	width: 1000px;
-	
+	max-height: 850px; 
+	overflow-y: auto; 	
 }
+
+
+
+
+/* Estilos para WebKit (Google Chrome, Safari) */
+.appointments::-webkit-scrollbar {
+	width: 10px; /* Ancho de la scrollbar */
+  }
+  
+  .appointments::-webkit-scrollbar-track {
+	background-color: #fff; /* Color de fondo de la pista de la scrollbar */
+  }
+  
+  .appointments::-webkit-scrollbar-thumb {
+	background-color: #5cafab; /* Color del pulgar de la scrollbar */
+	border-radius: 7px; 
+  }
+  
+  .appointments::-webkit-scrollbar-thumb:hover {
+	background-color: #5a918e; /* Color del pulgar de la scrollbar al pasar el cursor sobre él */
+  }
+  
 
 .appointments__field {
 	padding: 7px 0px;	
 	position: relative;	
-}
-
-.appointments__icon {
-	position: absolute;
-	top: 30px;
-	color: #7875B5;
 }
 
 .appointments__input {

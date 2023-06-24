@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { SpinnerService } from 'src/app/services/spinner.service';
 @Component({
   selector: 'app-bienvenido',
   templateUrl: './bienvenido.component.html',
@@ -7,7 +8,16 @@ import { Router } from '@angular/router';
 })
 export class BienvenidoComponent {
 
-  constructor(private router : Router){}
+  isLoading : boolean = true;
+
+  constructor(private router : Router, private spinner : SpinnerService)
+  {
+    this.spinner.show();
+    setTimeout(() => {
+      this.spinner.hide();
+      this.isLoading = false;
+    }, 300);
+  }
 
   irALogIn()
   {

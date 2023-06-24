@@ -13,6 +13,10 @@
                 <h3>DNI: {{ usuarioActual.dni }}</h3>
                 <h3>Correo electrónico: {{ usuarioActual.email }}</h3>
                 <h3>Obra social: {{ usuarioActual.obraSocial }} </h3> 
+
+                <ng-container *ngIf="usuarioActual.perfil == 'paciente'">
+                  <app-historiales [listaRecibida]="listaTurnosPaciente"></app-historiales>
+                </ng-container>
                 
                 <ng-container *ngIf="usuarioActual.perfil == 'especialista'">
                   <h3>Seleccione sus días laborables</h3>

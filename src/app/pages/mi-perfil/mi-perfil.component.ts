@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 import { Usuario } from 'src/app/clases/usuario';
 import { UserService } from 'src/app/services/user.service';
 import { SpinnerService } from 'src/app/services/spinner.service';
+import { TurnoService } from 'src/app/services/turno.service';
+import { Turno } from 'src/app/clases/turno';
+import { take } from 'rxjs';
 
 @Component({
   selector: 'app-mi-perfil',
@@ -12,21 +15,47 @@ export class MiPerfilComponent {
 
   usuarioActual : Usuario = new Usuario();
   isLoading : boolean = true;
+  listaTurnosPaciente : Turno[] = [];
 
-
-  constructor(public userService : UserService, private spinner : SpinnerService){
+  constructor(public userService : UserService, private spinner : SpinnerService, private turnoService : TurnoService){
     this.spinner.show();
     setTimeout(() => {
+      
+      
       this.usuarioActual = this.userService.getCurrentUser();
+      if(this.usuarioActual.perfil == 'paciente')
+      {
+        this.turnoService.getCollection('turnos').pipe(take(1)).subscribe((turnos : any) =>
+        {
+          turnos.forEach((turno : any) => 
+          {
+            if(turno.dniPaciente == this.usuarioActual.dni)
+            {
+              this.listaTurnosPaciente.push(turno);
+            }
+          })
+        });
+        /*
+        this.turnoService.getCollection('turnos').subscribe((turnos : any) => 
+        {
+          turnos.forEach((turno : any) =>
+          {
+            if(turno.dniPaciente == this.usuarioActual.dni)
+            {
+              this.listaTurnosPaciente.push(turno);
+            }
+          })
+        });*/
+      }
+      // console.log(this.usuarioActual.dni);
+      // console.log(this.listaTurnosPaciente);
       this.spinner.hide()
       this.isLoading = false;
       
-    }, 2500);
+    }, 3000);
   }
 
-  ngOnInit(){
-    
-  }
+
 
   toggleDay(opcion : number) {
     switch (opcion) {

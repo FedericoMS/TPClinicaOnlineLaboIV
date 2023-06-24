@@ -10,14 +10,9 @@ import { UserService } from 'src/app/services/user.service';
 export class NavbarComponent {
   
   user : any = {};
-  profile : string = '';
+  profilePicDefault : string = '../../../assets/defaultProfile.jpg';
 
   constructor(private router : Router, public userService : UserService) {  
+  
    }
-
-  //  irAHome()
-  //  {
-  //   this.router.navigateByUrl('/home');
-  //  }
-
 }
