@@ -28,19 +28,19 @@
 					<div class="row align-items-end justify-content-start">
 							<div class="col" *ngFor="let paciente of pacientes.slice(0, 3)">
 								<h6>Paciente</h6>
-								<img [src]="paciente.imagen1" class="rounded-image" alt="paciente" (click)="cargarUsuario(paciente.email, paciente.clave)">
+								<img bordeado color="red" [src]="paciente.imagen1" class="rounded-image" alt="paciente" (click)="cargarUsuario(paciente.email, paciente.clave)">
 							</div>
 						
 							<div class="col" *ngFor="let especialista of especialistas.slice(0, 2)">
 								<h6>Especialista</h6>
-								<img [src]="especialista.imagen1" class="rounded-image" alt="Especialista"
+								<img bordeado color="green" [src]="especialista.imagen1" class="rounded-image" alt="Especialista"
 									(click)="cargarUsuario(especialista.email, especialista.clave)">
 							</div>
 						
 						
 							<div class="col" *ngFor="let admin of admins.slice(0, 1)">
 								<h6>Admin</h6>
-								<img [src]="admin.imagen1" class="rounded-image" alt="Admin" (click)="cargarUsuario(admin.email, admin.clave)">				
+								<img bordeado color="blue" [src]="admin.imagen1" class="rounded-image" alt="Admin" (click)="cargarUsuario(admin.email, admin.clave)">				
 							</div>				
 					</div>
 				</ng-template>

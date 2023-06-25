@@ -46,6 +46,8 @@ import { OrdenarPorPacientePipe } from './pipes/ordenar-por-paciente.pipe';
 import { ListadoEspecialidadesComponent } from './componentes/listado-especialidades/listado-especialidades.component';
 import { MiPerfilComponent } from './pages/mi-perfil/mi-perfil.component';
 import { HistorialesComponent } from './componentes/historiales/historiales.component';
+import { BordesDirective } from './directives/bordes.directive';
+import { PacientesComponent } from './pages/pacientes/pacientes.component';
 
 
 @NgModule({
@@ -68,7 +70,9 @@ import { HistorialesComponent } from './componentes/historiales/historiales.comp
     OrdenarPorPacientePipe,
     ListadoEspecialidadesComponent,
     MiPerfilComponent,
-    HistorialesComponent
+    HistorialesComponent,
+    BordesDirective,
+    PacientesComponent
   ],
   imports: [
     BrowserModule,

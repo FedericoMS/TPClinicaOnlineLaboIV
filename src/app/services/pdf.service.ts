@@ -47,4 +47,29 @@ export class PdfService {
     doc.save(nombreArchivo);
   }
   
+
+  crearPDFTurnos (nombreArchivo : string, nombreUsuario : string, data : any[]) {
+    const doc = new jsPDF( 'portrait', 'px', 'a4' );
+    const image = new Image();
+    image.src = "/assets/logo.png";
+    doc.text("TURNOS: ESPECIALISTA "+ nombreUsuario,140,70);
+    const fecha = (new Date()).toLocaleString();
+    doc.addImage(image, 'PNG', 10, 10, 60, 60);
+    doc.text("Fecha de creación: " + fecha, 240, 20);
+    let posicion = 120;
+
+    data.forEach(item => {
+
+      if(item.estado == 'REALIZADO'){
+      doc.text("Fecha: " + item.fecha, 35, posicion+=15);
+      doc.text("Hora: " + item.hora , 35, posicion+=15);
+      doc.text("Especialidad: " + item.especialidad, 35, posicion+=15);
+      doc.text("Paciente: " + item.pacienteNombre, 35, posicion+=15);
+      doc.text("Estado de turno: " + item.estado, 35, posicion+=15);
+      posicion+=30;  
+      }    
+
+    })
+    doc.save( nombreArchivo );
+  }
 }
