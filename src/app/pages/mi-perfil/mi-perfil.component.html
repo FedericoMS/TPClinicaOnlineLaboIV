@@ -17,27 +17,9 @@
 
                 <ng-container *ngIf="usuarioActual.perfil == 'paciente'">
                   <!-- <app-historiales [listaRecibida]="listaTurnosPaciente"></app-historiales> -->
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#historiaClinicaModal">
-                  Ver historia clínica
-                </button>
-                
-                  <div class="modal fade" id="historiaClinicaModal" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="false" > 
-                    <div class="modal-dialog modal-dialog-scrollable">
-                      <div class="modal-content" style="text-align: start">
-                        <div class="modal-header" style="text-align: center">
-                          <h1 class="modal-title fs-5" id="exampleModalLabel" >
-                            HISTORIA CLÍNICA
-                          </h1>
-                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                          </button>
-                        </div>
-                        <div class="modal-body">
-                           <app-historiales [listaRecibida]="listaTurnosPaciente"></app-historiales>                   
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+
+                           <app-historiales [listaTurnosRecibida]="listaTurnosPaciente"></app-historiales>                   
+
 
                   <button type="button" class="btn btn-primary" (click)="descargarPDF()">Descargar PDF</button>
                 </ng-container>

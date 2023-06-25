@@ -8,7 +8,7 @@ import { Turno } from 'src/app/clases/turno';
 })
 export class HistorialesComponent {
 
-  @Input() listaRecibida : Turno[] = [];
+  @Input() listaTurnosRecibida : Turno[] = [];
 
   constructor(){}
 

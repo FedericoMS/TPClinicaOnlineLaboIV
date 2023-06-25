@@ -1,19 +1,40 @@
-    <div *ngFor="let turno of listaRecibida">
-        <div class="container" *ngIf="turno.estado == 'realizado'">
-            <p class="custom-background"><strong>Fecha y hora:</strong> {{turno.fecha}} {{turno.hora}} </p>
-            <p><strong>Especialista:</strong> {{turno.especialista}}</p>
-            <p><strong>Especialidad:</strong> {{turno.especialidad}}</p>
-            <p><strong>Paciente:</strong> {{turno.paciente}}</p>
-            <p><strong>Altura:</strong> {{turno.altura}}</p>
-            <p><strong>Peso:</strong> {{turno.peso}}</p>
-            <p><strong>Temperatura:</strong> {{turno.temperatura}}</p>
-            <p><strong>Presión:</strong> {{turno.presion}}</p>
-            <p><strong>Reseña:</strong> {{turno.resenia}}</p>
-            <p *ngIf="turno.dato1 != ''"><strong>{{turno.dato1[0]}}</strong> {{turno.dato1[1]}}</p> 
-            <p *ngIf="turno.dato2 != ''"><strong>{{turno.dato2[0]}}</strong> {{turno.dato2[1]}}</p> 
-            <p *ngIf="turno.dato3 != ''"><strong>{{turno.dato3[0]}}</strong> {{turno.dato3[1]}}</p>     
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#historiaClinicaModal">
+    Ver historia clínica
+</button>
+
+<div class="modal fade" id="historiaClinicaModal" aria-labelledby="exampleModalLabel" aria-hidden="true"
+    data-backdrop="false">
+    <div class="modal-dialog modal-dialog-scrollable">
+        <div class="modal-content" style="text-align: start">
+            <div class="modal-header" style="text-align: center">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">
+                    HISTORIA CLÍNICA
+                </h1>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div *ngFor="let turno of listaTurnosRecibida">
+                    <div class="container" *ngIf="turno.estado == 'realizado'">
+                        <p class="custom-background"><strong>Fecha y hora:</strong> {{turno.fecha}} {{turno.hora}} </p>
+                        <p><strong>Especialista:</strong> {{turno.especialista}}</p>
+                        <p><strong>Especialidad:</strong> {{turno.especialidad}}</p>
+                        <p><strong>Paciente:</strong> {{turno.paciente}}</p>
+                        <p><strong>Altura:</strong> {{turno.altura}}</p>
+                        <p><strong>Peso:</strong> {{turno.peso}}</p>
+                        <p><strong>Temperatura:</strong> {{turno.temperatura}}</p>
+                        <p><strong>Presión:</strong> {{turno.presion}}</p>
+                        <p><strong>Reseña:</strong> {{turno.resenia}}</p>
+                        <p *ngIf="turno.dato1 != ''"><strong>{{turno.dato1[0]}}</strong> {{turno.dato1[1]}}</p>
+                        <p *ngIf="turno.dato2 != ''"><strong>{{turno.dato2[0]}}</strong> {{turno.dato2[1]}}</p>
+                        <p *ngIf="turno.dato3 != ''"><strong>{{turno.dato3[0]}}</strong> {{turno.dato3[1]}}</p>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
+</div>
     
 
 
