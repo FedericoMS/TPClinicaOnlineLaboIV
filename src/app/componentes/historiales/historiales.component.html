@@ -1,7 +1,9 @@
-    <h2>Historia clínica</h2>
     <div *ngFor="let turno of listaRecibida">
         <div class="container" *ngIf="turno.estado == 'realizado'">
-            <p><strong>Fecha y hora:</strong> {{turno.fecha}} {{turno.hora}} </p>
+            <p class="custom-background"><strong>Fecha y hora:</strong> {{turno.fecha}} {{turno.hora}} </p>
+            <p><strong>Especialista:</strong> {{turno.especialista}}</p>
+            <p><strong>Especialidad:</strong> {{turno.especialidad}}</p>
+            <p><strong>Paciente:</strong> {{turno.paciente}}</p>
             <p><strong>Altura:</strong> {{turno.altura}}</p>
             <p><strong>Peso:</strong> {{turno.peso}}</p>
             <p><strong>Temperatura:</strong> {{turno.temperatura}}</p>

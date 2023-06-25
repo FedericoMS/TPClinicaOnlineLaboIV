@@ -5,6 +5,8 @@ import { SpinnerService } from 'src/app/services/spinner.service';
 import { TurnoService } from 'src/app/services/turno.service';
 import { Turno } from 'src/app/clases/turno';
 import { take } from 'rxjs';
+import { SwalService } from 'src/app/services/swal.service';
+import { PdfService } from 'src/app/services/pdf.service';
 
 @Component({
   selector: 'app-mi-perfil',
@@ -17,7 +19,7 @@ export class MiPerfilComponent {
   isLoading : boolean = true;
   listaTurnosPaciente : Turno[] = [];
 
-  constructor(public userService : UserService, private spinner : SpinnerService, private turnoService : TurnoService){
+  constructor(public userService : UserService, private spinner : SpinnerService, private turnoService : TurnoService, private swal : SwalService, private pdfService : PdfService){
     this.spinner.show();
     setTimeout(() => {
       
@@ -29,7 +31,7 @@ export class MiPerfilComponent {
         {
           turnos.forEach((turno : any) => 
           {
-            if(turno.dniPaciente == this.usuarioActual.dni)
+            if(turno.dniPaciente == this.usuarioActual.dni && turno.estado == 'realizado')
             {
               this.listaTurnosPaciente.push(turno);
             }
@@ -60,42 +62,42 @@ export class MiPerfilComponent {
   toggleDay(opcion : number) {
     switch (opcion) {
       case 1:
-       // this.lunes = !this.lunes;
         this.usuarioActual.dias[1] = !this.usuarioActual.dias[1];
         this.userService.updateUser(this.usuarioActual);
         console.log(this.usuarioActual.dias[1]);
         break;
       case 2:
-       // this.martes = !this.martes;
         this.usuarioActual.dias[2] = !this.usuarioActual.dias[2];
         this.userService.updateUser(this.usuarioActual);
         console.log(this.usuarioActual.dias[2]);
         break;
       case 3:
-       // this.miercoles = !this.miercoles;
         this.usuarioActual.dias[3] = !this.usuarioActual.dias[3];
         this.userService.updateUser(this.usuarioActual);
         console.log(this.usuarioActual.dias[3]);
         break;
       case 4:
-      //  this.jueves = !this.jueves;
         this.usuarioActual.dias[4] = !this.usuarioActual.dias[4];
         this.userService.updateUser(this.usuarioActual);
         console.log(this.usuarioActual.dias[4]);
         break;
       case 5:
-       // this.viernes = !this.viernes;
         this.usuarioActual.dias[5] = !this.usuarioActual.dias[5];
         this.userService.updateUser(this.usuarioActual);
         console.log(this.usuarioActual.dias[5]);
         break;
       case 6:
-       // this.sabado = !this.sabado;
         this.usuarioActual.dias[6] = !this.usuarioActual.dias[6];
         this.userService.updateUser(this.usuarioActual);
         console.log(this.usuarioActual.dias[6]);
         break;
     }
   }
+
+  descargarPDF()
+  {
+    this.pdfService.crearPDFHistoriaClinica("Mi Historia Clinica", this.userService.getCurrentFullName(), this.listaTurnosPaciente);
+  }
+
   
   }

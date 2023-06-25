@@ -15,12 +15,12 @@ export class ListadoUsuariosComponent {
 
   constructor(private userService : UserService, private swal : SwalService){}
 
-  /*
+  
   PasarUsuario(usuario : Usuario)
   {
     this.PasamosUnUsuario.emit(usuario);
-    console.info(usuario);
-  }*/
+   // console.info(usuario);
+  }
 
 
   modificarUsuario(usuario: Usuario, opcion: number) {

@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import { AngularFirestore, DocumentSnapshot  } from '@angular/fire/compat/firestore';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { SwalService } from './swal.service';
+import { Usuario } from '../clases/usuario';
+import { Turno } from '../clases/turno';
 
 @Injectable({
   providedIn: 'root'
@@ -60,6 +62,33 @@ export class TurnoService {
         });
     }
   }
+
+  getTurnosUsuario(usuario: Usuario) {
+    return this.af.collection('turnos').ref.where("dniPaciente", "==", usuario.dni).get()
+      .then(snapshots => snapshots.docs.map(doc => {
+        const turno: Turno = doc.data() as Turno;
+        turno.id = doc.id;
+        return turno;
+      }));
+  }
+  
+
+  /*getTurnosUsuario(usuario: Usuario) {
+    let listaDeTurnos : Turno[] = [];
+    this.af.collection('turnos').ref.where("dniPaciente", "==", usuario.dni).get()
+      .then(snapshots => snapshots.docs.map(doc => {
+        const turno: Turno = doc.data() as Turno;
+        turno.id = doc.id;
+        return turno;
+      }))
+      .then(turnos => {
+        console.log(turnos); 
+        listaDeTurnos = turnos;
+        return listaDeTurnos;
+      });
+  }*/
+  
+  
 
 
 }

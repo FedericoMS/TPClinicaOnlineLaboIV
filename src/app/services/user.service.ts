@@ -90,6 +90,7 @@ export class UserService {
               imagen1: newUser.imagen1,
               imagen2: newUser.imagen2,
               aprobado: newUser.aprobado,
+              dias : newUser.dias
             })
             .then(() => 
             {

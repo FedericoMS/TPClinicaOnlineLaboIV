@@ -8,13 +8,8 @@ import { Turno } from 'src/app/clases/turno';
 })
 export class HistorialesComponent {
 
-  public visible = false;
   @Input() listaRecibida : Turno[] = [];
 
   constructor(){}
 
-
-  toggleCollapse(): void {
-    this.visible = !this.visible;
-  }
 }

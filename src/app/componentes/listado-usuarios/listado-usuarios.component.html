@@ -1,19 +1,20 @@
 <table style="color:rgb(0, 162, 255);" class="table table-hover">
     <thead>
       <tr>
-        <th scope="col">Perfil</th>
+        <th scope="col">Imagen</th>
         <th scope="col">Nombre</th>
         <th scope="col">Apellido</th>
-        <th scope="col">Correo</th>
-        <th scope="col">Habilitación</th>
+        <!-- <th scope="col">Correo</th>
+        <th scope="col">Habilitación</th> -->
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let usuario of this.listadoRecibido">
-        <td>{{usuario.perfil}}</td>
+      <tr *ngFor="let usuario of this.listadoRecibido" style="cursor : pointer;" (click)="PasarUsuario(usuario)">
+        <!-- <td>{{usuario.perfil}}</td> -->
+        <td><img class="img-listado" src='{{usuario.imagen1}}' alt="imagen"></td>
         <td>{{usuario.nombre}}</td>
         <td>{{usuario.apellido}}</td>
-        <td>{{usuario.email}}</td>
+        <!-- <td>{{usuario.email}}</td> -->
         <td *ngIf="usuario.especialidad != null && usuario.aprobado == false; else deshabilitar"> <button mat-raised-button color="primary" (click)="modificarUsuario(usuario, 1)">Habilitar</button></td>
         <ng-template #deshabilitar>
           <td *ngIf="usuario.especialidad != null && usuario.aprobado == true ;"> <button mat-raised-button color="accent" (click)="modificarUsuario(usuario, 2)">Deshabilitar</button></td>
