@@ -18,10 +18,13 @@
                 <ng-container *ngIf="usuarioActual.perfil == 'paciente'">
                   <!-- <app-historiales [listaRecibida]="listaTurnosPaciente"></app-historiales> -->
 
-                           <app-historiales [listaTurnosRecibida]="listaTurnosPaciente"></app-historiales>                   
-
-
-                  <button type="button" class="btn btn-primary" (click)="descargarPDF()">Descargar PDF</button>
+                  <app-historiales [listaTurnosRecibida]="listaTurnosPaciente"></app-historiales> 
+                  <button type="button" class="btn btn-primary" (click)="descargarPDF()">Descargar Historia</button>
+                  <div>
+                    <label for="especialidadInput">Especialidad:</label>
+                    <input type="text" id="especialidadInput" [(ngModel)]="filtroEspecialidad">
+                    <button type="button" class="btn btn-primary" (click)="filtrarTurnosPorEspecialidad()">Descargar PDF</button>
+                  </div>
                 </ng-container>
                 
                 

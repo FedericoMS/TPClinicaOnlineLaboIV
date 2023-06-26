@@ -13,7 +13,7 @@ export class PacientesComponent {
 
   especialistaActual : Usuario | null = null;
   listaUsuariosAtendidos : Usuario[] = [];
-  listaDniAtendidos : number[] = [];
+  listaDniAtendidos : any[] = [];
 
   constructor(private userService : UserService, private turnoService : TurnoService){
     this.especialistaActual = this.userService.getCurrentUser();
@@ -45,5 +45,7 @@ export class PacientesComponent {
     console.log(this.listaUsuariosAtendidos);
 
   }
+
+  
 
 }
