@@ -3,6 +3,11 @@ import { UserService } from 'src/app/services/user.service';
 import { Usuario } from 'src/app/clases/usuario';
 import { SwalService } from 'src/app/services/swal.service';
 import { Router } from '@angular/router';
+import { TurnoService } from 'src/app/services/turno.service';
+import { take } from 'rxjs';
+import { Turno } from 'src/app/clases/turno';
+import * as XLSX from "xlsx"
+
 
 
 
@@ -14,8 +19,12 @@ import { Router } from '@angular/router';
 export class UsuariosComponent {
 
   listaUsuarios : Usuario[] = [];
+  listaTurnosUsuarioElegido : Turno[] = [];
+  usuario : any = '';
 
-  constructor(private userService : UserService, private swal : SwalService, private router : Router){}
+  lista : any[] = [];
+
+  constructor(private userService : UserService, private swal : SwalService, private router : Router, private turnoService : TurnoService){}
 
   ngOnInit(): void 
   {
@@ -23,12 +32,52 @@ export class UsuariosComponent {
       this.listaUsuarios = usuarios;
       console.log(this.listaUsuarios);
     });
+
+    /*this.turnoService.getCollection('turnos').pipe(take(1)).subscribe((turnos : any) =>
+    {
+      this.listaTurnos = turnos;
+    });*/
   }
 
   irARegistro()
   {
     this.router.navigateByUrl('/registro');
   }
+  
+  async tomarUsuarioParaExcel($events : any)
+  {
+    this.usuario = $events;
+    this.listaTurnosUsuarioElegido = await this.turnoService.getTurnosUsuario($events);
+    console.log(this.listaTurnosUsuarioElegido);
+    this.listaTurnosUsuarioElegido.forEach(turno=>{
+      console.log(turno);
+      let obj = {
+              'Fecha': turno.fecha,
+              'Hora': turno.hora,
+              'Paciente': turno.paciente,
+              'Especialista': turno.especialista,
+              'Especialidad': turno.especialidad
+      };
+      this.lista.push(obj);
+    })
+
+    console.log(this.lista);
+    var ws = XLSX.utils.json_to_sheet(this.lista);
+    var wb = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, this.usuario.email);
+    XLSX.writeFile(wb, this.usuario.email + ".xlsx");
+    this.lista = [];
+  }
+
+  descargarUsuarios() {
+
+    var ws = XLSX.utils.json_to_sheet(this.listaUsuarios);
+    var wb = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, "Usuarios");
+    XLSX.writeFile(wb, "Usuarios.xlsx");
+  }
+
+
 
 
 }

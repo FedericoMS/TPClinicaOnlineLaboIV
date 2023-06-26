@@ -12,6 +12,13 @@ export class Turno {
     dniEspecialista : number; //se debe tomar automáticamente
     estado : string; //Los estados son: solicitado, realizado, cancelado, rechazado
     comentarioCancelacion : string; //Decidí poner 1 sólo campo de comentario de cancelación o rechazo, ya que en teoría solamente debe comentar el que lo cancela/rechaza.
+    altura : number = 0;
+    peso : number = 0;
+    presion : string = '';
+    temperatura : number = 0;
+    dato1 : any = '';
+    dato2 : any = '';
+    dato3 : any = '';
 
     constructor()
      {

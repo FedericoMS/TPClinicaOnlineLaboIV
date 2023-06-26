@@ -7,6 +7,7 @@ import { UsuariosComponent } from './pages/usuarios/usuarios.component';
 import { QuiensoyComponent } from './pages/quiensoy/quiensoy.component';
 import { EsadminGuard } from './guards/esadmin.guard';
 import { MiPerfilComponent } from './pages/mi-perfil/mi-perfil.component';
+import { PacientesComponent } from './pages/pacientes/pacientes.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -15,6 +16,7 @@ const routes: Routes = [
   { path: "home", component: BienvenidoComponent },
   { path: "quiensoy", component: QuiensoyComponent },
   { path: "perfil", component: MiPerfilComponent },
+  { path: "pacientes", component: PacientesComponent },
   {
     path: 'turnos', loadChildren: () => import('./pages/turnos/turnos.module')
       .then(mod => mod.TurnosModule)

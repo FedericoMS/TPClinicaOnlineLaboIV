@@ -65,19 +65,19 @@ export class MisTurnosComponent {
       , 1500);
     }
 
-    filtrarPorEspecialidadDelEspecialista(especialidad : string)
-    {
-      this.listaPorEspecialidad = [];
-      this.filtroEspecialidad = true;
-      this.listaDeTurnosDelEspecialista.forEach((turno : Turno) => 
-      {
-        if(turno.especialidad == especialidad)
-        {
-          this.listaPorEspecialidad.push(turno);
-        }
-      });
+    // filtrarPorEspecialidadDelEspecialista(especialidad : string)
+    // {
+    //   this.listaPorEspecialidad = [];
+    //   this.filtroEspecialidad = true;
+    //   this.listaDeTurnosDelEspecialista.forEach((turno : Turno) => 
+    //   {
+    //     if(turno.especialidad == especialidad)
+    //     {
+    //       this.listaPorEspecialidad.push(turno);
+    //     }
+    //   });
 
-    }
+    // }
 
   cancelarTurno(turno: Turno, opcion : number, comentario: string, emisor: string = "paciente") {
     if(opcion == 1)
@@ -140,6 +140,25 @@ export class MisTurnosComponent {
       );
   }
 
+  dejarDatos(turno: Turno) {
+    turno.estado = "realizado";
+    this.turnoService.updateAppointment(turno);
+    this.swal.showToast(
+      'Se envió su reseña e historial clínico!',
+      'success'
+    );
+}
+
+//   dejarHistorialClinico(turno: Turno, comentario: string) {
+//     turno.resenia = comentario;
+//     turno.estado = "realizado";
+//     this.turnoService.updateAppointment(turno);
+//     this.swal.showToast(
+//       'Se envió su reseña!',
+//       'success'
+//     );
+// }
+
     enviarEncuesta(turno: Turno,  comentario : string, emisor : string = "paciente") {
       if (turno.estado == 'realizado') {
           turno.encuesta = comentario;
@@ -159,6 +178,7 @@ export class MisTurnosComponent {
       });
     }
 
+/*
     modalFinalizacion(turno: Turno, emisor: string)
     {
       this.swal.showModalText("Finalizar turno", "Deje su reseña y diagnóstico", "Escriba su reseña",  (comentario : string) => {
@@ -171,8 +191,33 @@ export class MisTurnosComponent {
           this.swal.swalert("Error", "Tiene que escribir una reseña para finalizar el turno", "error");
         }
       });
-    }
-    
+    }*/
+
+  modalFinalizacion(turno: Turno) {
+    // Llamar a la función showModalWithInputs
+    this.swal.showModalWithInputs((datos: any) => {
+      if(datos.resenia == '' || datos.altura == 0 || datos.peso == 0 || datos.temperatura == 0 || datos.presion == '')
+      {
+        this.swal.swalert("Error", "Tiene que completar todos los campos para finalizar el turno", "error");
+      }
+      else
+      {
+        turno.resenia = datos.resenia;
+        turno.altura = datos.altura;
+        turno.peso = datos.peso;
+        turno.temperatura = datos.temperatura;
+        turno.presion = datos.presion;
+        turno.dato1 = [datos.dato1_clave, datos.dato1_valor];
+        turno.dato2 = [datos.dato2_clave, datos.dato2_valor];
+        turno.dato3 = [datos.dato3_clave, datos.dato3_valor];
+        this.dejarDatos(turno);
+
+      }
+
+    });
+
+  }
+
 
 
 

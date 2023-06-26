@@ -1,0 +1,19 @@
+.cstm-height-card .card-img-top {
+    height: 250px;
+    width: 350px;
+    object-fit: cover;
+  }
+
+.btn-primary{
+	background-color: #6ed9d3 ;
+    border-color: #6dbfbb;
+    color:white;
+	width: 150px;
+	height: 30px;
+	margin: 3px;
+}
+
+h1, h2, h3 
+{
+	color:#5e8b89;
+}

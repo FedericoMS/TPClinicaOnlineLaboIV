@@ -21,8 +21,7 @@ export class UserService {
   private userProfile : string = '';
   private isApproved : boolean = false;
   public isAdmin : boolean = false;
- // private dniActual : number = 0;
-//  private nombreCompletoActual : string = '';
+
   private usuarioActual : Usuario = new Usuario();
 
   constructor(private swal : SwalService, private auth : Auth, private authFire : AngularFireAuth, private router : Router, private af : AngularFirestore) 
@@ -35,14 +34,8 @@ export class UserService {
          if (userProfileSnapshot.exists) {
            const userProfileData = userProfileSnapshot.data();
            this.usuarioActual = userProfileData;
-          // console.log(this.usuarioActual);
-           this.userProfile = this.usuarioActual.perfil;
-          // this.isApproved = userProfileData.aprobado;
-          // this.dniActual = userProfileData.dni;
-          // this.nombreCompletoActual = userProfileData.nombre + ' ' + userProfileData.apellido;
 
-           //console.log(this.dniActual);
-           //console.log(this.nombreCompletoActual);
+           this.userProfile = this.usuarioActual.perfil;
 
            console.log("Perfil del usuario: " + this.userProfile);
            if(this.userProfile == "especialista" && this.isApproved)
@@ -64,11 +57,7 @@ export class UserService {
          }
         let userArray : any = user.email?.split("@");
         this.userName = userArray[0];
-        //this.userProfile = user.perfil?;
-       // console.log("El email fue verificado? " + user.emailVerified);
         console.log("Hola, soy el usuario: " + this.userName);
-        // Obtener datos del perfil del usuario
-       // console.log("línea final: " + this.isLoggedIn)
       }
       
       console.log("Hola, soy el usuario con el mail: " + user?.email);
@@ -101,6 +90,7 @@ export class UserService {
               imagen1: newUser.imagen1,
               imagen2: newUser.imagen2,
               aprobado: newUser.aprobado,
+              dias : newUser.dias
             })
             .then(() => 
             {
@@ -261,6 +251,11 @@ export class UserService {
   getCurrentUser() : Usuario
   {
     return this.usuarioActual;
+  }
+
+  getCurrentProfilePicture() : string
+  {
+    return this.usuarioActual.imagen1;
   }
 
 }

@@ -80,7 +80,49 @@ export class SwalService {
       }
     });
   }
-  
 
+  showModalWithInputs(callback: (datos: any) => void): void {
+    Swal.fire({
+      title: 'Ingrese los datos',
+      html:
+        '<textarea id="resenia" class="swal2-textarea" placeholder="Escriba aquí su reseña"></textarea>' +
+        '<input id="altura" type="number" class="swal2-input" placeholder="Altura">' +
+        '<input id="peso" type="number" class="swal2-input" placeholder="Peso">' +
+        '<input id="temperatura" type="number" class="swal2-input" placeholder="Temperatura">' +
+        '<input id="presion" class="swal2-input" placeholder="Presión">' +
+        '<input id="dato1_clave" class="swal2-input" placeholder="Dato 1 - Clave (opcional)">' +
+        '<input id="dato1_valor" class="swal2-input" placeholder="Dato 1 - Valor (opcional)">' +
+        '<input id="dato2_clave" class="swal2-input" placeholder="Dato 2 - Clave (opcional)">' +
+        '<input id="dato2_valor" class="swal2-input" placeholder="Dato 2 - Valor (opcional)">' +
+        '<input id="dato3_clave" class="swal2-input" placeholder="Dato 3 - Clave (opcional)">' +
+        '<input id="dato3_valor" class="swal2-input" placeholder="Dato 3 - Valor (opcional)">',
+      showCancelButton: true,
+      confirmButtonText: 'Aceptar',
+      cancelButtonText: 'Cancelar',
+      preConfirm: () => {
+        return {
+          resenia: (document.getElementById('resenia') as HTMLTextAreaElement).value,
+          altura: (document.getElementById('altura') as HTMLInputElement).value,
+          peso: (document.getElementById('peso') as HTMLInputElement).value,
+          temperatura: (document.getElementById('temperatura') as HTMLInputElement).value,
+          presion: (document.getElementById('presion') as HTMLInputElement).value,
+          dato1_clave: (document.getElementById('dato1_clave') as HTMLInputElement).value,
+          dato1_valor: (document.getElementById('dato1_valor') as HTMLInputElement).value,
+          dato2_clave: (document.getElementById('dato2_clave') as HTMLInputElement).value,
+          dato2_valor: (document.getElementById('dato2_valor') as HTMLInputElement).value,
+          dato3_clave: (document.getElementById('dato3_clave') as HTMLInputElement).value,
+          dato3_valor: (document.getElementById('dato3_valor') as HTMLInputElement).value
+        };
+      }
+    }).then((result) => {
+      if (!result.dismiss && result.value) {
+        const datos = result.value;
+        callback(datos);
+      }
+    });
+  }
+
+
+  
 
 }
