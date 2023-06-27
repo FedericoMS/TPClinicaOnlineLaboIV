@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ViewChild, ElementRef } from '@angular/core';
 import { Turno } from 'src/app/clases/turno';
 
 @Component({
@@ -10,6 +10,20 @@ export class HistorialesComponent {
 
   @Input() listaTurnosRecibida : Turno[] = [];
 
-  constructor(){}
+  listaTurnos : any[]=[]
+  @ViewChild('historiaClinicaModal') historiaClinicaModal!: ElementRef;
+
+  constructor() { }
+
+  openModal() {
+    this.historiaClinicaModal.nativeElement.classList.add('show');
+    this.historiaClinicaModal.nativeElement.style.display = 'block';
+  }
+
+  closeModal() {
+    this.historiaClinicaModal.nativeElement.classList.remove('show');
+    this.historiaClinicaModal.nativeElement.style.display = 'none';
+  }
+
 
 }

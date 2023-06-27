@@ -8,15 +8,19 @@ import { QuiensoyComponent } from './pages/quiensoy/quiensoy.component';
 import { EsadminGuard } from './guards/esadmin.guard';
 import { MiPerfilComponent } from './pages/mi-perfil/mi-perfil.component';
 import { PacientesComponent } from './pages/pacientes/pacientes.component';
+import { EsEspecialistaGuard } from './guards/es-especialista.guard';
+import { EstaloggeadoGuard } from './guards/estaloggeado.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: "login", component: LoginComponent },
   { path: "registro", component: RegistroComponent },
-  { path: "home", component: BienvenidoComponent },
+  { path: "home", component: BienvenidoComponent,  data: {animation: 'login'} },
   { path: "quiensoy", component: QuiensoyComponent },
-  { path: "perfil", component: MiPerfilComponent },
-  { path: "pacientes", component: PacientesComponent },
+  { path: "perfil", component: MiPerfilComponent, 
+     canActivate: [EstaloggeadoGuard]},
+  { path: "pacientes", component: PacientesComponent,
+    canActivate: [EsEspecialistaGuard] },
   {
     path: 'turnos', loadChildren: () => import('./pages/turnos/turnos.module')
       .then(mod => mod.TurnosModule)
