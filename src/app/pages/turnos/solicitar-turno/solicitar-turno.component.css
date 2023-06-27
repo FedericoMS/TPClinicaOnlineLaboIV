@@ -50,6 +50,7 @@ body {
 	width: 65%;
 	height: 100%;
 	cursor: pointer; /*Probablemente haya que modificarlo*/
+	object-fit: cover;
 }
 
 .img-especialistas {
@@ -57,6 +58,7 @@ body {
 	width: 250px;
 	height: 250px;
 	cursor: pointer; /*Probablemente haya que modificarlo*/
+	object-fit: cover;
 }
 
 

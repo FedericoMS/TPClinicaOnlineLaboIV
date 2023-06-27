@@ -157,7 +157,7 @@ export class SolicitarTurnoComponent {
       try
       {
         this.turnoService.createAppointment(this.turnoNuevo);
-        this.swal.swalert("Turno", "Turno reservado!", 'success');
+        // this.swal.swalert("Turno", "Turno reservado!", 'success');
         //this.insertarTurnoEnEspecialista();
         this.router.navigateByUrl('turnos/misturnos');
       }

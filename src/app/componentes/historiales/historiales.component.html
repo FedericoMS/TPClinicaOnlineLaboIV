@@ -1,16 +1,15 @@
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#historiaClinicaModal">
+<button type="button" class="btn btn-primary" (click)="openModal()">
     Ver historia clínica
 </button>
-
-<div class="modal fade" id="historiaClinicaModal" aria-labelledby="exampleModalLabel" aria-hidden="true"
-    data-backdrop="false">
+<div #historiaClinicaModal class="modal fade" id="historiaClinicaModal" tabindex="-1" role="dialog"
+    aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="false">
     <div class="modal-dialog modal-dialog-scrollable">
         <div class="modal-content" style="text-align: start">
             <div class="modal-header" style="text-align: center">
                 <h1 class="modal-title fs-5" id="exampleModalLabel">
                     HISTORIA CLÍNICA
                 </h1>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <button type="button" class="close" (click)="closeModal()" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
