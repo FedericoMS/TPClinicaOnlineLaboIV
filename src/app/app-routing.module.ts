@@ -13,10 +13,10 @@ import { EstaloggeadoGuard } from './guards/estaloggeado.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
-  { path: "login", component: LoginComponent },
-  { path: "registro", component: RegistroComponent },
-  { path: "home", component: BienvenidoComponent,  data: {animation: 'login'} },
-  { path: "quiensoy", component: QuiensoyComponent },
+  { path: "login", component: LoginComponent, data: {animation: 'login'} },
+  { path: "registro", component: RegistroComponent, data: {animation: 'registro'} },
+  { path: "home", component: BienvenidoComponent,  data: {animation: 'home'} },
+  { path: "quiensoy", component: QuiensoyComponent, data: {animation: 'quiensoy'} },
   { path: "perfil", component: MiPerfilComponent, 
      canActivate: [EstaloggeadoGuard]},
   { path: "pacientes", component: PacientesComponent,
