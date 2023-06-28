@@ -71,6 +71,15 @@ export class TurnoService {
         return turno;
       }));
   }
+
+  getTurnosEspecialista(usuario: Usuario) {
+    return this.af.collection('turnos').ref.where("dniEspecialista", "==", usuario.dni).get()
+      .then(snapshots => snapshots.docs.map(doc => {
+        const turno: Turno = doc.data() as Turno;
+        turno.id = doc.id;
+        return turno;
+      }));
+  }
   
 
   /*getTurnosUsuario(usuario: Usuario) {

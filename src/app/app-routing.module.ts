@@ -25,6 +25,10 @@ const routes: Routes = [
     path: 'turnos', loadChildren: () => import('./pages/turnos/turnos.module')
       .then(mod => mod.TurnosModule)
   },
+  {
+    path: 'admin', loadChildren: () => import('./pages/informes/informes.module')
+      .then(mod => mod.InformesModule)
+  },
   { path: "usuarios", component:  UsuariosComponent,
   canActivate : [EsadminGuard]
      }, //IMPLEMENTAR CANACTIVATE

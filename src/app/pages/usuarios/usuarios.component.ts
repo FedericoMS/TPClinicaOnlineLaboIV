@@ -44,24 +44,25 @@ export class UsuariosComponent {
     this.router.navigateByUrl('/registro');
   }
   
-  async tomarUsuarioParaExcel($events : any)
-  {
+  async tomarUsuarioParaExcel($events: any) {
     this.usuario = $events;
-    this.listaTurnosUsuarioElegido = await this.turnoService.getTurnosUsuario($events);
-    console.log(this.listaTurnosUsuarioElegido);
-    this.listaTurnosUsuarioElegido.forEach(turno=>{
-      console.log(turno);
+    if (this.usuario.perfil == 'paciente' || this.usuario.perfil == 'admin') {
+      this.listaTurnosUsuarioElegido = await this.turnoService.getTurnosUsuario($events);
+    }
+    else {
+      this.listaTurnosUsuarioElegido = await this.turnoService.getTurnosEspecialista($events);
+    }
+    this.listaTurnosUsuarioElegido.forEach(turno => {
       let obj = {
-              'Fecha': turno.fecha,
-              'Hora': turno.hora,
-              'Paciente': turno.paciente,
-              'Especialista': turno.especialista,
-              'Especialidad': turno.especialidad
+        'Fecha': turno.fecha,
+        'Hora': turno.hora,
+        'Paciente': turno.paciente,
+        'Especialista': turno.especialista,
+        'Especialidad': turno.especialidad
       };
       this.lista.push(obj);
     })
 
-    console.log(this.lista);
     var ws = XLSX.utils.json_to_sheet(this.lista);
     var wb = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(wb, ws, this.usuario.email);

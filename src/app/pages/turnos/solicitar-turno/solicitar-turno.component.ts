@@ -77,11 +77,6 @@ export class SolicitarTurnoComponent {
       })      
 
       this.traerTurnos();
-      console.log(this.diasYHorarios);
-      console.log(this.diasYHorarios.horarios);
-      //console.log(this.diasYHorarios);
-      // console.log(this.paciente);
-      // console.log(this.dniPaciente);
     }, 3000); //NO ES LA SOLUCIÓN IDEAL 
 
 
@@ -115,9 +110,6 @@ export class SolicitarTurnoComponent {
     this.seleccionEspecialista = true;
     this.especialistaElegido = especialista;
     this.diasYHorarios = this.generarDiasYHorariosParaEspecialista(especialista);
-    // console.log(especialista);
-    // console.log(this.nombreEspecialista);
-    // console.log(this.dniEspecialista);
   }
 
 
@@ -128,7 +120,6 @@ export class SolicitarTurnoComponent {
     this.seleccionDia = true;
     console.log(this.diaSeleccionado);
     this.quitarNoDisponibles(this.dniEspecialista, this.fechaElegidaString);
-   // console.log(this.diaSeleccionado.dia);
 
   }
 
@@ -168,52 +159,6 @@ export class SolicitarTurnoComponent {
 
   
   }
-
-
-  
-  /*generarDiasyHorarios() : { dia: string; horarios: string[]}[] {
-    const dias = 15; // Cantidad de días a generar
-    const fechaActual = moment();
-    const fechaFin = moment().add(dias, 'days');
-    const diasHorariosArray: { dia: string, horarios: string[] }[] = [];
-  
-    while (fechaActual.isSameOrBefore(fechaFin)) {
-      // Verifica si el día actual no es domingo (valor 0 en moment.js)
-      if (fechaActual.day() !== 0) {
-        const dia = fechaActual.format('DD/MM');
-        const horariosDia: string[] = [];
-  
-        // Verifica si el día actual es sábado
-        if (fechaActual.day() === 6) {
-          const horaInicio = moment('8:00 am', 'h:mm a');
-          const horaFin = moment('1:30 pm', 'h:mm a');
-          const intervaloMinutos = 30;
-  
-          while (horaInicio.isSameOrBefore(horaFin)) {
-            horariosDia.push(horaInicio.format('h:mm a'));
-            horaInicio.add(intervaloMinutos, 'minutes');
-          }
-        } else {
-          const horaInicio = moment('8:00 am', 'h:mm a');
-          const horaFin = moment('6:30 pm', 'h:mm a');
-          const intervaloMinutos = 30;
-  
-          while (horaInicio.isSameOrBefore(horaFin)) {
-            horariosDia.push(horaInicio.format('h:mm a'));
-            horaInicio.add(intervaloMinutos, 'minutes');
-          }
-        }
-  
-        diasHorariosArray.push({ dia: dia, horarios: horariosDia });
-      }
-  
-      fechaActual.add(1, 'day');
-    }
-
-    console.log(diasHorariosArray);
-  
-    return diasHorariosArray;
-  }*/
 
   generarDiasYHorariosParaEspecialista(especialista : Usuario) {
     const dias = 15; // Cantidad de días a generar

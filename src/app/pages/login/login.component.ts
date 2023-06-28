@@ -64,7 +64,7 @@ export class LoginComponent {
       this.userService.login({email : this.user.email, password : this.user.clave})
       .then(() => {
         let date = new Date();
-        this.userService.setUserData({Fecha : this.getDateFormat(date), Usuario : this.user.email}, "datos de ingresos")
+        this.userService.setUserData({Fecha : this.getDateFormat(date), Hora : this.getDateHour(date), Usuario : this.user.email}, "datos de ingresos")
         this.swal.swalert("Bienvenido", "Bienvenido a la Clínica Online", "success");
         this.router.navigateByUrl('/home');
       })
@@ -105,6 +105,15 @@ export class LoginComponent {
   getDateFormat(date: Date) {
     return `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
   }
+
+  getDateHour (date: Date): string {
+    const hours = date.getHours();
+    const ampm = hours >= 12 ? 'PM' : 'AM';
+    const formatHours = (hours % 12) || 12;
+    const minutes = date.getMinutes().toString().padStart(2, '0');
+    return `${formatHours}:${minutes} ${ampm}`;
+  }
+  
 
   
   fastLogin() {
