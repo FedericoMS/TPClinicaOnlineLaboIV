@@ -17,6 +17,7 @@ export class MisTurnosComponent {
   listaDeTurnosDelPaciente: Turno[] = [];
   listaDeTurnosDelEspecialista: Turno[] = [];
   listaPorEspecialidad: Turno[] = [];
+  turnosFiltrados : Turno[] = [];
 
   filtroEspecialidad = false;
   filtroEspecialista = false;
@@ -24,6 +25,8 @@ export class MisTurnosComponent {
 
   botonCancelar : boolean = false;
   encuestaCompletada : boolean = false;
+  palabraFiltro : string = '';
+
 
   constructor(public userService: UserService, private swal: SwalService, private turnoService : TurnoService) {
   }
@@ -310,6 +313,8 @@ export class MisTurnosComponent {
       this.filtroEspecialista = false;
       this.filtroPaciente = true;
     }
+    
+
  }
 
 
