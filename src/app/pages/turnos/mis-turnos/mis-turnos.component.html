@@ -12,7 +12,8 @@
           <tr>
             <td><h5>Filtros: </h5></td>
             <td><button class="btn btn-primary" (click)="verPorEspecialidad()">Por especialidad</button></td>
-            <td><button class="btn btn-primary" (click)="verPorEspecialista()">Por especialista</button></td>                       
+            <td><button class="btn btn-primary" (click)="verPorEspecialista()">Por especialista</button></td>          
+            <td><label for="filtroPalabra">Buscar: </label> <input type="text" [(ngModel)]="palabraFiltro" (keyup)="filtrarPorPalabra(this.listaDeTurnos)"></td>            
           </tr>
           <table style="color:rgb(0, 162, 255);" class="table table-hover">
             <thead>
@@ -26,7 +27,17 @@
               </tr>
             </thead>
 
-            <tbody *ngIf="this.filtroEspecialidad == false && this.filtroEspecialista == false">
+            <tbody *ngIf="this.palabraFiltro != ''">
+              <tr *ngFor="let turno of this.turnosFiltrados">
+                <td>{{turno.fecha}}</td>
+                <td>{{turno.hora}}</td>
+                <td>{{turno.especialidad}}</td>
+                <td>{{turno.especialista}}</td>
+                <td><span class="badge bg-primary"> {{turno.estado}} </span></td>
+                <td *ngIf="turno.estado != 'realizado' && turno.estado != 'rechazado' && turno.estado != 'aceptado' && turno.estado != 'cancelado'"><button mat-raised-button color="warn" (click)="modalCancelacion(turno, 1, 'admin')">Cancelar</button></td>
+              </tr>
+
+            <tbody *ngIf="this.filtroEspecialidad == false && this.filtroEspecialista == false && this.palabraFiltro == ''">
               <tr *ngFor="let turno of this.listaDeTurnos">
                 <td>{{turno.fecha}}</td>
                 <td>{{turno.hora}}</td>
@@ -36,7 +47,7 @@
                 <td *ngIf="turno.estado != 'realizado' && turno.estado != 'rechazado' && turno.estado != 'aceptado' && turno.estado != 'cancelado'"><button mat-raised-button color="warn" (click)="modalCancelacion(turno, 1, 'admin')">Cancelar</button></td>
               </tr>
 
-              <tbody *ngIf="this.filtroEspecialidad == true">
+              <tbody *ngIf="this.filtroEspecialidad == true && this.palabraFiltro == ''">
                 <tr *ngFor="let turno of this.listaDeTurnos | ordenarPorEspecialidad">
                   <td>{{turno.fecha}}</td>
                   <td>{{turno.hora}}</td>
@@ -47,7 +58,7 @@
                 </tr>
             </tbody>
 
-            <tbody *ngIf="this.filtroEspecialista == true">
+            <tbody *ngIf="this.filtroEspecialista == true && this.palabraFiltro == ''">
               <tr *ngFor="let turno of this.listaDeTurnos | ordenarPorEspecialista">
                 <td>{{turno.fecha}}</td>
                 <td>{{turno.hora}}</td>
@@ -70,7 +81,8 @@
           <tr>
             <td><h5>Filtros: </h5></td>
             <td><button class="btn btn-primary" (click)="verPorEspecialidad()">Por especialidad</button></td>
-            <td><button class="btn btn-primary" (click)="verPorEspecialista()">Por especialista</button></td>                       
+            <td><button class="btn btn-primary" (click)="verPorEspecialista()">Por especialista</button></td>        
+            <td><label for="filtroPalabra">Buscar: </label> <input type="text" [(ngModel)]="palabraFiltro" (keyup)="filtrarPorPalabra(this.listaDeTurnosDelPaciente)"></td>                   
           </tr>
           <table style="color:rgb(0, 162, 255);" class="table table-hover">
             <thead>
@@ -83,7 +95,29 @@
                 <th scope="col">Acción</th>
               </tr>
             </thead>
-            <tbody *ngIf="this.filtroEspecialidad == false && this.filtroEspecialista == false">
+
+            <!--Ordenado por palabra filtrada-->
+            <tbody *ngIf="this.palabraFiltro != ''">
+              <tr *ngFor="let turno of this.turnosFiltrados">
+                <td>{{turno.fecha}}</td>
+                <td>{{turno.hora}}</td>
+                <td>{{turno.especialidad}}</td>
+                <td>{{turno.especialista}}</td>
+                <!-- ESTADOS DE LOS TURNOS: SOLICITADO, ACEPTADO, CANCELADO, RECHAZADO Y REALIZADO-->
+                <td><span class="badge bg-primary">{{turno.estado}}</span> </td> 
+                <!--CANCELAR TURNO. EL PAC DEBE DEJAR COMENTARIO-->
+                <td *ngIf="turno.estado != 'realizado' && turno.estado != 'cancelado'"><button mat-raised-button color="warn" (click)="modalCancelacion(turno, 1, 'paciente')">Cancelar</button></td>
+                <!--VER RESEÑA -->
+                <td *ngIf="turno.resenia != '' && turno.estado == 'realizado'"><button mat-raised-button color="accent" (click)="verResenia(turno.resenia)">Ver reseña</button></td>
+                <!--CALIFICAR ATENCIÓN CON UN COMENTARIO. Por ahí deba agregar algo que aclare que la calificación fue enviada-->
+                <td *ngIf="turno.estado == 'realizado' && turno.calificacion == ''"><button mat-raised-button color="accent" (click)="modalCalificacion(turno,'paciente')">Calificar atención</button></td> 
+                <!-- COMPLETAR ENCUESTA-->
+                <td *ngIf="turno.estado == 'realizado' && turno.resenia != '' && turno.encuesta == ''"><button mat-raised-button color="accent" (click)="modalEncuesta(turno, 'paciente')">Completar encuesta</button></td>
+              </tr>
+            </tbody>
+
+            <!-- Sin ordenar -->
+            <tbody *ngIf="this.filtroEspecialidad == false && this.filtroEspecialista == false && this.palabraFiltro == ''">
               <tr *ngFor="let turno of this.listaDeTurnosDelPaciente">
                 <td>{{turno.fecha}}</td>
                 <td>{{turno.hora}}</td>
@@ -103,7 +137,7 @@
             </tbody>
 
             <!-- ORDENADO POR ESPECIALIDAD-->
-            <tbody *ngIf="this.filtroEspecialidad == true">
+            <tbody *ngIf="this.filtroEspecialidad == true && this.palabraFiltro == ''">
               <tr *ngFor="let turno of this.listaDeTurnosDelPaciente | ordenarPorEspecialidad">
                 <td>{{turno.fecha}}</td>
                 <td>{{turno.hora}}</td>
@@ -123,7 +157,7 @@
             </tbody>
 
             <!-- ORDENADO POR ESPECIALISTA-->
-            <tbody *ngIf="this.filtroEspecialista == true">
+            <tbody *ngIf="this.filtroEspecialista == true && this.palabraFiltro == ''">
               <tr *ngFor="let turno of this.listaDeTurnosDelPaciente | ordenarPorEspecialista">
                 <td>{{turno.fecha}}</td>
                 <td>{{turno.hora}}</td>
@@ -154,7 +188,8 @@
           <tr>
             <td><h5>Filtros: </h5></td>
             <td><button class="btn btn-primary" (click)="verPorEspecialidad()">Por especialidad</button></td>
-            <td><button class="btn btn-primary" (click)="verPorPaciente()">Por paciente</button></td>                       
+            <td><button class="btn btn-primary" (click)="verPorPaciente()">Por paciente</button></td>   
+            <td><label for="filtroPalabra">Buscar: </label> <input type="text" [(ngModel)]="palabraFiltro" (keyup)="filtrarPorPalabra(this.listaDeTurnosDelEspecialista)"></td>                     
           </tr>
           <table style="color:rgb(0, 162, 255);" class="table table-hover">
             <thead>
@@ -167,7 +202,31 @@
                 <th scope="col">Acción</th>
               </tr>
             </thead>
-            <tbody *ngIf="this.filtroEspecialidad == false && this.filtroPaciente == false">
+
+            <tbody *ngIf="this.palabraFiltro != ''">
+              <tr *ngFor="let turno of this.turnosFiltrados">
+                <td>{{turno.fecha}}</td>
+                <td>{{turno.hora}}</td>
+                <td>{{turno.especialidad}}</td>
+                <td>{{turno.paciente}}</td>
+                <td><span class="badge bg-primary">{{turno.estado}}</span></td>
+                <!--ACEPTAR TURNO-->
+                <td *ngIf="turno.estado != 'realizado' && turno.estado != 'rechazado' && turno.estado != 'aceptado' && turno.estado != 'cancelado'"><button mat-raised-button color="accent" (click)="modalAceptacion(turno)">Aceptar</button></td>
+                <!-- FINALIZAR TURNO-->
+                <td *ngIf="turno.estado == 'aceptado'; else mostrarResenia"><button mat-raised-button color="accent" (click)="modalFinalizacion(turno)">Finalizar</button></td>
+                 <!--CANCELAR TURNO. EL ESP DEBE DEJAR COMENTARIO-->
+                 <td *ngIf="turno.estado == 'aceptado'"><button mat-raised-button color="warn" (click)="modalCancelacion(turno, 1, 'especialista')">Cancelar</button></td>
+                 <!-- RECHAZAR TURNO -->
+                 <td *ngIf="turno.estado != 'realizado' && turno.estado != 'cancelado' && turno.estado != 'aceptado' && turno.estado != 'rechazado'"><button mat-raised-button color="warn" (click)="modalCancelacion(turno, 2, 'especialista')">Rechazar</button></td>
+                 <ng-template #mostrarResenia>
+                  <td *ngIf="turno.resenia != '' && turno.estado == 'realizado'"><button mat-raised-button color="accent" (click)="verResenia(turno.resenia)">Ver reseña</button></td>
+                 </ng-template>
+               <!--<td><button mat-raised-button color="accent">Acción</button></td> -->
+              </tr>
+            </tbody>
+
+
+            <tbody *ngIf="this.filtroEspecialidad == false && this.filtroPaciente == false && this.palabraFiltro == ''">
               <tr *ngFor="let turno of this.listaDeTurnosDelEspecialista">
                 <td>{{turno.fecha}}</td>
                 <td>{{turno.hora}}</td>
@@ -189,7 +248,7 @@
               </tr>
             </tbody>
 
-            <tbody *ngIf="this.filtroEspecialidad == true">
+            <tbody *ngIf="this.filtroEspecialidad == true && this.palabraFiltro == ''">
               <tr *ngFor="let turno of this.listaDeTurnosDelEspecialista | ordenarPorEspecialidad">
                 <td>{{turno.fecha}}</td>
                 <td>{{turno.hora}}</td>
@@ -211,7 +270,7 @@
               </tr>
             </tbody>
 
-            <tbody *ngIf="this.filtroPaciente == true">
+            <tbody *ngIf="this.filtroPaciente == true && this.palabraFiltro == ''">
               <tr *ngFor="let turno of this.listaDeTurnosDelEspecialista | ordenarPorPaciente">
                 <td>{{turno.fecha}}</td>
                 <td>{{turno.hora}}</td>

@@ -21,9 +21,14 @@
                   <app-historiales [listaTurnosRecibida]="listaTurnosPaciente"></app-historiales> 
                   <button type="button" class="btn btn-primary" (click)="descargarPDF()">Descargar Historia</button>
                   <div>
-                    <label for="especialidadInput">Especialidad:</label>
-                    <input type="text" id="especialidadInput" [(ngModel)]="filtroEspecialidad">
-                    <button type="button" class="btn btn-primary" (click)="filtrarTurnosPorEspecialidad()">Descargar PDF</button>
+                    <tr>
+                      <label for="especialidadInput">Especialidad para descargar PDF:</label>
+                      <ng-container *ngFor="let especialidad of listaEspecialidades">
+                        <td> 
+                          <button type="button" class="btn btn-primary" (click)="filtrarTurnosPorEspecialidad(especialidad)">{{especialidad}}</button>
+                        </td>
+                      </ng-container>
+                    </tr>
                   </div>
                 </ng-container>
                 

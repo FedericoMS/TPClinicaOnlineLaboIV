@@ -7,6 +7,7 @@ import { Turno } from 'src/app/clases/turno';
 import { take } from 'rxjs';
 import { SwalService } from 'src/app/services/swal.service';
 import { PdfService } from 'src/app/services/pdf.service';
+import { tap } from 'rxjs';
 
 @Component({
   selector: 'app-mi-perfil',
@@ -19,6 +20,7 @@ export class MiPerfilComponent {
   isLoading : boolean = true;
   listaTurnosPaciente : Turno[] = [];
   filtroEspecialidad: string = '';
+  listaEspecialidades : string[] = [];
 
   constructor(public userService : UserService, private spinner : SpinnerService, private turnoService : TurnoService, private swal : SwalService, private pdfService : PdfService){
     this.spinner.show();
@@ -37,25 +39,28 @@ export class MiPerfilComponent {
               this.listaTurnosPaciente.push(turno);
             }
           })
+          this.crearListaEspecialidades();
+         
         });
-        /*
-        this.turnoService.getCollection('turnos').subscribe((turnos : any) => 
-        {
-          turnos.forEach((turno : any) =>
-          {
-            if(turno.dniPaciente == this.usuarioActual.dni)
-            {
-              this.listaTurnosPaciente.push(turno);
-            }
-          })
-        });*/
+
       }
-      // console.log(this.usuarioActual.dni);
-      // console.log(this.listaTurnosPaciente);
+
       this.spinner.hide()
       this.isLoading = false;
       
     }, 3000);
+  }
+
+
+  crearListaEspecialidades()
+  {
+    this.listaEspecialidades = this.listaTurnosPaciente
+    .filter((turno: any) => !this.listaEspecialidades.includes(turno.especialidad))
+    .map((turno: any) => turno.especialidad);
+    const especialidadesUnicas = [...new Set(this.listaTurnosPaciente.map((turno: any) => turno.especialidad))];
+    this.listaEspecialidades = especialidadesUnicas;  
+    console.log(this.listaEspecialidades);
+
   }
 
 
@@ -100,21 +105,21 @@ export class MiPerfilComponent {
     this.pdfService.crearPDFHistoriaClinica("Historia Clinica de " + this.userService.getCurrentFullName(), this.userService.getCurrentFullName(), this.listaTurnosPaciente);
   }
 
-  filtrarTurnosPorEspecialidad() {
-    if (this.filtroEspecialidad.trim() === '') {
+  filtrarTurnosPorEspecialidad(especialidad : string) {
+    if (especialidad === '') {
       this.swal.swalert("Error", 'Debe ingresar una especialidad para filtrar los turnos.', 'error')
       return;
     }
     
-    const turnosFiltrados = this.listaTurnosPaciente.filter(turno => turno.especialidad == this.filtroEspecialidad);
+    const turnosFiltrados = this.listaTurnosPaciente.filter(turno => turno.especialidad == especialidad);
     if (turnosFiltrados.length === 0) {
-      this.swal.swalert("Error", `No se encontraron turnos con la especialidad ${this.filtroEspecialidad}.`, 'error')
+      this.swal.swalert("Error", `No se encontraron turnos con la especialidad ${especialidad}.`, 'error')
       return;
     }
     
     try
     {
-      this.pdfService.crearPDFHistoriaClinica("Historia Clínica " + this.filtroEspecialidad, this.userService.getCurrentFullName(), turnosFiltrados);
+      this.pdfService.crearPDFHistoriaClinica("Historia Clínica " + especialidad, this.userService.getCurrentFullName(), turnosFiltrados);
       this.swal.showToast('Historia descargada!', 'success');
     }
     catch(e){

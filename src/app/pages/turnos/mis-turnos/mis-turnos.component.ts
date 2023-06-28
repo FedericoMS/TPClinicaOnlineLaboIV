@@ -313,6 +313,41 @@ export class MisTurnosComponent {
       this.filtroEspecialista = false;
       this.filtroPaciente = true;
     }
+
+    filtrarPorPalabra(listaArg : Turno[]) {
+      this.turnosFiltrados = [];
+      if (this.palabraFiltro == '') 
+      {
+        this.turnosFiltrados = [...listaArg];
+      } 
+      else 
+      {
+        const palabra : string = this.palabraFiltro.trim().toLocaleLowerCase();
+        for (let i = 0; i < listaArg.length; i++) 
+        {
+          const turno = listaArg[i];
+          if (
+            turno.especialista.toLocaleLowerCase().includes(palabra) ||
+            turno.especialidad.toLocaleLowerCase().includes(palabra) ||
+            turno.estado.toLocaleLowerCase().includes(palabra) ||
+            turno.paciente.toLocaleLowerCase().includes(palabra) ||
+            turno.fecha?.includes(palabra) ||
+            turno?.altura?.toString().includes(palabra) ||
+            turno?.peso?.toString().includes(palabra) ||
+            turno?.temperatura?.toString().includes(palabra) ||
+            turno?.presion?.includes(palabra) ||
+            turno?.dato1[0]?.includes(palabra) ||
+            turno?.dato2[0]?.includes(palabra) ||
+            turno?.dato3[0]?.includes(palabra) ||
+            turno?.dato1[1]?.includes(palabra) ||
+            turno?.dato2[1]?.includes(palabra) ||
+            turno?.dato3[1]?.includes(palabra)) 
+            {
+            this.turnosFiltrados.push(turno);
+          }
+        }
+      }
+    }
     
 
  }
