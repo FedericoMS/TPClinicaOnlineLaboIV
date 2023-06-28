@@ -29,6 +29,7 @@ export class TurnosPorEspecialidadComponent {
   createChart() {
     const counts: { [key: string]: number } = {};
     const uniqueEspecialidades: string[] = [];
+    const colores : string[] = [];
   
     this.listadoRecibido.forEach((item: any) => {
       const especialidad = item;
@@ -38,6 +39,8 @@ export class TurnosPorEspecialidadComponent {
     for (const especialidad in counts) {
       if (counts.hasOwnProperty(especialidad)) {
         uniqueEspecialidades.push(especialidad);
+        const randomColor = this.getRandomColor();
+        colores.push(randomColor);
       }
     }
     console.log(counts);
@@ -49,6 +52,7 @@ export class TurnosPorEspecialidadComponent {
       datasets: [{
         label: 'Cantidad Turnos',
         data: counts,
+        backgroundColor: colores,
         hoverOffset: 4
       }]
     };
@@ -62,6 +66,15 @@ export class TurnosPorEspecialidadComponent {
     this.chart = new Chart("chart", this.configChart);
 
 
+  }
+
+  getRandomColor(): string {
+    const letters = "0123456789ABCDEF";
+    let color = "#";
+    for (let i = 0; i < 6; i++) {
+      color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
   }
 
 

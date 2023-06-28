@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
 import { TurnoService } from 'src/app/services/turno.service';
 import { Chart } from 'chart.js';
+import { Turno } from 'src/app/clases/turno';
 
 @Component({
   selector: 'app-informes',
@@ -11,14 +12,21 @@ import { Chart } from 'chart.js';
 export class InformesComponent {  
   listaLogIngresos : any[] = []
   listaEspecialidades : string[] = []
+  listaTurnos : Turno[] = [];
 
   constructor(private userService : UserService, private turnoService : TurnoService)
   {
     setTimeout(() => {
+
+      this.turnoService.getCollection('turnos').subscribe((turnos : any) =>
+      {
+        this.listaTurnos = turnos;
+      })
+
       this.userService.getCollection('datos de ingresos').subscribe((logs : any) => 
       {
         this.listaLogIngresos = logs;
-        console.log(this.listaLogIngresos);
+        //console.log(this.listaLogIngresos);
       })
 
       this.turnoService.getCollection('turnos').subscribe((turnos : any) => 
@@ -27,7 +35,7 @@ export class InformesComponent {
         {
           this.listaEspecialidades.push(turno.especialidad);
         })
-        console.log(this.listaEspecialidades);
+       // console.log(this.listaEspecialidades);
       })
       
     }, 2000);
