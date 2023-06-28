@@ -336,17 +336,18 @@ export class MisTurnosComponent {
             turno?.peso?.toString().includes(palabra) ||
             turno?.temperatura?.toString().includes(palabra) ||
             turno?.presion?.includes(palabra) ||
-            turno?.dato1[0]?.includes(palabra) ||
-            turno?.dato2[0]?.includes(palabra) ||
-            turno?.dato3[0]?.includes(palabra) ||
-            turno?.dato1[1]?.includes(palabra) ||
-            turno?.dato2[1]?.includes(palabra) ||
-            turno?.dato3[1]?.includes(palabra)) 
+            turno?.dato1?.[0]?.includes(palabra) ||
+            turno?.dato2?.[0]?.includes(palabra) ||
+            turno?.dato3?.[0]?.includes(palabra) ||
+            turno?.dato1?.[1]?.includes(palabra) ||
+            turno?.dato2?.[1]?.includes(palabra) ||
+            turno?.dato3?.[1]?.includes(palabra)) 
             {
             this.turnosFiltrados.push(turno);
           }
         }
       }
+      //console.log(this.turnosFiltrados);
     }
     
 
