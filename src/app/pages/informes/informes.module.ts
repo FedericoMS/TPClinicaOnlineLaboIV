@@ -9,6 +9,7 @@ import { TurnosPorEspecialidadComponent } from './turnos-por-especialidad/turnos
 import { NgChartsModule } from 'ng2-charts';
 import { TurnosDiariosComponent } from './turnos-diarios/turnos-diarios.component';
 import { TurnosSolicitadosPorMedicoComponent } from './turnos-solicitados-por-medico/turnos-solicitados-por-medico.component';
+import { TurnosFinalizadosPorMedicoComponent } from './turnos-finalizados-por-medico/turnos-finalizados-por-medico.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { TurnosSolicitadosPorMedicoComponent } from './turnos-solicitados-por-me
     LogUsuariosComponent,
     TurnosPorEspecialidadComponent,
     TurnosDiariosComponent,
-    TurnosSolicitadosPorMedicoComponent
+    TurnosSolicitadosPorMedicoComponent,
+    TurnosFinalizadosPorMedicoComponent
   ],
   imports: [
     CommonModule,
