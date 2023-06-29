@@ -8,10 +8,6 @@
 	font-family: Raleway, sans-serif;
 }
 
-.botones{
-	margin-right: 88%;
-    margin-top: 2%;
-}
 
 
 .btn-primary{
@@ -28,8 +24,8 @@ body {
 
 img {
 	border-radius: 50%;
-	width: 35%;
-	height: 35%;
+	width: 175px;
+	height: 175px;
 	cursor: pointer; /*Probablemente haya que modificarlo*/
 }
 
@@ -46,34 +42,39 @@ img {
 }
 
 .container {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	position: relative; 
-    top:4%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
 }
 
-.screen {		
-	background: linear-gradient(90deg, #f1fcfb, #dafffd);		
-	position: relative;	
-	height: 800px;
-	width: 1000px;	
-	box-shadow: 0px 0px 24px #8dcac7;
-	border-radius: 15px;
-	
+.screen {
+  background: linear-gradient(90deg, #f1fcfb, #dafffd);
+  position: relative;
+  height: 800px;
+  width: 1000px;
+  box-shadow: 0px 0px 24px #8dcac7;
+  border-radius: 15px;
 }
 
 .screen__content {
-	z-index: 1;
-	position: relative;	
-	height: 100%;
-	display: flex;
-	justify-content: center;
-	text-align: center;
-	
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 40%;
+  text-align: center;
 }
 
-h1, h2, h3, p
+.botones {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2%;
+  justify-content: space-around;
+}
+
+
+h1, h2, h3, h6, p
 {
 	color:#5e8b89;
 }
@@ -110,4 +111,12 @@ h1, h2, h3, p
 .informes__input:hover {
 	outline: none;
 	border-bottom-color: #6A679E;
+}
+
+.div-graficos{
+	margin-top: 40%;
+}
+
+.muestra{
+	margin-top: 60%;
 }

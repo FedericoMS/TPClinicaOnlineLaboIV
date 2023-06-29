@@ -1,16 +1,19 @@
-<table style="color:rgb(0, 162, 255);" class="table table-hover">
-    <thead>
-      <tr>
-        <th scope="col">Fecha</th>
-        <th scope="col">Hora</th>
-        <th scope="col">Usuario</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let fila of this.listadoRecibido">
-        <td>{{fila.Fecha}}</td>
-        <td>{{fila.Hora}}</td>
-        <td>{{fila.Usuario}}</td>
-      </tr>
-    </tbody>
-  </table>
+<h2>Log de ingresos de usuarios</h2>
+<div class="table-container">
+  <table style="color:rgb(0, 162, 255);" class="table table-hover">
+      <thead>
+        <tr>
+          <th scope="col">Fecha</th>
+          <th scope="col">Hora</th>
+          <th scope="col">Usuario</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let fila of this.listadoRecibido">
+          <td>{{fila.Fecha}}</td>
+          <td>{{fila.Hora}}</td>
+          <td>{{fila.Usuario}}</td>
+        </tr>
+      </tbody>
+    </table>
+</div>

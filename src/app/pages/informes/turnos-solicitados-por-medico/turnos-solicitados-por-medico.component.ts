@@ -18,7 +18,6 @@ export class TurnosSolicitadosPorMedicoComponent {
 
     constructor(){
       setTimeout(() => {
-        //this.contarTurnosPorFecha();
         this.contarTurnosSolicitadosPorMedico();
         this.createChart();
        }, 3500);
@@ -44,7 +43,6 @@ export class TurnosSolicitadosPorMedicoComponent {
         diasArray.push(dia);
       }
     
-      //console.log(diasArray);
     
       return diasArray;
     }
@@ -53,7 +51,6 @@ export class TurnosSolicitadosPorMedicoComponent {
       const turnosPorMedico : any = {};
     
       this.listadoRecibido.forEach((turno : any) => {
-        //console.log(turno.fecha);
         if(this.dias.includes(turno.fecha) && turno.estado == 'solicitado')
         {
           const especialista = turno.especialista;

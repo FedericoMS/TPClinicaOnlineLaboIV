@@ -7,9 +7,9 @@ import { EstaloggeadoGuard } from 'src/app/guards/estaloggeado.guard';
 
 const routes: Routes = [
   { path: "misturnos", component: MisTurnosComponent, 
-    canActivate: [EstaloggeadoGuard] },
+    canActivate: [EstaloggeadoGuard], data: {animation: 'home'} },
   { path: "solicitarturno", component: SolicitarTurnoComponent, 
-    canActivate: [EstaloggeadoGuard] },
+    canActivate: [EstaloggeadoGuard], data: {animation: 'home'} },
 ];
 
 @NgModule({

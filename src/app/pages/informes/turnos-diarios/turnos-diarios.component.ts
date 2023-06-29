@@ -111,6 +111,12 @@ export class TurnosDiariosComponent {
       this.configChart = {
         type: 'bar',
         data: this.dataChart,
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          width: 500,
+          height: 500
+        }
       };
     
       this.chart = new Chart("chart", this.configChart);

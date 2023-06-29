@@ -1,0 +1,28 @@
+.table-container {
+    max-height: 630px;
+    /* Establece el tamaño máximo deseado */
+    overflow-y: auto;
+    /* Habilita la barra de desplazamiento vertical cuando sea necesario */
+}
+
+/* Estilos para WebKit (Google Chrome, Safari) */
+.table-container::-webkit-scrollbar {
+    width: 10px;
+    /* Ancho de la scrollbar */
+}
+
+.table-container::-webkit-scrollbar-track {
+    background-color: #fff;
+    /* Color de fondo de la pista de la scrollbar */
+}
+
+.table-container::-webkit-scrollbar-thumb {
+    background-color: #5cafab;
+    /* Color del pulgar de la scrollbar */
+    border-radius: 7px;
+}
+
+.table-container::-webkit-scrollbar-thumb:hover {
+    background-color: #5a918e;
+    /* Color del pulgar de la scrollbar al pasar el cursor sobre él */
+}

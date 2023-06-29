@@ -18,7 +18,6 @@ export class TurnosFinalizadosPorMedicoComponent {
 
   constructor(){
     setTimeout(() => {
-      //this.contarTurnosPorFecha();
       this.contarTurnosSolicitadosPorMedico();
       this.createChart();
      }, 3500);

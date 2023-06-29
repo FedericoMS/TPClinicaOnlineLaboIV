@@ -48,6 +48,8 @@ import { MiPerfilComponent } from './pages/mi-perfil/mi-perfil.component';
 import { HistorialesComponent } from './componentes/historiales/historiales.component';
 import { BordesDirective } from './directives/bordes.directive';
 import { PacientesComponent } from './pages/pacientes/pacientes.component';
+import { FontsizeDirective } from './directives/fontsize.directive';
+import { HighlightDirective } from './directives/highlight.directive';
 
 
 @NgModule({
@@ -72,7 +74,10 @@ import { PacientesComponent } from './pages/pacientes/pacientes.component';
     MiPerfilComponent,
     HistorialesComponent,
     BordesDirective,
-    PacientesComponent
+    PacientesComponent,
+    FontsizeDirective,
+    HighlightDirective
+    
   ],
   imports: [
     BrowserModule,

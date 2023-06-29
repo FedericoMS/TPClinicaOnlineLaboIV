@@ -6,24 +6,24 @@
     <div class="spacer"></div>
     
     <div *ngIf="!this.userService.isLoggedIn; else loggedIn">
-      <a mat-button routerLink="home"> Home </a>
-      <a mat-button routerLink="quiensoy"> Quién soy </a> 
-      <a mat-button routerLink="registro"> Registro </a>
-      <a mat-raised-button color="accent" routerLink="login"> Login </a>  
+      <a highlight hoverFontSize mat-button routerLink="home"> Home </a>
+      <a highlight hoverFontSize mat-button routerLink="quiensoy"> Quién soy </a> 
+      <a highlight hoverFontSize mat-button routerLink="registro"> Registro </a>
+      <a highlight hoverFontSize mat-raised-button color="accent" routerLink="login"> Login </a>  
       <img class="profile-pic-default" [src]="profilePicDefault" alt="profile-pic">
     </div>
       
       <ng-template #loggedIn>
-        <a mat-button routerLink="home"> Home </a>
-        <a mat-button routerLink="turnos/misturnos" *ngIf="this.userService.getCurrentProfile() == 'paciente' || this.userService.getCurrentProfile() == 'especialista'"> Mis turnos </a>
-        <a mat-button routerLink="turnos/solicitarturno" *ngIf="this.userService.getCurrentProfile() == 'paciente' || this.userService.getCurrentProfile() == 'admin'"> Solicitar turno </a>
-        <a mat-button routerLink="turnos/misturnos" *ngIf="this.userService.getCurrentProfile() == 'admin'"> Turnos </a>
-        <a mat-button routerLink="usuarios" *ngIf="this.userService.getCurrentProfile() == 'admin'"> Usuarios </a> 
-        <a mat-button routerLink="admin/informes" *ngIf="this.userService.getCurrentProfile() == 'admin'"> Informes </a> 
-        <a mat-button routerLink="pacientes" *ngIf="this.userService.getCurrentProfile() == 'especialista'"> Pacientes </a> 
-        <a mat-button routerLink="quiensoy"> Quién soy </a> 
-        <a mat-button routerLink="perfil"> Mi perfil </a> 
-        <a mat-raised-button color="accent" (click)="this.userService.logout()" routerLink="login"> Logout </a>
+        <a highlight hoverFontSize mat-button routerLink="home"> Home </a>
+        <a highlight hoverFontSize mat-button routerLink="turnos/misturnos" *ngIf="this.userService.getCurrentProfile() == 'paciente' || this.userService.getCurrentProfile() == 'especialista'"> Mis turnos </a>
+        <a highlight hoverFontSize mat-button routerLink="turnos/solicitarturno" *ngIf="this.userService.getCurrentProfile() == 'paciente' || this.userService.getCurrentProfile() == 'admin'"> Solicitar turno </a>
+        <a highlight hoverFontSize mat-button routerLink="turnos/misturnos" *ngIf="this.userService.getCurrentProfile() == 'admin'"> Turnos </a>
+        <a highlight hoverFontSize mat-button routerLink="usuarios" *ngIf="this.userService.getCurrentProfile() == 'admin'"> Usuarios </a> 
+        <a highlight hoverFontSize mat-button routerLink="admin/informes" *ngIf="this.userService.getCurrentProfile() == 'admin'"> Informes </a> 
+        <a highlight hoverFontSize mat-button routerLink="pacientes" *ngIf="this.userService.getCurrentProfile() == 'especialista'"> Pacientes </a> 
+        <a highlight hoverFontSize mat-button routerLink="quiensoy"> Quién soy </a> 
+        <a highlight hoverFontSize mat-button routerLink="perfil"> Mi perfil </a> 
+        <a highlight hoverFontSize mat-raised-button color="accent" (click)="this.userService.logout()" routerLink="login"> Logout </a>
         <img class="profile-pic" [src]="this.userService.getCurrentProfilePicture()" alt="profile-pic">
       </ng-template>
       

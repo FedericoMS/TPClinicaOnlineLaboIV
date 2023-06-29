@@ -2,11 +2,59 @@
     <div class="screen">
         <div class="screen__content">
             <div class="informes">
-            <!-- <app-log-usuarios [listadoRecibido]="listaLogIngresos"></app-log-usuarios> -->
-             <!-- <app-turnos-por-especialidad [listadoRecibido]="listaEspecialidades"></app-turnos-por-especialidad>  -->
-                <!-- <app-turnos-diarios [listadoRecibido]="listaTurnos"></app-turnos-diarios> -->
-                 <app-turnos-solicitados-por-medico [listadoRecibido]="listaTurnos"></app-turnos-solicitados-por-medico> 
-                <!-- <app-turnos-finalizados-por-medico [listadoRecibido]="listaTurnos"></app-turnos-finalizados-por-medico> -->
-		</div>	
-	</div>
-</div>
+                <div class="muestra" *ngIf="!this.mostrarLog && !this.mostrarPorEspecialidad && !this.mostrarTurnosDiarios && !this.mostrarSolicitados && !this.mostrarFinalizados">
+                    <h1>Elija las estadísticas que quiera ver y analizar</h1>
+    
+                    <tr class="botones" >
+                        <td>
+                            <h6>Log de ingresos</h6>
+                            <img src="../../../../assets/log.png" alt="log" (click)="mostrarComponente(1)"> 
+                             <!-- <button class="btn btn-primary" color="primary" (click)="mostrarComponente(1)">Log de ingresos</button> -->
+                        </td>
+                        <td>
+                            <h6>Turnos finalizados</h6>
+                            <img src="../../../../assets/turnofinalizado.jpg" alt="finalizado" (click)="mostrarComponente(2)"> 
+                             <!-- <button class="btn btn-primary" color="primary" (click)="mostrarComponente(2)">Turnos finalizados</button> -->
+                        </td>
+                        <td>
+                            <h6>Turnos solicitados</h6>
+                            <img src="../../../../assets/turnosolicitado.png" alt="solicitado" (click)="mostrarComponente(3)"> 
+                             <!-- <button class="btn btn-primary" color="primary" (click)="mostrarComponente(3)">Turnos solicitados</button> -->
+                        </td>
+                        <td>
+                            <h6>Turnos por especialidad</h6>
+                            <img src="../../../../assets/especialidades.png" alt="especialidades" (click)="mostrarComponente(4)"> 
+                             <!-- <button class="btn btn-primary" color="primary" (click)="mostrarComponente(4)">Turnos por especialidad</button> -->
+                        </td>
+                        <td>
+                            <h6>Turnos diarios</h6>
+                            <img src="../../../../assets/turnodiario.png" alt="diario" (click)="mostrarComponente(5)"> 
+                             <!-- <button class="btn btn-primary" color="primary" (click)="mostrarComponente(5)">Turnos diarios</button> -->
+                        </td>
+                    </tr>
+                </div>
+                
+                <div class="div-graficos" id="graficos">
+                    <div class="logs" *ngIf="this.mostrarLog">
+                        <app-log-usuarios [listadoRecibido]="listaLogIngresos"></app-log-usuarios> 
+                    </div>
+                    <div class="por-especialidad" *ngIf="this.mostrarPorEspecialidad">
+                        <app-turnos-por-especialidad [listadoRecibido]="listaEspecialidades"></app-turnos-por-especialidad>                    
+                    </div>
+                    <div class="por-especialidad" *ngIf="this.mostrarTurnosDiarios">
+                        <app-turnos-diarios [listadoRecibido]="listaTurnos"></app-turnos-diarios>                   
+                    </div>
+                    <div class="por-especialidad" *ngIf="this.mostrarSolicitados">
+                        <app-turnos-solicitados-por-medico [listadoRecibido]="listaTurnos"></app-turnos-solicitados-por-medico>                    
+                    </div>
+                    <div class="por-especialidad" *ngIf="this.mostrarFinalizados">
+                        <app-turnos-finalizados-por-medico [listadoRecibido]="listaTurnos"></app-turnos-finalizados-por-medico>                   
+                    </div>
+                </div>
+                <ng-container *ngIf="this.mostrarLog || this.mostrarPorEspecialidad || this.mostrarTurnosDiarios || this.mostrarSolicitados || this.mostrarFinalizados">
+                    <button class="btn btn-primary" color="primary" (click)="descargarPDF()">Descargar PDF</button>
+                    <button class="btn btn-primary" color="primary" (click)="mostrarComponente(6)">Mostrar botones</button> 
+                </ng-container>
+            </div>	
+        </div>
+    </div>

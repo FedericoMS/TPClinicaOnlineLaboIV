@@ -33,10 +33,6 @@ export class UsuariosComponent {
       console.log(this.listaUsuarios);
     });
 
-    /*this.turnoService.getCollection('turnos').pipe(take(1)).subscribe((turnos : any) =>
-    {
-      this.listaTurnos = turnos;
-    });*/
   }
 
   irARegistro()
@@ -77,7 +73,6 @@ export class UsuariosComponent {
     XLSX.utils.book_append_sheet(wb, ws, "Usuarios");
     XLSX.writeFile(wb, "Usuarios.xlsx");
   }
-
 
 
 

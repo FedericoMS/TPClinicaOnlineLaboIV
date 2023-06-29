@@ -68,20 +68,6 @@ export class MisTurnosComponent {
       , 1500);
     }
 
-    // filtrarPorEspecialidadDelEspecialista(especialidad : string)
-    // {
-    //   this.listaPorEspecialidad = [];
-    //   this.filtroEspecialidad = true;
-    //   this.listaDeTurnosDelEspecialista.forEach((turno : Turno) => 
-    //   {
-    //     if(turno.especialidad == especialidad)
-    //     {
-    //       this.listaPorEspecialidad.push(turno);
-    //     }
-    //   });
-
-    // }
-
   cancelarTurno(turno: Turno, opcion : number, comentario: string, emisor: string = "paciente") {
     if(opcion == 1)
     {
@@ -152,16 +138,6 @@ export class MisTurnosComponent {
     );
 }
 
-//   dejarHistorialClinico(turno: Turno, comentario: string) {
-//     turno.resenia = comentario;
-//     turno.estado = "realizado";
-//     this.turnoService.updateAppointment(turno);
-//     this.swal.showToast(
-//       'Se envió su reseña!',
-//       'success'
-//     );
-// }
-
     enviarEncuesta(turno: Turno,  comentario : string, emisor : string = "paciente") {
       if (turno.estado == 'realizado') {
           turno.encuesta = comentario;
@@ -181,23 +157,7 @@ export class MisTurnosComponent {
       });
     }
 
-/*
-    modalFinalizacion(turno: Turno, emisor: string)
-    {
-      this.swal.showModalText("Finalizar turno", "Deje su reseña y diagnóstico", "Escriba su reseña",  (comentario : string) => {
-        if(comentario != '')
-        {
-          this.dejarResenia(turno, comentario, emisor);
-        }
-        else
-        {
-          this.swal.swalert("Error", "Tiene que escribir una reseña para finalizar el turno", "error");
-        }
-      });
-    }*/
-
   modalFinalizacion(turno: Turno) {
-    // Llamar a la función showModalWithInputs
     this.swal.showModalWithInputs((datos: any) => {
       if(datos.resenia == '' || datos.altura == 0 || datos.peso == 0 || datos.temperatura == 0 || datos.presion == '')
       {
@@ -347,7 +307,6 @@ export class MisTurnosComponent {
           }
         }
       }
-      //console.log(this.turnosFiltrados);
     }
     
 

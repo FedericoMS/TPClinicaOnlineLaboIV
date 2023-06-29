@@ -39,42 +39,4 @@ export class RegistroComponent {
     }, 1000);
   }
 
-  
-
-
-
-
-
-/*
-
-  register() {
-    if (this.user.email == '' || this.user.clave == '') {
-      this.swal.swalert("Error", "Campos vacíos", "error");
-    }
-    else {
-      if (!this.userService.checkEmail(this.user.email)) {
-        this.swal.swalert("Error", "Email inválido", "error");
-      }
-
-      else {
-        this.userService.createUser({ email: this.user.email, password: this.user.clave })
-          .then(() => {
-            this.swal.swalert("Registro", "Usuario registrado", "success");
-            this.router.navigateByUrl("/home");
-          })
-          .catch((error) => {
-            if (error.code == 'auth/email-already-in-use') {
-              this.swal.swalert("Error", "El mail ya está en uso", "error");
-            }
-            else if (error.code == 'auth/weak-password') {
-              this.swal.swalert("Error", "La contraseña debe tener al menos 6 caracteres", "error");
-            }
-            else {
-              this.swal.swalert("Error", "No se pudo registrar", "error");
-            }
-          });
-      }
-    }
-  }*/
-
 }
